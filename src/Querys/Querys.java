@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package Querys;
+import Excepciones.ExcepcionPersonalizada;
 import ControladorBasedeDatos.Controlador;
+import java.math.BigInteger;
 import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 /**
  *
@@ -26,7 +29,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into categorias (nombre) values ('"+nombre_categoria+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -34,8 +37,8 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
@@ -47,7 +50,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
           
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into autores (nombre,apellido_paterno,apellido_materno) values "
@@ -58,8 +61,8 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, A,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
@@ -69,7 +72,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into editoriales (nombre) values ('"+nombre+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -77,8 +80,8 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
@@ -88,7 +91,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into idiomas (nombre) values ('"+nombre+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -96,8 +99,8 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
@@ -107,7 +110,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into estados (descripción) values ('"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -115,8 +118,8 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
@@ -126,7 +129,7 @@ public class Querys {
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
         st.execute("insert into metodos_de_pago (nombre,descripcion) values ('"+nombre+"','"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -134,19 +137,19 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
-     public void CrearDistribuidor(String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
+    public void CrearDistribuidor(String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
                                     long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select rut from distribuidores where rut='"+rut+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            int error = Integer.parseInt("a");
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          // SE INGRESAN LOS DATOS POR SEPARADO A LAS TABLAS CORRESPONDIENTES
         st.execute("insert into distribuidores (rut,nombre_empresa,ano_inicio_ventas) values ('"+rut+"','"+nombre+"','"+año+"');");
@@ -174,8 +177,35 @@ public class Querys {
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(NumberFormatException a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, "ESTE REGISTRO YA EXISTE ","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null,  a ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
+    }
+    
+    public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
+        Long val=null;
+        try{
+            val = Long.parseLong(dato);
+        }catch(NumberFormatException e){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
+            JOptionPane.showMessageDialog(null, "EL VALOR INGRESADO EN "+casilla+" NO CORRESPONDE A UN VALOR NUMERICO. INTENTE NUEVAMENTE");
+        }
+        return val;
+    }
+    
+    public short ValidarAño(String dato, String casilla){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
+        Calendar cal = Calendar.getInstance();
+        short val = 0;
+        try{
+            val = Short.parseShort(dato);
+            if((int)val>Calendar.YEAR){
+                throw new ExcepcionPersonalizada("EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO. INTENTE NUEVAMENTE");
+            }
+                
+        }catch(NumberFormatException e){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
+            JOptionPane.showMessageDialog(null, "EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO. INTENTE NUEVAMENTE");
+        }catch(ExcepcionPersonalizada a){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
+            JOptionPane.showMessageDialog(null, a);
+        }
+        return val;
     }
 }
