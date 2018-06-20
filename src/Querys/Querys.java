@@ -6,7 +6,6 @@
 package Querys;
 import Excepciones.ExcepcionPersonalizada;
 import ControladorBasedeDatos.Controlador;
-import java.math.BigInteger;
 import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,7 +61,7 @@ public class Querys {
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
       }catch(ExcepcionPersonalizada a){// CAPTIRA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, A,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, a,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
       }  
     }
     
