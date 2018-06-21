@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Querys.Querys;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
@@ -23,20 +24,29 @@ public class Listas extends javax.swing.JFrame {
      */
     String tabla;
     String[] columnas;
-    DefaultTableModel modelo;
-    
+    Querys q = new Querys();
     public Listas() {
         initComponents();
         
     }
     
-        public Listas(String tabla,String[] campos) {
+        public Listas(String tabla) {
             initComponents();
             this.tabla = tabla;
-            this.columnas = campos;
-            this.modelo = new DefaultTableModel(campos,0);
-            lista.setModel(modelo);
             setTitle(tabla);
+            
+            switch(tabla){
+                    case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
+                    case "Compras":
+                    case "Facturas":
+                    case "Distribuidores":
+                    case "Idiomas":
+                    case "Categoria":
+                    case "Editorial":
+                    case "Autores":
+                    case "Libros":
+                     
+            }
     }
 
   

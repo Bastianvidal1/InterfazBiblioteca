@@ -8,6 +8,7 @@ package Interfaces;
 import Querys.Querys;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -24,7 +25,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
      */
     String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     static Querys q = new Querys();
-//    static ResultSet rs = q.ListarDistribuidor();
+    static Statement st = q.getSt();
     int i=0;
     DefaultComboBoxModel modelo_jcombo = new DefaultComboBoxModel();
     
@@ -33,8 +34,11 @@ public class Registrar_Factura extends javax.swing.JFrame {
         setTitle("Registro: Factura" );
         
         try{
-            while(q.ListarDistribuidor().next()){
-                modelo_jcombo.addElement(q.ListarDistribuidor().getString("cod"));
+            q.ListarDistribuidor();
+            ResultSet rs  =st.executeQuery(q.getSql());
+            while(rs.next()){
+                String cod =rs.getString("cod");
+                modelo_jcombo.addElement(cod);
            }
            
          jcombo_distribuidor.setModel(modelo_jcombo);   

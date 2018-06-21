@@ -5,6 +5,13 @@
  */
 package Interfaces;
 
+import Querys.Querys;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bastian Vidal
@@ -14,7 +21,8 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    
+    static Querys q = new Querys();
+    static Statement st = q.getSt();
     public Main() {
         initComponents();
         setTitle("Administración de biblioteca");
@@ -381,7 +389,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         //SE DECLARA UN ARRAY CON LAS QUE DEBE TENER LA TABLA
        String[] Columnas = {"COD","N°SERIE","ISBN","TITULO","N°PAGINAS","PRECIO REF","IDIOMA","AÑO PUBLICACIÓN","AUTOR","CATEGORÍA","EDITORIAL"};
-       Listas listar = new Listas("Libros",Columnas);
+       Listas listar = new Listas("Libros");
        listar.setVisible(true);
        
         
@@ -390,56 +398,55 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};
-        Listas listar = new Listas("Autores",Columnas);
+        Listas listar = new Listas("Autores");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
          String[] Columnas = {"COD","NOMBRE"};
-       Listas listar = new Listas("Editorial",Columnas);
+       Listas listar = new Listas("Editorial");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
         String[] Columnas = {"COD","NOMBRE"};
-        Listas listar = new Listas("Categoria",Columnas);
+        Listas listar = new Listas("Categoria");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
         // TODO add your handling code here:
         String[] Columnas = {"COD","NOMBRE"};
-        Listas listar = new Listas("Idiomas",Columnas);
+        Listas listar = new Listas("Idiomas");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem34ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","DIRECCIÓN","TELÉFONO","AÑO INICIO VENTAS"};
-        Listas listar = new Listas("Distribuidores",Columnas);
+        String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","PAIS","TELÉFONO","AÑO INICIO VENTAS"};
+        Listas listar = new Listas("Distribuidores");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
         String[] Columnas = {"FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA","FECHA DE COMPRA"," HORA DE COMPRA","DISTRIBUIDOR","MÉTODO DE PAGO"};
-        Listas listar = new Listas("Facturas",Columnas);
+        Listas listar = new Listas("Facturas");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
         String[] Columnas = {"COD","DISTRIBUIDOR","FACTURA"};
-        Listas listar = new Listas("Compras",Columnas);
+        Listas listar = new Listas("Compras");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem37ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};
-        Listas listar = new Listas("Métodos de pago",Columnas);
+        Listas listar = new Listas("Métodos de pago");
         listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem37ActionPerformed
 
