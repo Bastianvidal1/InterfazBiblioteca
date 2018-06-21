@@ -37,14 +37,22 @@ public class Listas extends javax.swing.JFrame {
             
             switch(tabla){
                     case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
+                                            break;
                     case "Compras":
                     case "Facturas":
-                    case "Distribuidores":
-                    case "Idiomas":
-                    case "Categoria":
-                    case "Editorial":
-                    case "Autores":
+                    case "Distribuidores": lista.setModel(q.ListarDistribuidores());
+                                           break;
+                    case "Idiomas": lista.setModel(q.ListarIdiomas());
+                                    break;
+                    case "Categorias":lista.setModel(q.ListarCategorias());
+                                     break;
+                    case "Editorial":lista.setModel(q.ListarEditoriales());
+                                     break;
+                    case "Autores":lista.setModel(q.ListarAutores());
+                                   break;
                     case "Libros":
+                    case "Estado": lista.setModel(q.ListarEstado());
+                                   break;
                      
             }
     }

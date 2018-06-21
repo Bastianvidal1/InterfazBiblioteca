@@ -404,28 +404,26 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
-         String[] Columnas = {"COD","NOMBRE"};
-       Listas listar = new Listas("Editorial");
+    
+       Listas listar = new Listas("Editoriales");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","NOMBRE"};
-        Listas listar = new Listas("Categoria");
+        Listas listar = new Listas("Categorias");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","NOMBRE"};
+       
         Listas listar = new Listas("Idiomas");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem34ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","PAIS","TELÉFONO","AÑO INICIO VENTAS"};
         Listas listar = new Listas("Distribuidores");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -488,8 +486,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","DESCRIPCIÓN"};
-        Listas listar = new Listas("Estado",Columnas);
+        
+        Listas listar = new Listas("Estado");
         listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
