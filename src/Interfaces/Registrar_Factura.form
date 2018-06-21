@@ -64,7 +64,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -153,12 +153,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Distribuidor involucrado:"/>
+        <Property name="text" type="java.lang.String" value="Codigo Distribuidor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe9;todo de pago:"/>
+        <Property name="text" type="java.lang.String" value="Codigo M&#xe9;todo de pago:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="precio_neto">

@@ -27,21 +27,28 @@ public class Registrar_Factura extends javax.swing.JFrame {
     static Querys q = new Querys();
     static Statement st = q.getSt();
     int i=0;
-    DefaultComboBoxModel modelo_jcombo = new DefaultComboBoxModel();
-    
+    DefaultComboBoxModel modelo_jcombod = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelo_jcombom = new DefaultComboBoxModel();
     public Registrar_Factura() {
         initComponents();
         setTitle("Registro: Factura" );
         
         try{
-            q.ListarDistribuidor();
+            q.ListarDistribuidorCB();
             ResultSet rs  =st.executeQuery(q.getSql());
             while(rs.next()){
                 String cod =rs.getString("cod");
-                modelo_jcombo.addElement(cod);
+                modelo_jcombod.addElement(cod);
+           }
+            q.ListarMetodoPagoCB();
+            rs  =st.executeQuery(q.getSql());
+            while(rs.next()){
+                String cod =rs.getString("cod");
+                modelo_jcombom.addElement(cod);
            }
            
-         jcombo_distribuidor.setModel(modelo_jcombo);   
+         jcombo_distribuidor.setModel(modelo_jcombod);
+         jcombo_metodo_pago.setModel(modelo_jcombom);
         }catch(SQLException e){
              JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
         }
@@ -104,9 +111,9 @@ public class Registrar_Factura extends javax.swing.JFrame {
 
         jLabel6.setText("Hora de compra:");
 
-        jLabel7.setText("Distribuidor involucrado:");
+        jLabel7.setText("Codigo Distribuidor:");
 
-        jLabel8.setText("Método de pago:");
+        jLabel8.setText("Codigo Método de pago:");
 
         precio_neto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +194,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jcombo_metodo_pago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcombo_distribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
