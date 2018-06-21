@@ -11,15 +11,48 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Bastian Vidal
  */
 public class Querys {
-    static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR
-    static Statement st = con.getStatement();//SE OBTIENE EL Statement DE LA CLASE CONTROLADOR
-    static ResultSet rs; //SE INSTANCIA LA CLASE ResultSet PARA SU USO
-    static String sql;//STRING PARA GUARDAR LAS CONSULTAS;
+    private static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR
+    private static Statement st = con.getStatement();//SE OBTIENE EL Statement DE LA CLASE CONTROLADOR
+    private static ResultSet rs; //SE INSTANCIA LA CLASE ResultSet PARA SU USO
+    private static String sql;//STRING PARA GUARDAR LAS CONSULTAS;
+
+    public static Controlador getCon() {
+        return con;
+    }
+
+    public static void setCon(Controlador aCon) {
+        con = aCon;
+    }
+
+    public static Statement getSt() {
+        return st;
+    }
+
+    public static void setSt(Statement aSt) {
+        st = aSt;
+    }
+
+    public static ResultSet getRs() {
+        return rs;
+    }
+
+    public static void setRs(ResultSet aRs) {
+        rs = aRs;
+    }
+
+    public static String getSql() {
+        return sql;
+    }
+
+    public static void setSql(String aSql) {
+        sql = aSql;
+    }
 
     
     public void CrearCategoria(String nombre_categoria){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
@@ -150,28 +183,9 @@ public class Querys {
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
             throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
-         // SE INGRESAN LOS DATOS POR SEPARADO A LAS TABLAS CORRESPONDIENTES
-        st.execute("insert into distribuidores (rut,nombre_empresa,ano_inicio_ventas) values ('"+rut+"','"+nombre+"','"+año+"');");
-        st.execute("insert into direcciones (pais,ciudad,comuna,calle,numeracion) values ('"+pais+"','"+ciudad+"','"+comuna+"','"+calle+"','"+numeracion+"');");
-        st.execute("insert into telefonos (num_telefono) values ('"+telefono+"');");
-        
-        //SE BUSCAN LOS ULTIMOS REGISTROS INGRESADOS EN LAS TABLAS RELACIONADAS CON EL DISTRIBUIDOR Y A LAS QUE SE
-        // LE INGRESARON DATOS
-        rs = st.executeQuery("select max(cod) from direcciones");
-        rs.next();
-        String cod_d = rs.getString(1);
-        
-        rs = st.executeQuery("select max(cod) from telefonos");
-        rs.next(); 
-        String cod_t = rs.getString(1);
-        
-        rs = st.executeQuery("select max(cod) from distribuidores");
-        rs.next(); 
-        String cod_dis = rs.getString(1);
-        
-        //SE ACTUALIZA LAS CLAVES FORANEAS DE LA TABLA DISTRIBUIDORES CON LA DIRECCION Y TELEFONO ASOCIADO
-        st.execute("update distribuidores set direccion_asoc ='"+cod_d+"', telefono_asoc ='"+cod_t+"' where cod='"+cod_dis+"'");
-        
+         // SE INGRESAN LOS DATOS A LA TABLA DISTRIBUIDORES
+        st.execute("insert into distribuidores (rut,nombre_empresa,calle,numeracion,comuna,pais,telefono,ano_inicio_ventas) "
+                + "values ('"+rut+"','"+nombre+"','"+calle+"','"+numeracion+"','"+comuna+"','"+pais+"','"+telefono+"','"+año+"');");
         JOptionPane.showMessageDialog(null, "'"+nombre+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
@@ -181,6 +195,55 @@ public class Querys {
       }  
     }
     
+    public Statement ListarDistribuidor(){
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            sql="select * from distribuidores;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+    //METODO PARA LISTAR METODOS DE PAGO EN VENTANA 
+    //SE DEVUELVE UN DefaultTableModel PARA SER APLICADO EN EL LISTADO INMEDIATAMENTE;
+        public DefaultTableModel ListarMetodoPago(){ 
+                                                     
+         
+            String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};
+            DefaultTableModel modelo = new DefaultTableModel(Columnas,0);
+                try{
+
+               
+                sql="select * from metodos_de_pago;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+                rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+                if(!(rs.next())){
+                    throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+
+                }
+                   while(rs.next()){
+                     String[] fila = new String[3];
+                     fila[0] = rs.getString("cod");
+                     fila[1] = rs.getString("nombre");
+                     fila[2] = rs.getString("descripcion");
+                     modelo.addRow(fila);  
+                }
+            }catch(SQLException e){
+               JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+            }catch(ExcepcionPersonalizada a){
+                JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+            }
+        
+        return modelo;
+    }
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
         try{
@@ -197,7 +260,7 @@ public class Querys {
         try{
             val = Short.parseShort(dato);
             if((int)val>Calendar.YEAR){
-                throw new ExcepcionPersonalizada("EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO. INTENTE NUEVAMENTE");
+                throw new ExcepcionPersonalizada("EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO VÄLIDO. INTENTE NUEVAMENTE");
             }
                 
         }catch(NumberFormatException e){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
@@ -207,4 +270,5 @@ public class Querys {
         }
         return val;
     }
+    
 }
