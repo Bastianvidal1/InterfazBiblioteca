@@ -8,6 +8,7 @@ package Interfaces;
 import Querys.Querys;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -110,6 +111,11 @@ public class Listas extends javax.swing.JFrame {
         });
 
         jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jcombo_campo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar campo>" }));
         jcombo_campo.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +195,35 @@ public class Listas extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         switch(tabla){// SWITCH PARA LA ELIMINACION DE DATOS 
+                    case "Métodos de pago": try{
+                                                q.EliminarMetodoPago(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                                lista.setModel(q.ListarMetodoPago());}
+                                            catch(Exception e){
+                                                JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                            }
+                                                break;
+                    case "Compras":
+                    case "Facturas":
+                    case "Distribuidores": lista.setModel(q.ListarDistribuidores());
+                                           break;
+                    case "Idiomas": lista.setModel(q.ListarIdiomas());
+                                    break;
+                    case "Categorias":lista.setModel(q.ListarCategorias());
+                                     break;
+                    case "Editorial":lista.setModel(q.ListarEditoriales());
+                                     break;
+                    case "Autores":lista.setModel(q.ListarAutores());
+                                   break;
+                    case "Libros":
+                    case "Estado": lista.setModel(q.ListarEstado());
+                                   break;
+                     
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
