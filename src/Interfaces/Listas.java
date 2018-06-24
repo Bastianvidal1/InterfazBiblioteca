@@ -35,8 +35,12 @@ public class Listas extends javax.swing.JFrame {
             initComponents();
             this.tabla = tabla;
             setTitle(tabla);
+            setModelo(tabla);
             
-            switch(tabla){
+            
+    }   //METODO ENCARGADO DE DEFINIR EL MODELO DE LA TABLA PARA LA VISUALIZACIÓN
+        public void setModelo(String tabla){
+            switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
                                             break;
                     case "Compras":
@@ -56,8 +60,7 @@ public class Listas extends javax.swing.JFrame {
                                    break;
                      
             }
-    }
-
+        }
   
 
     /**
@@ -71,9 +74,9 @@ public class Listas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        txt_busqueda = new javax.swing.JTextField();
         texto_filtro = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_filtrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jcombo_campo = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
@@ -95,18 +98,18 @@ public class Listas extends javax.swing.JFrame {
         lista.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         jScrollPane1.setViewportView(lista);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_busquedaActionPerformed(evt);
             }
         });
 
         texto_filtro.setText("Ingresar [texto] a flitrar:");
 
-        jButton1.setText("Filtrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_filtrar.setText("Filtrar");
+        btn_filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_filtrarActionPerformed(evt);
             }
         });
 
@@ -147,9 +150,9 @@ public class Listas extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(texto_filtro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btn_filtrar)
                         .addGap(45, 45, 45)
                         .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -167,9 +170,9 @@ public class Listas extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto_filtro)
-                    .addComponent(jButton1)
+                    .addComponent(btn_filtrar)
                     .addComponent(jButton2)
                     .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,13 +183,33 @@ public class Listas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_busquedaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
+                    case "Métodos de pago": lista.setModel(q.FiltrarMetodoPago(txt_busqueda.getText()));
+                                            break;
+                    case "Compras":
+                    case "Facturas":
+                    case "Distribuidores":lista.setModel(q.FiltrarDistribuidores(txt_busqueda.getText()));
+                                            break;
+                    case "Idiomas": lista.setModel(q.FiltrarIdiomas(txt_busqueda.getText()));
+                                            break;
+                    case "Categorias":lista.setModel(q.FiltrarCategorias(txt_busqueda.getText()));
+                                            break;
+                    case "Editorial":lista.setModel(q.FiltrarEditoriales(txt_busqueda.getText()));
+                                            break;
+                    case "Autores":lista.setModel(q.FiltrarAutores(txt_busqueda.getText()));
+                                            break;
+                    case "Libros":
+                    case "Estado": lista.setModel(q.FiltrarEstado(txt_busqueda.getText()));
+                                            break;
+                     
+            }
+    }//GEN-LAST:event_btn_filtrarActionPerformed
 
     private void jcombo_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcombo_campoActionPerformed
         // TODO add your handling code here:
@@ -208,19 +231,49 @@ public class Listas extends javax.swing.JFrame {
                                                 break;
                     case "Compras":
                     case "Facturas":
-                    case "Distribuidores": lista.setModel(q.ListarDistribuidores());
-                                           break;
-                    case "Idiomas": lista.setModel(q.ListarIdiomas());
-                                    break;
-                    case "Categorias":lista.setModel(q.ListarCategorias());
-                                     break;
-                    case "Editorial":lista.setModel(q.ListarEditoriales());
-                                     break;
-                    case "Autores":lista.setModel(q.ListarAutores());
-                                   break;
+                    case "Distribuidores": try{
+                                                q.EliminarDistribuidores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                                lista.setModel(q.ListarDistribuidores());}
+                                            catch(Exception e){
+                                                JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                            }
+                                                break;
+                    case "Idiomas": try{
+                                        q.EliminarIdiomas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarIdiomas());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
+                    case "Categorias":try{
+                                        q.EliminarCategorias(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarCategorias());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
+                    case "Editorial":try{
+                                        q.EliminarEditoriales(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarEditoriales());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
+                    case "Autores":try{
+                                        q.EliminarAutores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarAutores());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
                     case "Libros":
-                    case "Estado": lista.setModel(q.ListarEstado());
-                                   break;
+                    case "Estado": try{
+                                        q.EliminarEstado(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarEstado());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
                      
             }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -261,14 +314,14 @@ public class Listas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_filtrar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox jcombo_campo;
     private javax.swing.JTable lista;
     private javax.swing.JLabel texto_filtro;
+    private javax.swing.JTextField txt_busqueda;
     // End of variables declaration//GEN-END:variables
 }

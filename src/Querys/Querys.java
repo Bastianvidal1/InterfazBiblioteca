@@ -138,14 +138,14 @@ public class Querys {
     
     public void CrearEstado(String descripcion){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
-         sql= "select descripción from estados where descripción='"+descripcion+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
+         sql= "select descripcion from estados where descripcion='"+descripcion+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
          
          if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
             throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          
-        st.execute("insert into estados (descripción) values ('"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
+        st.execute("insert into estados (descripcion) values ('"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
         JOptionPane.showMessageDialog(null, "'"+descripcion+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
@@ -501,6 +501,286 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    public DefaultTableModel FiltrarMetodoPago(String texto){
+        String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[3];
+
+        try{
+            if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarMetodoPago();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from metodos_de_pago where cod='"+texto+"' OR nombre='"+texto+"' OR descripcion='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+           
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("nombre");
+            fila[2] = rs.getString("descripcion");
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("nombre");
+                fila[2] = rs.getString("descripcion");
+                modelo.addRow(fila);  
+            }
+
+    }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+       JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
+    }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+    }
+
+    return modelo;//SE RETORNA EL MODELO DE LA TABLA 
+    }
+     
+    public DefaultTableModel FiltrarEstado(String texto){
+        String[] Columnas = {"COD","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[2];
+        try{   
+            if(texto.equals(" ") || texto.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+                   return ListarEstado();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+                }
+            sql="select * from estados where cod ='"+texto+"' OR descripcion='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("descripción");
+
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("descripción");
+                modelo.addRow(fila);  
+            }
+
+    }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+       JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+    }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+    }
+        return modelo;
+    }
+     
+    public DefaultTableModel FiltrarIdiomas(String texto){
+        String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[2];
+        try{   
+             if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarIdiomas();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from idiomas where cod='"+texto+"' OR nombre='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("nombre");
+
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("nombre");
+                modelo.addRow(fila);  
+            }
+
+        }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+        }
+            return modelo;
+
+    }  
+    
+    public DefaultTableModel FiltrarCategorias(String texto){
+        String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[2];
+        try{    
+             if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarCategorias();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from categorias where cod='"+texto+"' OR nombre='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("nombre");
+
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("nombre");
+                modelo.addRow(fila);  
+             }
+
+        }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+        }
+            return modelo;
+    }
+    
+    public DefaultTableModel FiltrarEditoriales(String texto){
+        String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[2];
+        try{ 
+            if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarEditoriales();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from editoriales where cod='"+texto+"' OR nombre='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("nombre");
+
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("nombre");
+                modelo.addRow(fila);  
+             }
+
+        }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+        }
+            return modelo;
+    }
+     
+    public DefaultTableModel FiltrarDistribuidores(String texto){
+       String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","PAIS","TELÉFONO","AÑO INICIO VENTAS"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[9];
+        try{    
+            if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarDistribuidores();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from distribuidores where cod='"+texto+"' OR rut='"+texto+"' OR nombre_empresa='"+texto+"' OR calle='"+texto+"' OR numeracion='"+texto+"' OR comuna='"+texto+"' "
+                    + "OR pais='"+texto+"' OR telefono='"+texto+"' OR ano_inicio_ventas='"+texto+"' ;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("rut");
+            fila[2] = rs.getString("nombre_empresa");
+            fila[3] = rs.getString("calle");
+            fila[4] = rs.getString("numeracion");
+            fila[5] = rs.getString("comuna");
+            fila[6] = rs.getString("pais");
+            fila[7] = rs.getString("telefono");
+            fila[8] = ""+rs.getInt("ano_inicio_ventas");
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("rut");
+                fila[2] = rs.getString("nombre_empresa");
+                fila[3] = rs.getString("calle");
+                fila[4] = rs.getString("numeracion");
+                fila[5] = rs.getString("comuna");
+                fila[6] = rs.getString("pais");
+                fila[7] = rs.getString("telefono");
+                fila[8] = ""+rs.getInt("ano_inicio_ventas");
+                modelo.addRow(fila);  
+             }
+
+        }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+        }
+            return modelo;
+    }
+    
+    public DefaultTableModel FiltrarAutores(String texto){
+        String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[4];
+        try{ 
+            if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarAutores();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from autores where cod='"+texto+"' OR nombre='"+texto+"' OR apellido_paterno='"+texto+" OR apellido_materno='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("nombre");
+            fila[2] = rs.getString("apellido_paterno");
+            fila[3] = rs.getString("apellido_materno");
+
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("nombre");
+                fila[2] = rs.getString("apellido_paterno");
+                fila[3] = rs.getString("apellido_materno");
+                modelo.addRow(fila);  
+             }
+
+        }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+        }
+            return modelo;
+    }
+     
     public void EliminarMetodoPago(String cod ){
         try{
             if(cod.equals(-1)){
@@ -518,6 +798,114 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
     }
+    
+    public void EliminarDistribuidores(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from distribuidores where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    public void EliminarIdiomas(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from idiomas where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    public void EliminarCategorias(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from categorias where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    public void EliminarEditoriales(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from editoriales where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+        }
+
+    public void EliminarAutores(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from autores where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+        }
+
+    public void EliminarEstado(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from estados where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+        }
     
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
