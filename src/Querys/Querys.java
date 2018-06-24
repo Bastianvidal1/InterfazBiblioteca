@@ -174,7 +174,7 @@ public class Querys {
       }  
     }
     
-    public void CrearFactura(String folio,int precio_neto,int precio_iva,int costo_iva,Calendar fecha_compra,Calendar hora_compra,int dist_involucrado,int metodo_pago){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
+    public void CrearFactura(String folio,int precio_neto,int precio_iva,int costo_iva,String fecha_compra,String hora_compra,int dist_involucrado,int metodo_pago){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select * from facturas where folio='"+folio+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
          rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
@@ -919,10 +919,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     
     public short ValidarAño(String dato, String casilla){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
         Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
         short val = 0;
         try{
             val = Short.parseShort(dato);
-            if((int)val>Calendar.YEAR){
+            if((int)val>year){
                 throw new ExcepcionPersonalizada("EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO VÄLIDO. INTENTE NUEVAMENTE");
             }
                 
@@ -932,6 +933,43 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             JOptionPane.showMessageDialog(null, a);
         }
         return val;
+    }
+    
+    public String ValidarFecha(String dia,String mes){
+        String fecha=null;
+        try{
+            if(Integer.parseInt(dia)>31){
+                throw new ExcepcionPersonalizada("DIA INGRESADO NO ES VÁLIDO");
+            }
+            if(Integer.parseInt(mes)>12){
+                throw new ExcepcionPersonalizada("MES INGRESADO NO ES VÁLIDO");
+            }
+           fecha = (mes+"-"+dia);
+        }catch(ExcepcionPersonalizada e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }catch(Exception a){
+            JOptionPane.showMessageDialog(null, a.getMessage());
+        }
+        
+        return fecha;
+    }
+    
+    public String ValidarHora(String hora,String minutos){
+        String time = null;
+        try{
+            if(Integer.parseInt(hora)>23){
+                throw new ExcepcionPersonalizada("LA HORA INGRESADA NO ES VÁLIDA");
+            }
+            if(Integer.parseInt(minutos)>59){
+                throw new ExcepcionPersonalizada("LOS MINUTOS INGRESADOS NO SON VÁLIDOS");
+            }
+          time=(hora+":"+minutos);  
+        }catch(ExcepcionPersonalizada e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }catch(Exception a){
+            JOptionPane.showMessageDialog(null, a.getMessage());
+        }
+        return time;
     }
     
 }

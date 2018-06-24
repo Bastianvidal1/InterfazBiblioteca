@@ -9,6 +9,8 @@ import Querys.Querys;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -78,12 +80,20 @@ public class Registrar_Factura extends javax.swing.JFrame {
         folio = new javax.swing.JTextField();
         precio_con_iva = new javax.swing.JTextField();
         costo_iva = new javax.swing.JTextField();
-        fecha_compra = new javax.swing.JTextField();
-        hora_compra = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        dia_compra = new javax.swing.JTextField();
+        minutos_compra = new javax.swing.JTextField();
+        btn_registrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jcombo_metodo_pago = new javax.swing.JComboBox();
         jcombo_distribuidor = new javax.swing.JComboBox();
+        mes_compra = new javax.swing.JTextField();
+        ano_compra = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        hora_compra = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,22 +149,22 @@ public class Registrar_Factura extends javax.swing.JFrame {
             }
         });
 
-        fecha_compra.addActionListener(new java.awt.event.ActionListener() {
+        dia_compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecha_compraActionPerformed(evt);
+                dia_compraActionPerformed(evt);
             }
         });
 
-        hora_compra.addActionListener(new java.awt.event.ActionListener() {
+        minutos_compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hora_compraActionPerformed(evt);
+                minutos_compraActionPerformed(evt);
             }
         });
 
-        jButton1.setText("REGISTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar.setText("REGISTRAR");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_registrarActionPerformed(evt);
             }
         });
 
@@ -164,6 +174,16 @@ public class Registrar_Factura extends javax.swing.JFrame {
         jcombo_metodo_pago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jcombo_distribuidor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel9.setText("/");
+
+        jLabel10.setText("/");
+
+        jLabel12.setText("DD/MM/AAAA");
+
+        jLabel13.setText(":");
+
+        jLabel14.setText("HH:MM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,18 +209,36 @@ public class Registrar_Factura extends javax.swing.JFrame {
                             .addComponent(folio, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(precio_con_iva, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(costo_iva, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(fecha_compra, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(hora_compra, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(jButton1)
+                            .addComponent(btn_registrar)
                             .addComponent(jcombo_metodo_pago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcombo_distribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                            .addComponent(jcombo_distribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(dia_compra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mes_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ano_compra))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hora_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(minutos_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel14)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -220,11 +258,19 @@ public class Registrar_Factura extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(fecha_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dia_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mes_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ano_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(hora_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(minutos_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hora_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -234,7 +280,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jcombo_metodo_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addComponent(btn_registrar)
                 .addGap(66, 66, 66))
         );
 
@@ -261,22 +307,29 @@ public class Registrar_Factura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_costo_ivaActionPerformed
 
-    private void fecha_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_compraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecha_compraActionPerformed
-
-    private void hora_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hora_compraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hora_compraActionPerformed
-
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "Esta factura ya se encuentra registrada en nuestro sistema");
-    }//GEN-LAST:event_jButton1ActionPerformed
+     try{ 
+        String fecha = ""+q.ValidarAño(ano_compra.getText(), "Fecha")+"-"+q.ValidarFecha(dia_compra.getText(), mes_compra.getText());
+        q.CrearFactura(folio.getText(), Integer.parseInt(precio_neto.getText()),Integer.parseInt(precio_con_iva.getText()), 
+                Integer.parseInt(costo_iva.getText()), fecha , q.ValidarHora(hora_compra.getText(), minutos_compra.getText()), 
+                Integer.parseInt(jcombo_distribuidor.getSelectedItem().toString()), Integer.parseInt(jcombo_metodo_pago.getSelectedItem().toString()));
+     }catch(Exception e){
+         JOptionPane.showMessageDialog(null, e.getMessage());
+     }
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void minutos_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minutos_compraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minutos_compraActionPerformed
+
+    private void dia_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dia_compraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dia_compraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,13 +370,18 @@ public class Registrar_Factura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ano_compra;
+    private javax.swing.JButton btn_registrar;
     private javax.swing.JTextField costo_iva;
-    private javax.swing.JTextField fecha_compra;
+    private javax.swing.JTextField dia_compra;
     private javax.swing.JTextField folio;
     private javax.swing.JTextField hora_compra;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -331,10 +389,13 @@ public class Registrar_Factura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JComboBox jcombo_distribuidor;
     private javax.swing.JComboBox jcombo_metodo_pago;
+    private javax.swing.JTextField mes_compra;
+    private javax.swing.JTextField minutos_compra;
     private javax.swing.JTextField precio_con_iva;
     private javax.swing.JTextField precio_neto;
     // End of variables declaration//GEN-END:variables
