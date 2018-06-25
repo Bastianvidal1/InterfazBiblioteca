@@ -34,8 +34,13 @@ public class Registrar_Factura extends javax.swing.JFrame {
     public Registrar_Factura() {
         initComponents();
         setTitle("Registro: Factura" );
+        CrearComboBox();
+       
         
-        try{
+    }
+    
+    private void CrearComboBox(){
+         try{
             q.ListarDistribuidorCB();
             ResultSet rs  =st.executeQuery(q.getSql());
             while(rs.next()){
@@ -54,7 +59,6 @@ public class Registrar_Factura extends javax.swing.JFrame {
         }catch(SQLException e){
              JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
 
     /**
@@ -314,7 +318,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
      try{ 
-        String fecha = ""+q.ValidarAño(ano_compra.getText(), "Fecha")+"-"+q.ValidarFecha(dia_compra.getText(), mes_compra.getText());
+        String fecha = q.ValidarAño(ano_compra.getText())+"-"+q.ValidarFecha(dia_compra.getText(), mes_compra.getText());
         q.CrearFactura(folio.getText(), Integer.parseInt(precio_neto.getText()),Integer.parseInt(precio_con_iva.getText()), 
                 Integer.parseInt(costo_iva.getText()), fecha , q.ValidarHora(hora_compra.getText(), minutos_compra.getText()), 
                 Integer.parseInt(jcombo_distribuidor.getSelectedItem().toString()), Integer.parseInt(jcombo_metodo_pago.getSelectedItem().toString()));

@@ -284,7 +284,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         long numero_t = q.ValidarLong(numero_telefono.getText(), "N° DE TELEFONO");
-        short año = q.ValidarAño(año_inicio_ventas.getText(),"AÑO INICIO DE VENTAS");
+        short año = q.ValidarAño(año_inicio_ventas.getText());
         
        //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
         q.CrearDistribuidor(rut.getText().toUpperCase(), nombre.getText().toUpperCase(),pais.getText().toUpperCase(),ciudad.getText().toUpperCase(),

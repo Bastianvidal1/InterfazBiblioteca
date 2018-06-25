@@ -10,6 +10,7 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -20,6 +21,7 @@ public class Querys {
     private static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR
     private static Statement st = con.getStatement();//SE OBTIENE EL Statement DE LA CLASE CONTROLADOR
     private static ResultSet rs; //SE INSTANCIA LA CLASE ResultSet PARA SU USO
+    private static ResultSet rscod; //SE INSTANCIA LA CLASE ResultSet PARA USARLA EN LAS RELACIONES
     private static String sql;//STRING PARA GUARDAR LAS CONSULTAS;
 
     public static Controlador getCon() {
@@ -54,7 +56,45 @@ public class Querys {
         sql = aSql;
     }
 
-    
+     public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
+                            ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
+      try{
+         sql= "select * from libros where num_serie='"+nserie+"' OR isbn ='"+isbn+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
+         rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+         
+         if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+         }
+        st.execute("insert into libros (num_serie,isbn,titulo,npaginas,precio_ref,ano_publicacion,editorial,estado) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
+                + "values ('"+nserie+"','"+isbn+"','"+titulo+"','"+npaginas+"','"+precioref+"','"+ano_publicacion+"','"+editorial+"','"+estado+"');");
+        
+        rscod = st.executeQuery("select max(cod) from libros");
+        rscod.next();
+        String codlibro = rscod.getString(1);
+        
+          for (int i = 0; i < idiomas.getSize(); i++) {
+              st.execute("insert into libro_idiomas (cod_libro,cod_idioma) values ('"+codlibro+"','"+idiomas.getElementAt(i)+"');");
+          }
+          
+          for (int i = 0; i < categorias.getSize(); i++) {
+              st.execute("insert into libro_categoria(cod_libro,cod_categoria) values ('"+codlibro+"','"+categorias.getElementAt(i)+"');");
+          }
+                    
+          for (int i = 0; i < autores.getSize(); i++) {
+              st.execute("insert into libro_autores (cod_libro,cod_autor) values ('"+codlibro+"','"+autores.getElementAt(i)+"');");
+          }
+          
+        JOptionPane.showMessageDialog(null, "'"+titulo+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
+        JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }  
+    }
+     
     public void CrearCategoria(String nombre_categoria){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from categorias where nombre='"+nombre_categoria+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -250,6 +290,88 @@ public class Querys {
         return st;
     }
     
+    public Statement ListarIdiomaCB(){
+        try{
+            sql="select * from idiomas;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+     
+    public Statement ListarEditorialCB(){
+        try{
+            sql="select * from editoriales;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+     
+    public Statement ListarAutoresCB(){
+        try{
+            sql="select * from autores;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+     
+    public Statement ListarCategoriasCB(){
+        try{
+            sql="select * from categorias;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");  
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+    
+    public Statement ListarEstadoCB(){
+        try{
+            sql="select * from estados;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");  
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
     //SE DEVUELVE UN DefaultTableModel PARA SER APLICADO EN EL LISTADO INMEDIATAMENTE;
     public DefaultTableModel ListarMetodoPago(){
         String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
@@ -917,18 +1039,28 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return val;
     }
     
-    public short ValidarAño(String dato, String casilla){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
+     public int ValidarInteger(String dato){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
+        int val = 0;
+        try{
+            val = Integer.parseInt(dato);
+        }catch(NumberFormatException e){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
+            JOptionPane.showMessageDialog(null, "UN VALOR INGRESADO NO CORRESPONDE A UN VALOR NUMERICO. INTENTE NUEVAMENTE");
+        }
+        return val;
+    }
+    
+    public short ValidarAño(String dato){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         short val = 0;
         try{
             val = Short.parseShort(dato);
             if((int)val>year){
-                throw new ExcepcionPersonalizada("EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO VÄLIDO. INTENTE NUEVAMENTE");
+                throw new ExcepcionPersonalizada("EL AÑO INGRESADO NO CORRESPONDE A UN AÑO VÄLIDO. INTENTE NUEVAMENTE");
             }
                 
         }catch(NumberFormatException e){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
-            JOptionPane.showMessageDialog(null, "EL AÑO INGRESADO EN LA CASILLA "+casilla+"  NO CORRESPONDE A UN AÑO. INTENTE NUEVAMENTE");
+            JOptionPane.showMessageDialog(null, "EL AÑO INGRESADO NO CORRESPONDE A UN AÑO VÁLIDO. INTENTE NUEVAMENTE");
         }catch(ExcepcionPersonalizada a){//EN LA CAPTURA DE LA EXCEPCION DE INGRESO DE DATO SE ESPECIFICA El ERROR
             JOptionPane.showMessageDialog(null, a);
         }
