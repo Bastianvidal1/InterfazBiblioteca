@@ -44,7 +44,8 @@ public class Listas extends javax.swing.JFrame {
                     case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
                                             break;
                     case "Compras":
-                    case "Facturas":
+                    case "Facturas":lista.setModel(q.ListarFactura());
+                                    break;
                     case "Distribuidores": lista.setModel(q.ListarDistribuidores());
                                            break;
                     case "Idiomas": lista.setModel(q.ListarIdiomas());
@@ -77,7 +78,7 @@ public class Listas extends javax.swing.JFrame {
         txt_busqueda = new javax.swing.JTextField();
         texto_filtro = new javax.swing.JLabel();
         btn_filtrar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         jcombo_campo = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -113,10 +114,10 @@ public class Listas extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Eliminar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -160,7 +161,7 @@ public class Listas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btn_eliminar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -173,7 +174,7 @@ public class Listas extends javax.swing.JFrame {
                     .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto_filtro)
                     .addComponent(btn_filtrar)
-                    .addComponent(jButton2)
+                    .addComponent(btn_eliminar)
                     .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
@@ -193,7 +194,8 @@ public class Listas extends javax.swing.JFrame {
                     case "Métodos de pago": lista.setModel(q.FiltrarMetodoPago(txt_busqueda.getText()));
                                             break;
                     case "Compras":
-                    case "Facturas":
+                    case "Facturas":lista.setModel(q.FiltrarFactura(txt_busqueda.getText()));
+                                    break;
                     case "Distribuidores":lista.setModel(q.FiltrarDistribuidores(txt_busqueda.getText()));
                                             break;
                     case "Idiomas": lista.setModel(q.FiltrarIdiomas(txt_busqueda.getText()));
@@ -219,7 +221,7 @@ public class Listas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
          switch(tabla){// SWITCH PARA LA ELIMINACION DE DATOS 
                     case "Métodos de pago": try{
@@ -230,7 +232,13 @@ public class Listas extends javax.swing.JFrame {
                                             }
                                                 break;
                     case "Compras":
-                    case "Facturas":
+                    case "Facturas": try{
+                                        q.EliminarFacturas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarFactura());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                    break;       
                     case "Distribuidores": try{
                                                 q.EliminarDistribuidores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
                                                 lista.setModel(q.ListarDistribuidores());}
@@ -276,7 +284,7 @@ public class Listas extends javax.swing.JFrame {
                                         break;
                      
             }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,8 +322,8 @@ public class Listas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_filtrar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;

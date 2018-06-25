@@ -504,6 +504,54 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;
 }
     
+    public DefaultTableModel ListarFactura(){
+    String[] Columnas = {"COD","FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA",
+                        "FECHA COMPRA","HORA COMPRA","COD DISTRIBUIDOR INV","COD METODO DE PAGO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+    DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+    String[] fila = new String[9];
+    try{                
+        sql="select * from facturas;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+        rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+        if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+            throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+        }
+        //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+        //AL MODELO
+        fila[0] = rs.getString("cod");
+        fila[1] = rs.getString("folio");
+        fila[2] = rs.getString("precio_neto");
+        fila[3] = rs.getString("precio_iva");
+        fila[4] = rs.getString("costo_iva");
+        fila[5] = rs.getString("fecha_compra");
+        fila[6] = rs.getString("hora_compra");
+        fila[7] = rs.getString("dist_involucrado");
+        fila[8] = rs.getString("metodo_pago");
+                
+        modelo.addRow(fila);
+
+        while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("folio");
+            fila[2] = rs.getString("precio_neto");
+            fila[3] = rs.getString("precio_iva");
+            fila[4] = rs.getString("costo_iva");
+            fila[5] = rs.getString("fecha_compra");
+            fila[6] = rs.getString("hora_compra");
+            fila[7] = rs.getString("dist_involucrado");
+            fila[8] = rs.getString("metodo_pago");
+            modelo.addRow(fila);  
+        }
+
+}catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+   JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+}catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+    JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+}
+    return modelo;
+}
+    
     public DefaultTableModel ListarIdiomas(){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -966,7 +1014,61 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
             return modelo;
     }
-     
+    
+    public DefaultTableModel FiltrarFactura(String texto){
+    String[] Columnas = {"COD","FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA",
+                        "FECHA COMPRA","HORA COMPRA","COD DISTRIBUIDOR INV","COD METODO DE PAGO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+    DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+    String[] fila = new String[9];
+    try{    
+        if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarFactura();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+        }
+        sql="select * from facturas where cod='"+texto+"' OR folio='"+texto+"' OR precio_neto='"+texto+"' OR precio_iva='"+texto+"'"
+                + "OR costo_iva='"+texto+"' OR fecha_compra='"+texto+"' OR hora_compra='"+texto+"' OR dist_involucrado='"+texto+"' "
+                + "OR metodo_pago='"+texto+"' ;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+        rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+        if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+            throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+        }
+        //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+        //AL MODELO
+        fila[0] = rs.getString("cod");
+        fila[1] = rs.getString("folio");
+        fila[2] = rs.getString("precio_neto");
+        fila[3] = rs.getString("precio_iva");
+        fila[4] = rs.getString("costo_iva");
+        fila[5] = rs.getString("fecha_compra");
+        fila[6] = rs.getString("hora_compra");
+        fila[7] = rs.getString("dist_involucrado");
+        fila[8] = rs.getString("metodo_pago");
+                
+        modelo.addRow(fila);
+
+        while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("folio");
+            fila[2] = rs.getString("precio_neto");
+            fila[3] = rs.getString("precio_iva");
+            fila[4] = rs.getString("costo_iva");
+            fila[5] = rs.getString("fecha_compra");
+            fila[6] = rs.getString("hora_compra");
+            fila[7] = rs.getString("dist_involucrado");
+            fila[8] = rs.getString("metodo_pago");
+            modelo.addRow(fila);  
+        }
+
+}catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+   JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+}catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+    JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+
+}
+    return modelo;
+}
+    
     public void EliminarMetodoPago(String cod ){
         try{
             if(cod.equals(-1)){
@@ -980,7 +1082,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
     }
@@ -998,7 +1102,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
     }
@@ -1016,6 +1122,8 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
          }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
@@ -1034,7 +1142,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
     }
@@ -1052,7 +1162,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        } catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
         }
@@ -1070,7 +1182,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
         }
@@ -1088,8 +1202,30 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
          }catch(ExcepcionPersonalizada a){
            JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
-         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }
+        }
+    
+    public void EliminarFacturas(String cod ){
+        try{
+            if(cod.equals(-1)){
+                throw new ExcepcionPersonalizada("NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE");
+            }
+            sql= "delete from facturas where cod='"+cod+"';";//SE CREA LA SENTENCIA DONDE SE ELIMINA DEL REGISTRO INDICADO
+            st.execute(sql);//SE EJECUTA LA CONSULTA
+
+
+            JOptionPane.showMessageDialog(null,"EL REGISTRO HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+         }catch(ExcepcionPersonalizada a){
+           JOptionPane.showMessageDialog(null,"NO SE HA SELECCIONADO NINGÚN REGISTRO PARA ELIMINAR, INTENTE NUEVAMENTE","ERROR DE SELECCIÓN", JOptionPane.ERROR_MESSAGE);  
+         }catch(SQLIntegrityConstraintViolationException a){
+            JOptionPane.showMessageDialog(null, "ESTE REGISTRO NO SE PUEDE ELIMINAR YA QUE ESTA RELACIONADA CON ALGÚN OTRO REGISTRO","ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
         }
     
