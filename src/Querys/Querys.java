@@ -75,7 +75,7 @@ public class Querys {
               st.execute("insert into compra_libro (compra_asoc,libro_asoc) values ('"+codcompra+"','"+libros.getElementAt(i)+"');");
           }
                     
-        JOptionPane.showMessageDialog(null, "L compra  ha sido registrada correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        JOptionPane.showMessageDialog(null, "La compra  ha sido registrada correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
