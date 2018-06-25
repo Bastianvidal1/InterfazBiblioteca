@@ -259,7 +259,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Idiomas:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo Idioma:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -269,17 +269,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Autores:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo Autor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Categor&#xed;as:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo Categor&#xed;a:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Editorial:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo Editorial:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_isbn">
@@ -468,7 +468,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Estado:"/>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo Estado:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcombo_estado">

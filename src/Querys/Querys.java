@@ -55,7 +55,37 @@ public class Querys {
     public static void setSql(String aSql) {
         sql = aSql;
     }
-
+    
+    public void CrearCompra(DefaultListModel libros,int distribuidor,int factura){
+        try{
+         sql= "select * from compra where factura='"+factura+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
+         rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+         
+         if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
+            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+         }
+        st.execute("insert into compra (dist_involucrado,factura) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
+                + "values ('"+distribuidor+"','"+factura+"');");
+        
+        rscod = st.executeQuery("select max(cod) from compra");
+        rscod.next();
+        String codcompra = rscod.getString(1);
+        
+          for (int i = 0; i < libros.getSize(); i++) {
+              st.execute("insert into compra_libro (compra_asoc,libro_asoc) values ('"+codcompra+"','"+libros.getElementAt(i)+"');");
+          }
+                    
+        JOptionPane.showMessageDialog(null, "L compra  ha sido registrada correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
+        JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+      } 
+    }
+    
      public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
                             ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
@@ -273,9 +303,43 @@ public class Querys {
         return st;
     }
     
+    public Statement ListarFacturaCB(){
+        try{
+            sql="select * from facturas;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+    
     public Statement ListarMetodoPagoCB(){
         try{
             sql="select * from metodos_de_pago;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                
+            }   
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null, a,"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+        }
+        return st;
+    }
+    
+    public Statement ListarLibrosCB(){
+        try{
+            sql="select * from libros;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
             rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
 
             if(!(rs.next())){

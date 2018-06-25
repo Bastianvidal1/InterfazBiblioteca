@@ -174,15 +174,15 @@ public class Registrar_Libro extends javax.swing.JFrame {
 
         jLabel5.setText("Precio referencia:");
 
-        jLabel6.setText("Idiomas:");
+        jLabel6.setText("Código Idioma:");
 
         jLabel7.setText("Año de publicación:");
 
-        jLabel8.setText("Autores:");
+        jLabel8.setText("Código Autor:");
 
-        jLabel9.setText("Categorías:");
+        jLabel9.setText("Código Categoría:");
 
-        jLabel10.setText("Editorial:");
+        jLabel10.setText("Código Editorial:");
 
         txt_isbn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +265,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
 
         jcombo_editorial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel12.setText("Estado:");
+        jLabel12.setText("Código Estado:");
 
         jcombo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -308,7 +308,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_agregarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_agregaridioma, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
