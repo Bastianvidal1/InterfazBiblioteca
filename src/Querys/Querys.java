@@ -471,6 +471,53 @@ public class Querys {
 return modelo;//SE RETORNA EL MODELO DE LA TABLA 
     }
     
+    public DefaultTableModel ListarLibros(){
+        String[] Columnas = {"COD","N° SERIE","ISBN","TITULO","N° PAGINAS","PRECIO REF","AÑO PUBLICACIÓN",
+            "COD. EDITORIAL","COD. ESTADO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[9];
+        try{                
+            sql="select * from libros;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("num_serie");
+            fila[2] = rs.getString("isbn");
+            fila[3] = rs.getString("titulo");
+            fila[4] = rs.getString("npaginas");
+            fila[5] = rs.getString("precio_ref");
+            fila[6] = rs.getString("ano_publicacion");
+            fila[7] = rs.getString("editorial");
+            fila[8] = rs.getString("estado");
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("num_serie");
+                fila[2] = rs.getString("isbn");
+                fila[3] = rs.getString("titulo");
+                fila[4] = rs.getString("npaginas");
+                fila[5] = rs.getString("precio_ref");
+                fila[6] = rs.getString("ano_publicacion");
+                fila[7] = rs.getString("editorial");
+                fila[8] = rs.getString("estado");
+                modelo.addRow(fila);
+            }
+
+    }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+       JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+    }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+    }
+
+    return modelo;//SE RETORNA EL MODELO DE LA TABLA 
+    }
+    
     public DefaultTableModel ListarEstado(){
     String[] Columnas = {"COD","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
     DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -698,6 +745,56 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    public DefaultTableModel ListarRelacionesLibro(String cod,String rel){
+    
+        DefaultTableModel modelo = new DefaultTableModel(0,0);//DECLARACION DEL MODELO
+        
+        switch(rel){
+            case "LIBRO_AUTOR": String[] Columnas = {"COD","COD. LIBRO","COD. AUTOR","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+                                modelo.setColumnIdentifiers(Columnas);
+                                try{
+                                    sql=("select * from libro_autores,autores where libro_autores.Cod_Autor = autores.Cod and cod_libro='"+cod+"';");
+                                    rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+                                    
+                                     if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                                           throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                                    }
+                                    String[] fila = new String[6];
+                                    
+                                      //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+                                        //AL MODELO
+                                        fila[0] = rs.getString(1);
+                                        fila[1] = rs.getString(2);
+                                        fila[2] = rs.getString(3);
+                                        fila[3] = rs.getString(5);
+                                        fila[4] = rs.getString(6);
+                                        fila[5] = rs.getString(7);
+                                        
+                                        modelo.addRow(fila);
+                                        
+                                        while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                                            fila[0] = rs.getString(1);
+                                            fila[1] = rs.getString(2);
+                                            fila[2] = rs.getString(3);
+                                            fila[3] = rs.getString(5);
+                                            fila[4] = rs.getString(6);
+                                            fila[5] = rs.getString(7);
+                                            modelo.addRow(fila);
+                                         }
+                                }catch(SQLException e){
+                                  JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+                                }catch(ExcepcionPersonalizada a){
+                                  JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);  
+                                }
+                                break;
+                                
+            case "LIBRO_IDIOMAS":
+            
+        
+        }        
+        return modelo;
+        
+    }
     public DefaultTableModel ListarAutores(){
         String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -735,6 +832,59 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    public DefaultTableModel FiltrarLibros(String texto){
+        String[] Columnas = {"COD","N° SERIE","ISBN","TITULO","N° PAGINAS","PRECIO REF","AÑO PUBLICACIÓN",
+            "COD. EDITORIAL","COD. ESTADO"};//VECTOR CORRESPONDIENTE A LAS COLUMNAS
+        DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
+        String[] fila = new String[9];
+
+        try{
+            if(texto.equals(" ") || texto.isEmpty()){
+                JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
+               return ListarLibros();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
+            }
+            sql="select * from libros where cod='"+texto+"' OR num_serie='"+texto+"' OR isbn='"+texto+"' OR titulo='"+texto+"' OR npaginas='"+texto+"' OR "
+                    + "precio_ref='"+texto+"' OR ano_publicacion='"+texto+"' OR editorial='"+texto+"' OR estado='"+texto+"' ;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+           
+            if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+            }
+            //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+            //AL MODELO
+            fila[0] = rs.getString("cod");
+            fila[1] = rs.getString("num_serie");
+            fila[2] = rs.getString("isbn");
+            fila[3] = rs.getString("titulo");
+            fila[4] = rs.getString("npaginas");
+            fila[5] = rs.getString("precio_ref");
+            fila[6] = rs.getString("ano_publicacion");
+            fila[7] = rs.getString("editorial");
+            fila[8] = rs.getString("estado");
+            modelo.addRow(fila);
+
+            while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                fila[0] = rs.getString("cod");
+                fila[1] = rs.getString("num_serie");
+                fila[2] = rs.getString("isbn");
+                fila[3] = rs.getString("titulo");
+                fila[4] = rs.getString("npaginas");
+                fila[5] = rs.getString("precio_ref");
+                fila[6] = rs.getString("ano_publicacion");
+                fila[7] = rs.getString("editorial");
+                fila[8] = rs.getString("estado");
+                modelo.addRow(fila);
+            }
+
+    }catch(SQLException e){//CAPTURA DE EXCEPCION DE MySQL
+       JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
+    }catch(ExcepcionPersonalizada a){//CAPTURA PRODUCIDA SI NO EXISTEN DATOS EN LA TABLA
+        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);
+    }
+
+    return modelo;//SE RETORNA EL MODELO DE LA TABLA 
+    }
+        
     public DefaultTableModel FiltrarMetodoPago(String texto){
         String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO

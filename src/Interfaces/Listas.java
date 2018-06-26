@@ -56,7 +56,8 @@ public class Listas extends javax.swing.JFrame {
                                      break;
                     case "Autores":lista.setModel(q.ListarAutores());
                                    break;
-                    case "Libros":
+                    case "Libros":lista.setModel(q.ListarLibros());
+                                   break;
                     case "Estado": lista.setModel(q.ListarEstado());
                                    break;
                      
@@ -82,6 +83,9 @@ public class Listas extends javax.swing.JFrame {
         jcombo_campo = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        btn_ver_autores = new javax.swing.JButton();
+        btn_ver_categorias = new javax.swing.JButton();
+        btn_ver_idiomas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,15 +142,18 @@ public class Listas extends javax.swing.JFrame {
 
         jButton3.setText("Modificar");
 
+        btn_ver_autores.setText("Autores");
+
+        btn_ver_categorias.setText("Categorias");
+
+        btn_ver_idiomas.setText("Idiomas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(texto_filtro)
@@ -161,7 +168,19 @@ public class Listas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(btn_eliminar)))
+                        .addComponent(btn_eliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btn_ver_autores, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_ver_categorias)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_ver_idiomas)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,7 +188,12 @@ public class Listas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_ver_autores)
+                    .addComponent(btn_ver_categorias)
+                    .addComponent(btn_ver_idiomas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto_filtro)
@@ -178,7 +202,7 @@ public class Listas extends javax.swing.JFrame {
                     .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -206,7 +230,8 @@ public class Listas extends javax.swing.JFrame {
                                             break;
                     case "Autores":lista.setModel(q.FiltrarAutores(txt_busqueda.getText()));
                                             break;
-                    case "Libros":
+                    case "Libros":lista.setModel(q.FiltrarLibros(txt_busqueda.getText()));
+                                  break;
                     case "Estado": lista.setModel(q.FiltrarEstado(txt_busqueda.getText()));
                                             break;
                      
@@ -324,6 +349,9 @@ public class Listas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_filtrar;
+    private javax.swing.JButton btn_ver_autores;
+    private javax.swing.JButton btn_ver_categorias;
+    private javax.swing.JButton btn_ver_idiomas;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
