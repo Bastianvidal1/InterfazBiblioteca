@@ -143,6 +143,11 @@ public class Listas extends javax.swing.JFrame {
         jButton3.setText("Modificar");
 
         btn_ver_autores.setText("Autores");
+        btn_ver_autores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ver_autoresActionPerformed(evt);
+            }
+        });
 
         btn_ver_categorias.setText("Categorias");
 
@@ -310,6 +315,12 @@ public class Listas extends javax.swing.JFrame {
                      
             }
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_ver_autoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_autoresActionPerformed
+        // TODO add your handling code here:
+        Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_AUTOR");
+        lista_relacional.setVisible(true);
+    }//GEN-LAST:event_btn_ver_autoresActionPerformed
 
     /**
      * @param args the command line arguments
