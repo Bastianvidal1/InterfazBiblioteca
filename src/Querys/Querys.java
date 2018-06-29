@@ -855,6 +855,53 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
                                   JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);  
                                 }
                                 break;
+                                
+                case "LIBRO_COMPRAS": String[] Columnasl = {"COD","COD. COMPRA","COD. LIBRO","N°SERIE","ISBN","TITULO","N°PAGINAS","PRECIO REF","AÑO PUBLICACION","COD. EDITORIAL","COD ESTADO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+                                modelo.setColumnIdentifiers(Columnasl);
+                                try{
+                                    sql=("select * from compra_libro,libros where compra_libro.Libro_asoc = libros.Cod and compra_Asoc="+cod+";");
+                                    rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+                                    
+                                     if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 
+                                           throw new ExcepcionPersonalizada("NO HAY REGISTROS PARA LISTAR");
+                                    }
+                                    String[] fila = new String[11];
+                                    
+                                      //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
+                                        //AL MODELO
+                                        fila[0] = rs.getString(1);
+                                        fila[1] = rs.getString(2);
+                                        fila[2] = rs.getString(3);
+                                        fila[3] = rs.getString(5);
+                                        fila[4] = rs.getString(6);
+                                        fila[5] = rs.getString(7);
+                                        fila[6] = rs.getString(8);
+                                        fila[7] = rs.getString(9);
+                                        fila[8] = rs.getString(10);
+                                        fila[9] = rs.getString(11);
+                                        fila[10] = rs.getString(12);
+                                        modelo.addRow(fila);
+                                        
+                                        while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
+                                            fila[0] = rs.getString(1);
+                                            fila[1] = rs.getString(2);
+                                            fila[2] = rs.getString(3);
+                                            fila[3] = rs.getString(5);
+                                            fila[4] = rs.getString(6);
+                                            fila[5] = rs.getString(7);
+                                            fila[6] = rs.getString(8);
+                                            fila[7] = rs.getString(9);
+                                            fila[8] = rs.getString(10);
+                                            fila[9] = rs.getString(11);
+                                            fila[10] = rs.getString(12);
+                                            modelo.addRow(fila);
+                                         }
+                                }catch(SQLException e){
+                                  JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);  
+                                }catch(ExcepcionPersonalizada a){
+                                  JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR AL LISTAR REGISTROS", JOptionPane.ERROR_MESSAGE);  
+                                }
+                                break;
         
         }        
         return modelo;
