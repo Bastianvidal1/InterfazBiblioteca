@@ -143,6 +143,8 @@ public class Listas extends javax.swing.JFrame {
         jButton3.setText("Modificar");
 
         btn_ver_autores.setText("Autores");
+        btn_ver_autores.setMaximumSize(new java.awt.Dimension(80, 30));
+        btn_ver_autores.setPreferredSize(new java.awt.Dimension(80, 30));
         btn_ver_autores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ver_autoresActionPerformed(evt);
@@ -150,8 +152,22 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_categorias.setText("Categorias");
+        btn_ver_categorias.setMaximumSize(new java.awt.Dimension(80, 30));
+        btn_ver_categorias.setPreferredSize(new java.awt.Dimension(90, 30));
+        btn_ver_categorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ver_categoriasActionPerformed(evt);
+            }
+        });
 
         btn_ver_idiomas.setText("Idiomas");
+        btn_ver_idiomas.setMaximumSize(new java.awt.Dimension(80, 30));
+        btn_ver_idiomas.setPreferredSize(new java.awt.Dimension(80, 30));
+        btn_ver_idiomas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ver_idiomasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,9 +197,9 @@ public class Listas extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(btn_ver_autores, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_ver_categorias)
+                                .addComponent(btn_ver_categorias, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_ver_idiomas)
+                                .addComponent(btn_ver_idiomas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1))))
                 .addContainerGap())
@@ -195,10 +211,10 @@ public class Listas extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ver_autores)
-                    .addComponent(btn_ver_categorias)
-                    .addComponent(btn_ver_idiomas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(btn_ver_autores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ver_categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ver_idiomas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto_filtro)
@@ -318,9 +334,33 @@ public class Listas extends javax.swing.JFrame {
 
     private void btn_ver_autoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_autoresActionPerformed
         // TODO add your handling code here:
-        Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_AUTOR");
-        lista_relacional.setVisible(true);
+        try{
+            Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_AUTOR");
+            lista_relacional.setVisible(true);
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }
     }//GEN-LAST:event_btn_ver_autoresActionPerformed
+
+    private void btn_ver_idiomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_idiomasActionPerformed
+        // TODO add your handling code here:
+        try{
+            Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_IDIOMAS");
+            lista_relacional.setVisible(true);
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }
+    }//GEN-LAST:event_btn_ver_idiomasActionPerformed
+
+    private void btn_ver_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_categoriasActionPerformed
+        // TODO add your handling code here:
+        try{
+            Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_CATEGORIAS");
+            lista_relacional.setVisible(true);
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }
+    }//GEN-LAST:event_btn_ver_categoriasActionPerformed
 
     /**
      * @param args the command line arguments

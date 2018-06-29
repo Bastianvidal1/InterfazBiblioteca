@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Querys.Querys;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,11 +38,9 @@ public class Listas_Relacionales extends javax.swing.JFrame {
      */
     
     public void setModelo(String cod, String rel){
-        switch(rel){
-            case "LIBRO_AUTOR": lista.setModel(q.ListarRelacionesLibro(cod, rel));
-                                break;
+        
+            lista.setModel(q.ListarRelacionesLibro(cod, rel)); 
             
-        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
