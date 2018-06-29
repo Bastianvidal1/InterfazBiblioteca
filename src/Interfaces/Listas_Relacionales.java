@@ -29,6 +29,7 @@ public class Listas_Relacionales extends javax.swing.JFrame {
         this.cod = cod;
         this.rel = rel;
         setModelo(cod, rel);
+        
     }
     
     /**
@@ -39,7 +40,7 @@ public class Listas_Relacionales extends javax.swing.JFrame {
     
     public void setModelo(String cod, String rel){
         
-            lista.setModel(q.ListarRelacionesLibro(cod, rel)); 
+            lista.setModel(q.ListarRelaciones(cod, rel)); 
             
     }
     @SuppressWarnings("unchecked")
@@ -78,21 +79,21 @@ public class Listas_Relacionales extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_eliminar)
-                .addGap(19, 19, 19))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_eliminar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(11, 11, 11))
         );
 
         pack();

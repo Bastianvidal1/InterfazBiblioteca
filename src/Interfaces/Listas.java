@@ -36,6 +36,7 @@ public class Listas extends javax.swing.JFrame {
             this.tabla = tabla;
             setTitle(tabla);
             setModelo(tabla);
+            setBotones(tabla);
             
             
     }   //METODO ENCARGADO DE DEFINIR EL MODELO DE LA TABLA PARA LA VISUALIZACIÓN
@@ -43,7 +44,8 @@ public class Listas extends javax.swing.JFrame {
             switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
                                             break;
-                    case "Compras":
+                    case "Compras": lista.setModel(q.ListarCompra());
+                                    break;
                     case "Facturas":lista.setModel(q.ListarFactura());
                                     break;
                     case "Distribuidores": lista.setModel(q.ListarDistribuidores());
@@ -62,6 +64,22 @@ public class Listas extends javax.swing.JFrame {
                                    break;
                      
             }
+        }
+        
+        public void setBotones(String tabla){
+            
+ 
+            if(tabla.equals("Libros")){
+                btn_ver_autores.setEnabled(true);
+                btn_ver_categorias.setEnabled(true);
+                btn_ver_idiomas.setEnabled(true);
+            }
+            
+            if(tabla.equals("Compras")){
+               btn_ver_libros_comprados.setEnabled(true);
+            }
+                
+            
         }
   
 
@@ -144,6 +162,7 @@ public class Listas extends javax.swing.JFrame {
         jButton3.setText("Modificar");
 
         btn_ver_autores.setText("Autores");
+        btn_ver_autores.setEnabled(false);
         btn_ver_autores.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_autores.setPreferredSize(new java.awt.Dimension(80, 30));
         btn_ver_autores.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +172,7 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_categorias.setText("Categorias");
+        btn_ver_categorias.setEnabled(false);
         btn_ver_categorias.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_categorias.setPreferredSize(new java.awt.Dimension(90, 30));
         btn_ver_categorias.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +182,7 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_idiomas.setText("Idiomas");
+        btn_ver_idiomas.setEnabled(false);
         btn_ver_idiomas.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_idiomas.setPreferredSize(new java.awt.Dimension(80, 30));
         btn_ver_idiomas.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +192,12 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_libros_comprados.setText("Libros comprados");
+        btn_ver_libros_comprados.setEnabled(false);
+        btn_ver_libros_comprados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ver_libros_compradosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,7 +270,8 @@ public class Listas extends javax.swing.JFrame {
         switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.FiltrarMetodoPago(txt_busqueda.getText()));
                                             break;
-                    case "Compras":
+                    case "Compras": lista.setModel(q.FiltrarCompras(txt_busqueda.getText()));
+                                    break;
                     case "Facturas":lista.setModel(q.FiltrarFactura(txt_busqueda.getText()));
                                     break;
                     case "Distribuidores":lista.setModel(q.FiltrarDistribuidores(txt_busqueda.getText()));
@@ -282,7 +310,14 @@ public class Listas extends javax.swing.JFrame {
                                                 JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
                                             }
                                                 break;
-                    case "Compras":
+                    case "Compras":try{
+                                        q.EliminarCompras(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarCompra());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                    break;   
+                        
                     case "Facturas": try{
                                         q.EliminarFacturas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
                                         lista.setModel(q.ListarFactura());}
@@ -325,7 +360,13 @@ public class Listas extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
                                     }
                                         break;
-                    case "Libros":
+                    case "Libros":try{
+                                        q.EliminarLibros(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                        lista.setModel(q.ListarLibros());}
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
+                                    }
+                                        break;
                     case "Estado": try{
                                         q.EliminarEstado(lista.getValueAt(lista.getSelectedRow(), 0).toString());
                                         lista.setModel(q.ListarEstado());}
@@ -366,6 +407,16 @@ public class Listas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
         }
     }//GEN-LAST:event_btn_ver_categoriasActionPerformed
+
+    private void btn_ver_libros_compradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_libros_compradosActionPerformed
+        // TODO add your handling code here:
+         try{
+            Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_COMPRAS");
+            lista_relacional.setVisible(true);
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }
+    }//GEN-LAST:event_btn_ver_libros_compradosActionPerformed
 
     /**
      * @param args the command line arguments

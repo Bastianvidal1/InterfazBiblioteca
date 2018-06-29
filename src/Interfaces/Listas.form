@@ -196,6 +196,7 @@
     <Component class="javax.swing.JButton" name="btn_ver_autores">
       <Properties>
         <Property name="text" type="java.lang.String" value="Autores"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 30]"/>
         </Property>
@@ -210,6 +211,7 @@
     <Component class="javax.swing.JButton" name="btn_ver_categorias">
       <Properties>
         <Property name="text" type="java.lang.String" value="Categorias"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 30]"/>
         </Property>
@@ -224,6 +226,7 @@
     <Component class="javax.swing.JButton" name="btn_ver_idiomas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Idiomas"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 30]"/>
         </Property>
@@ -238,7 +241,11 @@
     <Component class="javax.swing.JButton" name="btn_ver_libros_comprados">
       <Properties>
         <Property name="text" type="java.lang.String" value="Libros comprados"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ver_libros_compradosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
