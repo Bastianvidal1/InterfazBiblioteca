@@ -66,20 +66,23 @@ public class Listas extends javax.swing.JFrame {
             }
         }
         
+        //ESTE METODO SE ENCARGA DE HACER VISIBLES O NO LOS BOTONES PARA LISTAR REFERENCIAS
+        // SEGÚN CORRESPONDA
         public void setBotones(String tabla){
             
- 
-            if(tabla.equals("Libros")){
-                btn_ver_autores.setEnabled(true);
-                btn_ver_categorias.setEnabled(true);
-                btn_ver_idiomas.setEnabled(true);
-            }
-            
-            if(tabla.equals("Compras")){
-               btn_ver_libros_comprados.setEnabled(true);
-            }
-                
-            
+            switch(tabla){
+                case "Libros":  btn_ver_libros_comprados.setVisible(false);
+                                break;
+                case "Compras":  btn_ver_autores.setVisible(false);
+                                 btn_ver_categorias.setVisible(false);
+                                 btn_ver_idiomas.setVisible(false);
+                                 break;
+                default:btn_ver_libros_comprados.setVisible(false);
+                       btn_ver_autores.setVisible(false);
+                         btn_ver_categorias.setVisible(false);
+                         btn_ver_idiomas.setVisible(false);
+            }         
+                 
         }
   
 
@@ -98,9 +101,7 @@ public class Listas extends javax.swing.JFrame {
         texto_filtro = new javax.swing.JLabel();
         btn_filtrar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
-        jcombo_campo = new javax.swing.JComboBox();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
         btn_ver_autores = new javax.swing.JButton();
         btn_ver_categorias = new javax.swing.JButton();
         btn_ver_idiomas = new javax.swing.JButton();
@@ -144,25 +145,14 @@ public class Listas extends javax.swing.JFrame {
             }
         });
 
-        jcombo_campo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar campo>" }));
-        jcombo_campo.addActionListener(new java.awt.event.ActionListener() {
+        btn_modificar.setText("Modificar");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcombo_campoActionPerformed(evt);
+                btn_modificarActionPerformed(evt);
             }
         });
-
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("[Texto a reemplazar]");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Modificar");
 
         btn_ver_autores.setText("Autores");
-        btn_ver_autores.setEnabled(false);
         btn_ver_autores.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_autores.setPreferredSize(new java.awt.Dimension(80, 30));
         btn_ver_autores.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +162,6 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_categorias.setText("Categorias");
-        btn_ver_categorias.setEnabled(false);
         btn_ver_categorias.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_categorias.setPreferredSize(new java.awt.Dimension(90, 30));
         btn_ver_categorias.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +171,6 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_idiomas.setText("Idiomas");
-        btn_ver_idiomas.setEnabled(false);
         btn_ver_idiomas.setMaximumSize(new java.awt.Dimension(80, 30));
         btn_ver_idiomas.setPreferredSize(new java.awt.Dimension(80, 30));
         btn_ver_idiomas.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +180,6 @@ public class Listas extends javax.swing.JFrame {
         });
 
         btn_ver_libros_comprados.setText("Libros comprados");
-        btn_ver_libros_comprados.setEnabled(false);
         btn_ver_libros_comprados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ver_libros_compradosActionPerformed(evt);
@@ -212,13 +199,9 @@ public class Listas extends javax.swing.JFrame {
                         .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_filtrar)
-                        .addGap(45, 45, 45)
-                        .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
+                        .addComponent(btn_modificar)
+                        .addGap(48, 48, 48)
                         .addComponent(btn_eliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -252,9 +235,7 @@ public class Listas extends javax.swing.JFrame {
                     .addComponent(texto_filtro)
                     .addComponent(btn_filtrar)
                     .addComponent(btn_eliminar)
-                    .addComponent(jcombo_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(btn_modificar))
                 .addContainerGap())
         );
 
@@ -266,7 +247,7 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_busquedaActionPerformed
 
     private void btn_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtrarActionPerformed
-        // TODO add your handling code here:
+        // BOTON ENCARGADO DE LISTAR SOLO LOS REGISTROS QUE COINCIDEN CON EL FILTRO
         switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.FiltrarMetodoPago(txt_busqueda.getText()));
                                             break;
@@ -292,16 +273,8 @@ public class Listas extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btn_filtrarActionPerformed
 
-    private void jcombo_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcombo_campoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcombo_campoActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
-        // TODO add your handling code here:
+        //BOTON ENCARGADO DE ELIMINAR EL REGISTRO DE SELECCIONADO EN LA TABLA SEGÚN CORRESPONDA
          switch(tabla){// SWITCH PARA LA ELIMINACION DE DATOS 
                     case "Métodos de pago": try{
                                                 q.EliminarMetodoPago(lista.getValueAt(lista.getSelectedRow(), 0).toString());
@@ -379,7 +352,7 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_ver_autoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_autoresActionPerformed
-        // TODO add your handling code here:
+        // BOTON QUE MUESTRA UNA TABLA CON LAS RELACIONES ASOCIADAS AL REGISTRO SELECCIONADO
         try{
             Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_AUTOR");
             lista_relacional.setVisible(true);
@@ -389,7 +362,7 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ver_autoresActionPerformed
 
     private void btn_ver_idiomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_idiomasActionPerformed
-        // TODO add your handling code here:
+        //  BOTON QUE MUESTRA UNA TABLA CON LAS RELACIONES ASOCIADAS AL REGISTRO SELECCIONADO
         try{
             Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_IDIOMAS");
             lista_relacional.setVisible(true);
@@ -399,7 +372,7 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ver_idiomasActionPerformed
 
     private void btn_ver_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_categoriasActionPerformed
-        // TODO add your handling code here:
+        // BOTON QUE MUESTRA UNA TABLA CON LAS RELACIONES ASOCIADAS AL REGISTRO SELECCIONADO
         try{
             Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_CATEGORIAS");
             lista_relacional.setVisible(true);
@@ -409,7 +382,7 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ver_categoriasActionPerformed
 
     private void btn_ver_libros_compradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_libros_compradosActionPerformed
-        // TODO add your handling code here:
+        // BOTON QUE MUESTRA UNA TABLA CON LAS RELACIONES ASOCIADAS AL REGISTRO SELECCIONADO
          try{
             Listas_Relacionales lista_relacional = new Listas_Relacionales(lista.getValueAt(lista.getSelectedRow(), 0).toString(),"LIBRO_COMPRAS");
             lista_relacional.setVisible(true);
@@ -417,6 +390,30 @@ public class Listas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
         }
     }//GEN-LAST:event_btn_ver_libros_compradosActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // ABREA UNA VENTADA CON LOS DATOS DE LA FIlA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
+        switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
+                    case "Métodos de pago": 
+                    case "Compras":
+                        
+                    case "Facturas":    
+                    case "Distribuidores":
+                    case "Idiomas": 
+                    case "Categorias":
+                    case "Editorial":
+                                        
+                    case "Autores":String cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                   String nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                   String apellidop = lista.getValueAt(lista.getSelectedRow(), 2).toString();
+                                   String apellidom = lista.getValueAt(lista.getSelectedRow(), 3).toString();
+                                    Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
+                                    reg_autor.setVisible(true);
+                    case "Libros":
+                    case "Estado":
+                     
+            }
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,14 +453,12 @@ public class Listas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_filtrar;
+    private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_ver_autores;
     private javax.swing.JButton btn_ver_categorias;
     private javax.swing.JButton btn_ver_idiomas;
     private javax.swing.JButton btn_ver_libros_comprados;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JComboBox jcombo_campo;
     private javax.swing.JTable lista;
     private javax.swing.JLabel texto_filtro;
     private javax.swing.JTextField txt_busqueda;
