@@ -392,23 +392,41 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ver_libros_compradosActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
-        // ABREA UNA VENTADA CON LOS DATOS DE LA FIlA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
+        // ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
+        String cod;
+        String nombre;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
                     case "Métodos de pago": 
                     case "Compras":
                         
                     case "Facturas":    
                     case "Distribuidores":
-                    case "Idiomas": 
-                    case "Categorias":
-                    case "Editorial":
+                    case "Idiomas": cod = lista.getValueAt(lista.getSelectedRow(),0).toString();
+                                    nombre = lista.getValueAt(lista.getSelectedRow(),1).toString();
+                                    Registrar_Idioma reg_idiomas = new Registrar_Idioma(cod, nombre);
+                                    reg_idiomas.setVisible(true);
+                                    break;
+                                    
+                                    
+                    case "Categorias": cod = lista.getValueAt(lista.getSelectedRow(),0).toString();
+                                       nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                       Registrar_Categoria reg_categoria = new Registrar_Categoria(cod, nombre);
+                                       reg_categoria.setVisible(true);
+                                       break;
+                                               
+                    case "Editorial": cod = lista.getValueAt(lista.getSelectedRow(),0).toString();
+                                      nombre = lista.getValueAt(lista.getSelectedRow(),1).toString();
+                                      Registrar_Editorial reg_editorial= new Registrar_Editorial(cod, nombre);
+                                      reg_editorial.setVisible(true);
+                                      break;
                                         
-                    case "Autores":String cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
-                                   String nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                    case "Autores":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                   nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                    String apellidop = lista.getValueAt(lista.getSelectedRow(), 2).toString();
                                    String apellidom = lista.getValueAt(lista.getSelectedRow(), 3).toString();
                                     Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
                                     reg_autor.setVisible(true);
+                                    break;
                     case "Libros":
                     case "Estado":
                      

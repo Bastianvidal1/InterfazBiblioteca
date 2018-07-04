@@ -86,7 +86,7 @@ public class Querys {
       } 
     }
     
-     public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
+    public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
                             ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select * from libros where num_serie='"+nserie+"' OR isbn ='"+isbn+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -532,7 +532,7 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
         //AL MODELO
         fila[0] = rs.getString("cod");
-        fila[1] = rs.getString("descripción");
+        fila[1] = rs.getString("descripcion");
 
         modelo.addRow(fila);
 
@@ -1609,7 +1609,7 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
         }
     
-    public void ModificarAutor(String cod,String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
+    public void ModificarAutor(String cod,String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE AUTOR
       try{
                 st.execute("update autores set nombre='"+nombre_autor+"',apellido_paterno='"+apellidop+"',apellido_materno='"+apellidom+"' "
                         + "WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1621,6 +1621,43 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
       }
     }
+    
+    public void ModificarCategoría(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
+      try{
+                st.execute("update categorias set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    public void ModificarIdioma(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
+      try{
+                st.execute("update idiomas set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    public void ModificarEditorial(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
+      try{
+                st.execute("update editoriales set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
         try{
@@ -1631,7 +1668,7 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return val;
     }
     
-     public int ValidarInteger(String dato){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
+    public int ValidarInteger(String dato){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         int val = 0;
         try{
             val = Integer.parseInt(dato);

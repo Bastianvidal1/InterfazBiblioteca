@@ -405,7 +405,7 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
     
-       Listas listar = new Listas("Editoriales");
+       Listas listar = new Listas("Editorial");
        listar.setVisible(true);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 

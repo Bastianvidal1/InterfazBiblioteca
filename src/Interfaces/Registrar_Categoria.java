@@ -16,12 +16,19 @@ public class Registrar_Categoria extends javax.swing.JFrame {
      * Creates new form Registrar_Libro
      */
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
-
+    String cod;
     public Registrar_Categoria() {
         initComponents();
         setTitle("Registro: Categoría" );
     }
-
+    
+    public Registrar_Categoria(String cod, String nombre) {
+        initComponents();
+        setTitle("Modificar: Categoría" );
+        this.cod = cod;
+        txt_nombre_categoria.setText(nombre);
+        label_cod.setText(label_cod.getText()+" "+cod);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +41,11 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        nombre_categoria = new javax.swing.JTextField();
+        txt_nombre_categoria = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        label_cod = new javax.swing.JLabel();
+        btn_modificar = new javax.swing.JButton();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,9 +63,9 @@ public class Registrar_Categoria extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        nombre_categoria.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombre_categoriaActionPerformed(evt);
+                txt_nombre_categoriaActionPerformed(evt);
             }
         });
 
@@ -70,42 +79,60 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Registrar Categoría");
 
+        label_cod.setText("COD:");
+
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_nombre_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nombre_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap())
+                    .addComponent(txt_nombre_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btn_modificar))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombre_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_categoriaActionPerformed
+    private void txt_nombre_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombre_categoriaActionPerformed
+    }//GEN-LAST:event_txt_nombre_categoriaActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -118,8 +145,13 @@ public class Registrar_Categoria extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
-        q.CrearCategoria(nombre_categoria.getText().toUpperCase());
+        q.CrearCategoria(txt_nombre_categoria.getText().toUpperCase());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        q.ModificarCategoría(cod, txt_nombre_categoria.getText().toUpperCase());
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,11 +192,13 @@ public class Registrar_Categoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_modificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nombre_categoria;
+    private javax.swing.JLabel label_cod;
+    private javax.swing.JTextField txt_nombre_categoria;
     // End of variables declaration//GEN-END:variables
 }

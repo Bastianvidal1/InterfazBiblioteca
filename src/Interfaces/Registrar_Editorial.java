@@ -18,10 +18,19 @@ public class Registrar_Editorial extends javax.swing.JFrame {
      */
     String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS 
+    String cod;
 
     public Registrar_Editorial() {
         initComponents();
         setTitle("Registro: Editorial" );
+    }
+    
+    public Registrar_Editorial(String cod,String nombre) {
+        initComponents();
+        setTitle("Registro: Editorial" );
+        this.cod = cod;
+        txt_nombre.setText(nombre);
+        label_cod.setText(label_cod.getText()+" "+cod);
     }
 
     /**
@@ -36,9 +45,11 @@ public class Registrar_Editorial extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        label_cod = new javax.swing.JLabel();
+        btn_modificar = new javax.swing.JButton();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,9 +67,9 @@ public class Registrar_Editorial extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        nombre.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
 
@@ -72,42 +83,61 @@ public class Registrar_Editorial extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Registrar editorial");
 
+        label_cod.setText("COD:");
+
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btn_modificar))
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -120,8 +150,13 @@ public class Registrar_Editorial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
-        q.CrearEditorial(nombre.getText().toUpperCase());
+        q.CrearEditorial(txt_nombre.getText().toUpperCase());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        q.ModificarEditorial(cod,txt_nombre.getText().toUpperCase());
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,11 +197,13 @@ public class Registrar_Editorial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_modificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nombre;
+    private javax.swing.JLabel label_cod;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
