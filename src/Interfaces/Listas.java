@@ -405,7 +405,12 @@ public class Listas extends javax.swing.JFrame {
         String ainicio_ventas;
         String desc;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
-                    case "Métodos de pago": break;
+                    case "Métodos de pago":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                           nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                           desc = lista.getValueAt(lista.getSelectedRow(), 2).toString();
+                                           Registrar_MetododePago reg_metodopago = new Registrar_MetododePago(cod, nombre, desc);
+                                           reg_metodopago.setVisible(true);
+                                           break;
                     case "Compras":break;
                         
                     case "Facturas":break;    

@@ -1686,6 +1686,18 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    public void ModificarMetododePago(String cod,String nombre, String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE METODOS DE PAGO
+      try{
+                st.execute("update metodos_de_pago set nombre='"+nombre+"' ,descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
         try{

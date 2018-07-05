@@ -23,12 +23,12 @@ public class Registrar_Estado extends javax.swing.JFrame {
 
     public Registrar_Estado() {
         initComponents();
-        setTitle("Registro: Idioma" );
+        setTitle("Registro: Estado" );
     }
     
        public Registrar_Estado(String cod, String desc) {
         initComponents();
-        setTitle("Modificar: Idioma" );
+        setTitle("Modificar: Estado" );
         this.cod = cod;
         label_cod.setText(label_cod.getText()+" "+cod);
         txt_descripcion.setText(desc);
