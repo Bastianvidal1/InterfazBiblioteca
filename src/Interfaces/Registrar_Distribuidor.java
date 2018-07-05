@@ -18,10 +18,28 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
      */
     String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
+    String cod;
 
     public Registrar_Distribuidor() {
         initComponents();
         setTitle("Registro: Distribuidor" );
+    }
+    
+        public Registrar_Distribuidor(String cod, String rut, String nombre, String pais, String ciudad, String comuna, String calle, String numeracion, String ntelefono, String ainicio) {
+        initComponents();
+        setTitle("Modificar: Distribuidor" );
+        this.cod = cod;
+        label_cod.setText(label_cod.getText()+" "+cod);
+        txt_rut.setText(rut);
+        txt_nombre.setText(nombre);
+        txt_pais.setText(pais);
+        txt_ciudad.setText(ciudad);
+        txt_comuna.setText(comuna);
+        txt_calle.setText(calle);
+        txt_numeracion.setText(numeracion);
+        txt_numero_telefono.setText(ntelefono);
+        txt_año_inicio_ventas.setText(ainicio);
+        btn_registrar.setVisible(false);
     }
 
     /**
@@ -44,17 +62,19 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
-        rut = new javax.swing.JTextField();
-        pais = new javax.swing.JTextField();
-        ciudad = new javax.swing.JTextField();
-        comuna = new javax.swing.JTextField();
-        calle = new javax.swing.JTextField();
-        numero_telefono = new javax.swing.JTextField();
-        numeracion = new javax.swing.JTextField();
-        año_inicio_ventas = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txt_nombre = new javax.swing.JTextField();
+        txt_rut = new javax.swing.JTextField();
+        txt_pais = new javax.swing.JTextField();
+        txt_ciudad = new javax.swing.JTextField();
+        txt_comuna = new javax.swing.JTextField();
+        txt_calle = new javax.swing.JTextField();
+        txt_numero_telefono = new javax.swing.JTextField();
+        txt_numeracion = new javax.swing.JTextField();
+        txt_año_inicio_ventas = new javax.swing.JTextField();
+        btn_registrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        label_cod = new javax.swing.JLabel();
+        btn_modificar = new javax.swing.JButton();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,209 +108,240 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
 
         jLabel9.setText("Año inicio de ventas:");
 
-        nombre.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
 
-        rut.addActionListener(new java.awt.event.ActionListener() {
+        txt_rut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rutActionPerformed(evt);
+                txt_rutActionPerformed(evt);
             }
         });
 
-        pais.addActionListener(new java.awt.event.ActionListener() {
+        txt_pais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paisActionPerformed(evt);
+                txt_paisActionPerformed(evt);
             }
         });
 
-        ciudad.addActionListener(new java.awt.event.ActionListener() {
+        txt_ciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ciudadActionPerformed(evt);
+                txt_ciudadActionPerformed(evt);
             }
         });
 
-        comuna.addActionListener(new java.awt.event.ActionListener() {
+        txt_comuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comunaActionPerformed(evt);
+                txt_comunaActionPerformed(evt);
             }
         });
 
-        calle.addActionListener(new java.awt.event.ActionListener() {
+        txt_calle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calleActionPerformed(evt);
+                txt_calleActionPerformed(evt);
             }
         });
 
-        numero_telefono.addActionListener(new java.awt.event.ActionListener() {
+        txt_numero_telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numero_telefonoActionPerformed(evt);
+                txt_numero_telefonoActionPerformed(evt);
             }
         });
 
-        numeracion.addActionListener(new java.awt.event.ActionListener() {
+        txt_numeracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeracionActionPerformed(evt);
+                txt_numeracionActionPerformed(evt);
             }
         });
 
-        año_inicio_ventas.addActionListener(new java.awt.event.ActionListener() {
+        txt_año_inicio_ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                año_inicio_ventasActionPerformed(evt);
+                txt_año_inicio_ventasActionPerformed(evt);
             }
         });
 
-        jButton1.setText("REGISTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar.setText("REGISTRAR");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_registrarActionPerformed(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Registrar distribuidor");
 
+        label_cod.setText("COD:");
+
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rut, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comuna, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(calle, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numero_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numeracion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(año_inicio_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(137, 137, 137))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_pais, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_comuna, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_calle, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_numero_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_numeracion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_año_inicio_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(btn_registrar)
+                        .addGap(34, 34, 34)
+                        .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(rut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(calle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_calle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(numeracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_numeracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(numero_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_numero_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(año_inicio_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51))
+                    .addComponent(txt_año_inicio_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_registrar)
+                    .addComponent(btn_modificar))
+                .addGap(52, 52, 52))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
-    private void rutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutActionPerformed
+    private void txt_rutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rutActionPerformed
+    }//GEN-LAST:event_txt_rutActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paisActionPerformed
+    private void txt_paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_paisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_paisActionPerformed
+    }//GEN-LAST:event_txt_paisActionPerformed
 
-    private void ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadActionPerformed
+    private void txt_ciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ciudadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ciudadActionPerformed
+    }//GEN-LAST:event_txt_ciudadActionPerformed
 
-    private void comunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comunaActionPerformed
+    private void txt_comunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_comunaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comunaActionPerformed
+    }//GEN-LAST:event_txt_comunaActionPerformed
 
-    private void calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleActionPerformed
+    private void txt_calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_calleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_calleActionPerformed
+    }//GEN-LAST:event_txt_calleActionPerformed
 
-    private void numero_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero_telefonoActionPerformed
+    private void txt_numero_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_numero_telefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numero_telefonoActionPerformed
+    }//GEN-LAST:event_txt_numero_telefonoActionPerformed
 
-    private void numeracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeracionActionPerformed
+    private void txt_numeracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_numeracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numeracionActionPerformed
+    }//GEN-LAST:event_txt_numeracionActionPerformed
 
-    private void año_inicio_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_año_inicio_ventasActionPerformed
+    private void txt_año_inicio_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_año_inicio_ventasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_año_inicio_ventasActionPerformed
+    }//GEN-LAST:event_txt_año_inicio_ventasActionPerformed
 
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
-        long numero_t = q.ValidarLong(numero_telefono.getText(), "N° DE TELEFONO");
-        short año = q.ValidarAño(año_inicio_ventas.getText());
+        long numero_t = q.ValidarLong(txt_numero_telefono.getText(), "N° DE TELEFONO");
+        short año = q.ValidarAño(txt_año_inicio_ventas.getText());
         
        //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
-        q.CrearDistribuidor(rut.getText().toUpperCase(), nombre.getText().toUpperCase(),pais.getText().toUpperCase(),ciudad.getText().toUpperCase(),
-                comuna.getText().toUpperCase(), calle.getText().toUpperCase(), numeracion.getText().toUpperCase(),
+        q.CrearDistribuidor(txt_rut.getText().toUpperCase(), txt_nombre.getText().toUpperCase(),txt_pais.getText().toUpperCase(),txt_ciudad.getText().toUpperCase(),
+                txt_comuna.getText().toUpperCase(), txt_calle.getText().toUpperCase(), txt_numeracion.getText().toUpperCase(),
                 numero_t, año);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        long numero_t = q.ValidarLong(txt_numero_telefono.getText(), "N° DE TELEFONO");
+        short año = q.ValidarAño(txt_año_inicio_ventas.getText());
+        
+       //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
+        q.ModificarDistribuidor(cod,txt_rut.getText().toUpperCase(), txt_nombre.getText().toUpperCase(),txt_pais.getText().toUpperCase(),txt_ciudad.getText().toUpperCase(),
+                txt_comuna.getText().toUpperCase(), txt_calle.getText().toUpperCase(), txt_numeracion.getText().toUpperCase(),
+                numero_t, año);
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,11 +380,8 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField año_inicio_ventas;
-    private javax.swing.JTextField calle;
-    private javax.swing.JTextField ciudad;
-    private javax.swing.JTextField comuna;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -346,10 +394,15 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nombre;
-    private javax.swing.JTextField numeracion;
-    private javax.swing.JTextField numero_telefono;
-    private javax.swing.JTextField pais;
-    private javax.swing.JTextField rut;
+    private javax.swing.JLabel label_cod;
+    private javax.swing.JTextField txt_año_inicio_ventas;
+    private javax.swing.JTextField txt_calle;
+    private javax.swing.JTextField txt_ciudad;
+    private javax.swing.JTextField txt_comuna;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_numeracion;
+    private javax.swing.JTextField txt_numero_telefono;
+    private javax.swing.JTextField txt_pais;
+    private javax.swing.JTextField txt_rut;
     // End of variables declaration//GEN-END:variables
 }

@@ -395,12 +395,33 @@ public class Listas extends javax.swing.JFrame {
         // ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
         String cod;
         String nombre;
+        String rut;
+        String calle;
+        String numeracion;
+        String comuna;
+        String ciudad;
+        String pais;
+        String ntelefono;
+        String ainicio_ventas;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
                     case "Métodos de pago": 
                     case "Compras":
                         
                     case "Facturas":    
-                    case "Distribuidores":
+                    case "Distribuidores": cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                           rut = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                           nombre = lista.getValueAt(lista.getSelectedRow(), 2).toString();
+                                           calle = lista.getValueAt(lista.getSelectedRow(), 3).toString();
+                                           numeracion = lista.getValueAt(lista.getSelectedRow(), 4).toString();
+                                           comuna = lista.getValueAt(lista.getSelectedRow(), 5).toString();
+                                           ciudad = lista.getValueAt(lista.getSelectedRow(), 6).toString();
+                                           pais = lista.getValueAt(lista.getSelectedRow(), 7).toString();
+                                           ntelefono = lista.getValueAt(lista.getSelectedRow(), 8).toString();
+                                           ainicio_ventas = lista.getValueAt(lista.getSelectedRow(), 9).toString();
+                                           Registrar_Distribuidor reg_dist = new Registrar_Distribuidor(cod, rut, nombre, pais, ciudad, comuna, calle, numeracion, ntelefono, ainicio_ventas);
+                                           reg_dist.setVisible(true);
+                                           break;
+                                           
                     case "Idiomas": cod = lista.getValueAt(lista.getSelectedRow(),0).toString();
                                     nombre = lista.getValueAt(lista.getSelectedRow(),1).toString();
                                     Registrar_Idioma reg_idiomas = new Registrar_Idioma(cod, nombre);

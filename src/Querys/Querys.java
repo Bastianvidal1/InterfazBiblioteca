@@ -275,8 +275,8 @@ public class Querys {
             throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
          }
          // SE INGRESAN LOS DATOS A LA TABLA DISTRIBUIDORES
-        st.execute("insert into distribuidores (rut,nombre_empresa,calle,numeracion,comuna,pais,telefono,ano_inicio_ventas) "
-                + "values ('"+rut+"','"+nombre+"','"+calle+"','"+numeracion+"','"+comuna+"','"+pais+"','"+telefono+"','"+año+"');");
+        st.execute("insert into distribuidores (rut,nombre_empresa,calle,numeracion,comuna,pais,telefono,ano_inicio_ventas,ciudad) "
+                + "values ('"+rut+"','"+nombre+"','"+calle+"','"+numeracion+"','"+comuna+"','"+pais+"','"+telefono+"','"+año+"','"+ciudad+");");
         JOptionPane.showMessageDialog(null, "'"+nombre+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
@@ -735,9 +735,9 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     }
     
     public DefaultTableModel ListarDistribuidores(){
-       String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","PAIS","TELÉFONO","AÑO INICIO VENTAS"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
+       String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","CIUDAD","PAIS","TELÉFONO","AÑO INICIO VENTAS"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
-        String[] fila = new String[9];
+        String[] fila = new String[10];
         try{                
             sql="select * from distribuidores;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
             rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
@@ -753,9 +753,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             fila[3] = rs.getString("calle");
             fila[4] = rs.getString("numeracion");
             fila[5] = rs.getString("comuna");
-            fila[6] = rs.getString("pais");
-            fila[7] = rs.getString("telefono");
-            fila[8] = ""+rs.getInt("ano_inicio_ventas");
+            fila[6] = rs.getString("ciudad");
+            fila[7] = rs.getString("pais");
+            fila[8] = rs.getString("telefono");
+            fila[9] = ""+rs.getInt("ano_inicio_ventas");
             modelo.addRow(fila);
 
             while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
@@ -765,9 +766,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
                 fila[3] = rs.getString("calle");
                 fila[4] = rs.getString("numeracion");
                 fila[5] = rs.getString("comuna");
-                fila[6] = rs.getString("pais");
-                fila[7] = rs.getString("telefono");
-                fila[8] = ""+rs.getInt("ano_inicio_ventas");
+                fila[6] = rs.getString("ciudad");
+                fila[7] = rs.getString("pais");
+                fila[8] = rs.getString("telefono");
+                fila[9] = ""+rs.getInt("ano_inicio_ventas");
                 modelo.addRow(fila);  
              }
 
@@ -1649,6 +1651,20 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     public void ModificarEditorial(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
       try{
                 st.execute("update editoriales set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    public void ModificarDistribuidor(String cod,String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
+                                    long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE DISTRIBUIDOR
+      try{
+          st.execute("update distribuidores set rut='"+rut+"', nombre_empresa='"+nombre+"', calle='"+calle+"', numeracion='"+numeracion+"', comuna='"+comuna+"'"
+                  + ",ciudad='"+ciudad+"', pais='"+pais+"', telefono='"+telefono+"', ano_inicio_ventas='"+año+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
         JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
