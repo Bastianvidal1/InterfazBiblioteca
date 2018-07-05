@@ -538,7 +538,7 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
         while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
             fila[0] = rs.getString("cod");
-            fila[1] = rs.getString("descripción");
+            fila[1] = rs.getString("descripcion");
             modelo.addRow(fila);  
         }
 
@@ -1667,6 +1667,18 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
                   + ",ciudad='"+ciudad+"', pais='"+pais+"', telefono='"+telefono+"', ano_inicio_ventas='"+año+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
         JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    public void ModificarEstado(String cod,String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE ESTADO
+      try{
+                st.execute("update estados set descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+desc+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS

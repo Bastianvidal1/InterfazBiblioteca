@@ -403,11 +403,12 @@ public class Listas extends javax.swing.JFrame {
         String pais;
         String ntelefono;
         String ainicio_ventas;
+        String desc;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
-                    case "Métodos de pago": 
-                    case "Compras":
+                    case "Métodos de pago": break;
+                    case "Compras":break;
                         
-                    case "Facturas":    
+                    case "Facturas":break;    
                     case "Distribuidores": cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                            rut = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                            nombre = lista.getValueAt(lista.getSelectedRow(), 2).toString();
@@ -448,8 +449,12 @@ public class Listas extends javax.swing.JFrame {
                                     Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
                                     reg_autor.setVisible(true);
                                     break;
-                    case "Libros":
-                    case "Estado":
+                    case "Libros":break;
+                    case "Estado":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                  desc = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                  Registrar_Estado reg_estado = new Registrar_Estado(cod, desc);
+                                  reg_estado.setVisible(true);
+                                  break;
                      
             }
     }//GEN-LAST:event_btn_modificarActionPerformed

@@ -19,10 +19,20 @@ public class Registrar_Estado extends javax.swing.JFrame {
      */
     String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
+    String cod;
 
     public Registrar_Estado() {
         initComponents();
         setTitle("Registro: Idioma" );
+    }
+    
+       public Registrar_Estado(String cod, String desc) {
+        initComponents();
+        setTitle("Modificar: Idioma" );
+        this.cod = cod;
+        label_cod.setText(label_cod.getText()+" "+cod);
+        txt_descripcion.setText(desc);
+        btn_registrar.setVisible(false);
     }
 
     /**
@@ -37,9 +47,11 @@ public class Registrar_Estado extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        descripcion = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txt_descripcion = new javax.swing.JTextField();
+        btn_registrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        btn_modificar = new javax.swing.JButton();
+        label_cod = new javax.swing.JLabel();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,58 +69,79 @@ public class Registrar_Estado extends javax.swing.JFrame {
 
         jLabel1.setText("Descripción:");
 
-        descripcion.addActionListener(new java.awt.event.ActionListener() {
+        txt_descripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descripcionActionPerformed(evt);
+                txt_descripcionActionPerformed(evt);
             }
         });
 
-        jButton1.setText("REGISTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar.setText("REGISTRAR");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_registrarActionPerformed(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Registrar estado");
 
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
+        label_cod.setText("COD:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(95, 95, 95)
+                        .addComponent(btn_registrar)
+                        .addGap(37, 37, 37)
+                        .addComponent(btn_modificar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(55, 55, 55)
+                                .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_registrar)
+                    .addComponent(btn_modificar))
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+    private void txt_descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_descripcionActionPerformed
+    }//GEN-LAST:event_txt_descripcionActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -118,11 +151,16 @@ public class Registrar_Estado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
         //EL TEXTO INGRESADO ES CONVERTIDO A MAYUSCULAS Y ES ENIADO AL METODO ENCARGADO DE INGRESARLO A LA BASE DE DATOS
-        q.CrearEstado(descripcion.getText().toUpperCase());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        q.CrearEstado(txt_descripcion.getText().toUpperCase());
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        q.ModificarEstado(cod, txt_descripcion.getText().toUpperCase());
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,11 +205,13 @@ public class Registrar_Estado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField descripcion;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel label_cod;
+    private javax.swing.JTextField txt_descripcion;
     // End of variables declaration//GEN-END:variables
 }
