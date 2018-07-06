@@ -1698,6 +1698,19 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    public void ModificarFactura(String cod,String folio,int precio_neto, int precio_IVA, int costo_IVA, String fecha_compra, String hora_compra, int cod_dist, int cod_met){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE FACTURA
+      try{
+                st.execute("update facturas set folio='"+folio+"', precio_neto='"+precio_neto+"', precio_iva='"+precio_IVA+"', costo_iva='"+costo_IVA+"', fecha_compra='"+fecha_compra+"'"
+                        + ",hora_compra='"+hora_compra+"', dist_involucrado='"+cod_dist+"', metodo_pago='"+cod_met+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+folio+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
         try{
