@@ -393,25 +393,8 @@ public class Listas extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
-        String cod;
-        String nombre;
-        String rut;
-        String calle;
-        String numeracion;
-        String comuna;
-        String ciudad;
-        String pais;
-        String ntelefono;
-        String ainicio_ventas;
-        String desc;
-        String folio;
-        String precio_neto;
-        String precio_IVA;
-        String costo_IVA;
-        String fecha_compra;
-        String hora_compra;
-        String cod_dist;
-        String cod_met;
+        String cod,nombre,rut,calle,numeracion,comuna,ciudad,pais,ntelefono,ainicio_ventas,desc,folio,precio_neto,precio_IVA,costo_IVA
+        ,fecha_compra,hora_compra,cod_dist,cod_met,nserie,isbn,titulo,npaginas,precioref,apublicacion,cod_editorial,cod_estado;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
                     case "Métodos de pago":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                            nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
@@ -473,7 +456,18 @@ public class Listas extends javax.swing.JFrame {
                                     Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
                                     reg_autor.setVisible(true);
                                     break;
-                    case "Libros":break;
+                    case "Libros":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                  nserie = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                  isbn = lista.getValueAt(lista.getSelectedRow(), 2).toString();
+                                  titulo = lista.getValueAt(lista.getSelectedRow(), 3).toString();
+                                  npaginas = lista.getValueAt(lista.getSelectedRow(), 4).toString();
+                                  precioref = lista.getValueAt(lista.getSelectedRow(), 5).toString();
+                                  apublicacion = lista.getValueAt(lista.getSelectedRow(), 6).toString();
+                                  cod_editorial = lista.getValueAt(lista.getSelectedRow(), 7).toString();
+                                  cod_estado = lista.getValueAt(lista.getSelectedRow(), 8).toString();        
+                                  Registrar_Libro reg_libro = new Registrar_Libro(cod, nserie, isbn, titulo, npaginas, precioref, apublicacion, cod_editorial, cod_estado);
+                                  reg_libro.setVisible(true);
+                                   break;
                     case "Estado":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                   desc = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                   Registrar_Estado reg_estado = new Registrar_Estado(cod, desc);

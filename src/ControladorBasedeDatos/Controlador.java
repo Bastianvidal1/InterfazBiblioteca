@@ -21,7 +21,7 @@ public class Controlador {
      if(conn==null){   
         try{
         Class.forName("com.mysql.jdbc.Driver");//LLAMADO A LIBRERIA DEL CONTROLADOR 
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","root");//SE ESTABLECE UNA CONEXIÖN CON LA BASE DE DATOS
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","usbw");//SE ESTABLECE UNA CONEXIÖN CON LA BASE DE DATOS
         st= conn.createStatement(); //SE INSTANCIA UNA SENTENCIA CON LA CONEXIÓN ESTABLECIDA
     
         }catch(ClassNotFoundException c){//SE DESPLIEGA UN MENSAJE CON EL ERROR CORRESPONDIENTE
