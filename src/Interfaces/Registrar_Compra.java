@@ -5,7 +5,6 @@
  */
 package Interfaces;
 
-import static Interfaces.Registrar_Libro.q;
 import Querys.Querys;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +26,7 @@ public class Registrar_Compra extends javax.swing.JFrame {
     static Querys q = new Querys();
     static Statement st = q.getSt();
     int i=0;
+    String cod;
     DefaultComboBoxModel modelo_jcombolibros = new DefaultComboBoxModel();
     DefaultComboBoxModel modelo_jcombodistribuidor = new DefaultComboBoxModel();
     DefaultComboBoxModel modelo_jcombofactura= new DefaultComboBoxModel();
@@ -36,6 +36,20 @@ public class Registrar_Compra extends javax.swing.JFrame {
         initComponents();
         setTitle("Registro: Compra" );
         CrearComboBox();
+    }
+    
+    public Registrar_Compra(String cod, String cod_dist, String cod_factura) {
+        initComponents();
+        setTitle("Registro: Compra" );
+        CrearComboBox();
+        this.cod = cod;
+        label_cod.setText(label_cod.getText()+""+cod);
+        jcombo_factura.setSelectedItem(cod_factura);
+        jcombo_distribuidor.setSelectedItem(cod_dist);
+        jcombo_libros.setEnabled(false);
+        btn_agregar_libro.setEnabled(false);
+        jlist_libros.setEnabled(false);
+        btn_registrar.setVisible(false);
     }
     
     private void CrearComboBox(){
@@ -81,7 +95,7 @@ public class Registrar_Compra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_registrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         btn_agregar_libro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -89,6 +103,8 @@ public class Registrar_Compra extends javax.swing.JFrame {
         jcombo_libros = new javax.swing.JComboBox();
         jcombo_distribuidor = new javax.swing.JComboBox();
         jcombo_factura = new javax.swing.JComboBox();
+        btn_modificar = new javax.swing.JButton();
+        label_cod = new javax.swing.JLabel();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,10 +126,10 @@ public class Registrar_Compra extends javax.swing.JFrame {
 
         jLabel3.setText("Código Factura:");
 
-        jButton1.setText("REGISTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar.setText("REGISTRAR");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_registrarActionPerformed(evt);
             }
         });
 
@@ -135,6 +151,15 @@ public class Registrar_Compra extends javax.swing.JFrame {
 
         jcombo_factura.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
+        label_cod.setText("COD:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,36 +168,44 @@ public class Registrar_Compra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcombo_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jcombo_libros, 0, 169, Short.MAX_VALUE)
-                                    .addComponent(jcombo_distribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_agregar_libro)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jcombo_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jcombo_libros, 0, 169, Short.MAX_VALUE)
+                                            .addComponent(jcombo_distribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_agregar_libro)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_registrar)
+                        .addGap(64, 64, 64)
+                        .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -190,7 +223,9 @@ public class Registrar_Compra extends javax.swing.JFrame {
                             .addComponent(jcombo_factura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_registrar)
+                    .addComponent(btn_modificar))
                 .addGap(33, 33, 33))
         );
 
@@ -205,16 +240,21 @@ public class Registrar_Compra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
         q.CrearCompra(modelo_listalibros, q.ValidarInteger(jcombo_distribuidor.getSelectedItem().toString()),q.ValidarInteger(jcombo_factura.getSelectedItem().toString()));
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_registrarActionPerformed
 
     private void btn_agregar_libroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_libroActionPerformed
         // TODO add your handling code here:
         modelo_listalibros.addElement(jcombo_libros.getSelectedItem());
         jlist_libros.setModel(modelo_listalibros);
     }//GEN-LAST:event_btn_agregar_libroActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        q.ModificarCompra(cod, jcombo_distribuidor.getSelectedItem().toString(),jcombo_factura.getSelectedItem().toString());
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +294,8 @@ public class Registrar_Compra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar_libro;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -266,5 +307,6 @@ public class Registrar_Compra extends javax.swing.JFrame {
     private javax.swing.JComboBox jcombo_factura;
     private javax.swing.JComboBox jcombo_libros;
     private javax.swing.JList jlist_libros;
+    private javax.swing.JLabel label_cod;
     // End of variables declaration//GEN-END:variables
 }

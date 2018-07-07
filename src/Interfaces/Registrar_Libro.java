@@ -47,9 +47,10 @@ public class Registrar_Libro extends javax.swing.JFrame {
     public Registrar_Libro(String cod,String nserie,String isbn,String titulo,String npaginas, String precioref, String apublicacion,
             String cod_editorial, String cod_estado) {
         initComponents();
-        setTitle("Registro: Libro" );
+        setTitle("Modificar: Libro" );
         CrearComboBox();
         this.cod = cod;
+        label_cod.setText(label_cod.getText()+""+cod);
         txt_nserie.setText(nserie);
         txt_isbn.setText(isbn);
         txt_titulo.setText(titulo);
@@ -125,9 +126,9 @@ public class Registrar_Libro extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        jList3 = new javax.swing.JList<String>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -146,18 +147,18 @@ public class Registrar_Libro extends javax.swing.JFrame {
         txt_apublicacion = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jcombo_idiomas = new javax.swing.JComboBox<>();
+        jcombo_idiomas = new javax.swing.JComboBox<String>();
         btn_agregaridioma = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jlist_idiomas = new javax.swing.JList<>();
-        jcombo_autores = new javax.swing.JComboBox<>();
+        jlist_idiomas = new javax.swing.JList<String>();
+        jcombo_autores = new javax.swing.JComboBox<String>();
         btn_agregarautor = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jlist_autores = new javax.swing.JList<>();
-        jcombo_categorias = new javax.swing.JComboBox<>();
+        jlist_autores = new javax.swing.JList<String>();
+        jcombo_categorias = new javax.swing.JComboBox<String>();
         btn_agregarcategoria = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jlist_categorias = new javax.swing.JList<>();
+        jlist_categorias = new javax.swing.JList<String>();
         jcombo_editorial = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jcombo_estado = new javax.swing.JComboBox();
@@ -176,17 +177,17 @@ public class Registrar_Libro extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(jList3);
 
@@ -258,7 +259,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Registrar Libro");
 
-        jcombo_idiomas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcombo_idiomas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_agregaridioma.setText(">>");
         btn_agregaridioma.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +270,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jlist_idiomas);
 
-        jcombo_autores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcombo_autores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_agregarautor.setText(">>");
         btn_agregarautor.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +281,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jlist_autores);
 
-        jcombo_categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcombo_categorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_agregarcategoria.setText(">>");
         btn_agregarcategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -298,6 +299,11 @@ public class Registrar_Libro extends javax.swing.JFrame {
         jcombo_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
 
         label_cod.setText("COD:");
 
@@ -490,6 +496,13 @@ public class Registrar_Libro extends javax.swing.JFrame {
         modelo_listacategorias.addElement(jcombo_categorias.getSelectedItem());
         jlist_categorias.setModel(modelo_listacategorias);
     }//GEN-LAST:event_btn_agregarcategoriaActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        q.ModificarLibro(cod,txt_nserie.getText(), txt_isbn.getText(),txt_titulo.getText().toUpperCase(), q.ValidarInteger(txt_npaginas.getText()),
+                q.ValidarInteger(txt_precioref.getText()), q.ValidarAño(txt_apublicacion.getText()),
+                q.ValidarInteger(jcombo_editorial.getSelectedItem().toString()),q.ValidarInteger(jcombo_estado.getSelectedItem().toString()));
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments

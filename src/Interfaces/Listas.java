@@ -394,7 +394,7 @@ public class Listas extends javax.swing.JFrame {
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
         String cod,nombre,rut,calle,numeracion,comuna,ciudad,pais,ntelefono,ainicio_ventas,desc,folio,precio_neto,precio_IVA,costo_IVA
-        ,fecha_compra,hora_compra,cod_dist,cod_met,nserie,isbn,titulo,npaginas,precioref,apublicacion,cod_editorial,cod_estado;
+        ,fecha_compra,hora_compra,cod_dist,cod_met,nserie,isbn,titulo,npaginas,precioref,apublicacion,cod_editorial,cod_estado,cod_factura;
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
                     case "Métodos de pago":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                            nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
@@ -402,7 +402,12 @@ public class Listas extends javax.swing.JFrame {
                                            Registrar_MetododePago reg_metodopago = new Registrar_MetododePago(cod, nombre, desc);
                                            reg_metodopago.setVisible(true);
                                            break;
-                    case "Compras": break;
+                    case "Compras": cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
+                                    cod_dist = lista.getValueAt(lista.getSelectedRow(), 1).toString();
+                                    cod_factura = lista.getValueAt(lista.getSelectedRow(), 2).toString();
+                                    Registrar_Compra reg_compra = new Registrar_Compra(cod, cod_dist, cod_factura);
+                                    reg_compra.setVisible(true);
+                                    break;
                         
                     case "Facturas":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                    folio = lista.getValueAt(lista.getSelectedRow(), 1).toString();

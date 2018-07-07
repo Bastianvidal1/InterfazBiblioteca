@@ -2056,6 +2056,38 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     }
     
     /**
+     * Método encargado de modificar el registro de compra
+     * @param cod
+     * @param cod_dist
+     * @param cod_factura 
+     */
+    public void ModificarCompra(String cod,String cod_dist,String cod_factura){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE COMPRA
+      try{
+                st.execute("update compra set dist_involucrado='"+cod_dist+"', factura='"+cod_factura+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+cod+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    public void ModificarLibro(String cod,String nserie, String isbn, String titulo, int npaginas, int precioref
+                            ,short ano_publicacion, int editorial,int estado) {//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE LIBRO
+      try{
+                st.execute("update libros set num_serie='"+nserie+"', isbn='"+isbn+"', titulo='"+titulo+"', npaginas='"+npaginas+"', precio_ref='"+precioref+"',"
+                        + "ano_publicacion='"+ano_publicacion+"', editorial='"+editorial+"', estado='"+estado+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
+        
+        JOptionPane.showMessageDialog(null, "'"+titulo+"'  HA SIDO MODIFICADO CORRECTAMENTE",
+                "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+        
+      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }
+    }
+    
+    /**
      * 
      * @param dato
      * @param casilla
