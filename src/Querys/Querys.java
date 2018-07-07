@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Bastian Vidal
+ * La clase Query contiene los métodos encargados de realizar las transacciones con la base de datos 
+ * según se requiera
  */
 public class Querys {
     private static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR
@@ -24,6 +26,7 @@ public class Querys {
     private static ResultSet rscod; //SE INSTANCIA LA CLASE ResultSet PARA USARLA EN LAS RELACIONES
     private static String sql;//STRING PARA GUARDAR LAS CONSULTAS;
 
+    
     public static Controlador getCon() {
         return con;
     }
@@ -56,6 +59,13 @@ public class Querys {
         sql = aSql;
     }
     
+    /**
+     * 
+     * @param libros
+     * @param distribuidor
+     * @param factura 
+     * Recibe los datos del formulario Registro_Compra y los ingresa en la base de datos.
+     */
     public void CrearCompra(DefaultListModel libros,int distribuidor,int factura){
         try{
          sql= "select * from compra where factura='"+factura+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -86,6 +96,21 @@ public class Querys {
       } 
     }
     
+    /**
+     * 
+     * @param nserie
+     * @param isbn
+     * @param titulo
+     * @param npaginas
+     * @param precioref
+     * @param idiomas
+     * @param ano_publicacion
+     * @param autores
+     * @param editorial
+     * @param categorias
+     * @param estado 
+     * Recibe los datos del formulario Registro_Libro y los ingresa en la base de datos.
+     */
     public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
                             ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
@@ -125,6 +150,11 @@ public class Querys {
       }  
     }
      
+    /**
+     * 
+     * @param nombre_categoria 
+     * Recibe los datos del formulario Registro_Categoria y los ingresa en la base de datos.
+     */
     public void CrearCategoria(String nombre_categoria){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from categorias where nombre='"+nombre_categoria+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -144,6 +174,13 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param nombre_autor
+     * @param apellidop
+     * @param apellidom
+     * Recibe los datos del formulario Registro_Autor y los ingresa en la base de datos.
+     */
     public void CrearAutor(String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from autores where nombre='"+nombre_autor+"' AND apellido_paterno='"+apellidop+"' "
@@ -168,6 +205,11 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param nombre 
+     * Recibe los datos del formulario Registro_Editorial y los ingresa en la base de datos.
+     */
     public void CrearEditorial(String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from editoriales where nombre='"+nombre+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -187,6 +229,11 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param nombre 
+     * Recibe los datos del formulario Registro_Idioma y los ingresa en la base de datos.
+     */
     public void CrearIdioma(String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from idiomas where nombre='"+nombre+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -206,6 +253,11 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param descripcion 
+     * Recibe los datos del formulario Registro_Estado y los ingresa en la base de datos.
+     */
     public void CrearEstado(String descripcion){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select descripcion from estados where descripcion='"+descripcion+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -225,6 +277,12 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param nombre
+     * @param descripcion 
+     * Recibe los datos del formulario Registro_MetododePago y los ingresa en la base de datos.
+     */
     public void CrearMetododePago(String nombre,String descripcion){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select nombre from metodos_de_pago where nombre='"+nombre+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -244,6 +302,18 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param folio
+     * @param precio_neto
+     * @param precio_iva
+     * @param costo_iva
+     * @param fecha_compra
+     * @param hora_compra
+     * @param dist_involucrado
+     * @param metodo_pago 
+     * Recibe los datos del formulario Registro_Factura y los ingresa en la base de datos.
+     */
     public void CrearFactura(String folio,int precio_neto,int precio_iva,int costo_iva,String fecha_compra,String hora_compra,int dist_involucrado,int metodo_pago){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
          sql= "select * from facturas where folio='"+folio+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
@@ -265,6 +335,19 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @param rut
+     * @param nombre
+     * @param pais
+     * @param ciudad
+     * @param comuna
+     * @param calle
+     * @param numeracion
+     * @param telefono
+     * @param año 
+     * Recibe los datos del formulario Registro_Distribuidor y los ingresa en la base de datos.
+     */
     public void CrearDistribuidor(String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
                                     long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
       try{
@@ -286,6 +369,10 @@ public class Querys {
       }  
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox 
+     */
     public Statement ListarDistribuidorCB(){
         try{
             sql="select * from distribuidores;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -303,6 +390,10 @@ public class Querys {
         return st;
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarFacturaCB(){
         try{
             sql="select * from facturas;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -320,6 +411,10 @@ public class Querys {
         return st;
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarMetodoPagoCB(){
         try{
             sql="select * from metodos_de_pago;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -337,6 +432,10 @@ public class Querys {
         return st;
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarLibrosCB(){
         try{
             sql="select * from libros;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -354,6 +453,10 @@ public class Querys {
         return st;
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarIdiomaCB(){
         try{
             sql="select * from idiomas;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -371,6 +474,10 @@ public class Querys {
         return st;
     }
      
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarEditorialCB(){
         try{
             sql="select * from editoriales;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -388,6 +495,10 @@ public class Querys {
         return st;
     }
      
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox
+     */
     public Statement ListarAutoresCB(){
         try{
             sql="select * from autores;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -405,6 +516,10 @@ public class Querys {
         return st;
     }
      
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox 
+     */
     public Statement ListarCategoriasCB(){
         try{
             sql="select * from categorias;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -421,6 +536,10 @@ public class Querys {
         return st;
     }
     
+    /**
+     * 
+     * @return Un Statement para ingresar los datos obtenidos de la consulta dento de un ComboBox 
+     */
     public Statement ListarEstadoCB(){
         try{
             sql="select * from estados;";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE DISTRIBUIDORES
@@ -436,7 +555,11 @@ public class Querys {
         }
         return st;
     }
-    //SE DEVUELVE UN DefaultTableModel PARA SER APLICADO EN EL LISTADO INMEDIATAMENTE;
+    
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     */
     public DefaultTableModel ListarMetodoPago(){
         String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -471,6 +594,10 @@ public class Querys {
 return modelo;//SE RETORNA EL MODELO DE LA TABLA 
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarLibros(){
         String[] Columnas = {"COD","N° SERIE","ISBN","TITULO","N° PAGINAS","PRECIO REF","AÑO PUBLICACIÓN",
             "COD. EDITORIAL","COD. ESTADO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
@@ -518,6 +645,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;//SE RETORNA EL MODELO DE LA TABLA 
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     */
     public DefaultTableModel ListarEstado(){
     String[] Columnas = {"COD","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
     DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -551,6 +682,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;
 }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarFactura(){
     String[] Columnas = {"COD","FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA",
                         "FECHA COMPRA","HORA COMPRA","COD DISTRIBUIDOR INV","COD METODO DE PAGO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
@@ -599,6 +734,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;
 }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarCompra(){
         String[] Columnas = {"COD","DISTRIBUIDOR INVOLUCRADO","FACTURA"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -634,6 +773,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return modelo;
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarIdiomas(){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -667,7 +810,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
 
     }  
-
+    
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarCategorias(){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -701,6 +848,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarEditoriales(){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -734,6 +885,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarDistribuidores(){
        String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","CIUDAD","PAIS","TELÉFONO","AÑO INICIO VENTAS"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -782,6 +937,15 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param cod
+     * @param rel
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas_Relacionales 
+     * Recibe los parametros necesarios para buscar las los registros en las Tablas relacionales
+     * según la relación que se ingrese como parámetros. A su vez evalúa cual es la relación ingresada
+     * y realiza la búsqueda.
+     */
     public DefaultTableModel ListarRelaciones(String cod,String rel){
 
         DefaultTableModel modelo = new DefaultTableModel(0,0);//DECLARACION DEL MODELO
@@ -945,6 +1109,10 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         
     }
     
+    /**
+     * 
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas 
+     */
     public DefaultTableModel ListarAutores(){
         String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -982,6 +1150,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarLibros(String texto){
         String[] Columnas = {"COD","N° SERIE","ISBN","TITULO","N° PAGINAS","PRECIO REF","AÑO PUBLICACIÓN",
             "COD. EDITORIAL","COD. ESTADO"};//VECTOR CORRESPONDIENTE A LAS COLUMNAS
@@ -1034,7 +1208,13 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
     return modelo;//SE RETORNA EL MODELO DE LA TABLA 
     }
-        
+    
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde 
+     */
     public DefaultTableModel FiltrarMetodoPago(String texto){
         String[] Columnas = {"COD","NOMBRE","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1074,6 +1254,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;//SE RETORNA EL MODELO DE LA TABLA 
     }
      
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde 
+     */
     public DefaultTableModel FiltrarEstado(String texto){
         String[] Columnas = {"COD","DESCRIPCIÓN"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1111,6 +1297,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return modelo;
     }
      
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde 
+     */
     public DefaultTableModel FiltrarIdiomas(String texto){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1149,6 +1341,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
 
     }  
     
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarCategorias(String texto){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1186,6 +1384,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarCompras(String texto){
         String[] Columnas = {"COD","DISTRIBUIDOR INVOLUCRADO","FACTURA"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1225,6 +1429,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarEditoriales(String texto){
         String[] Columnas = {"COD","NOMBRE"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1262,6 +1472,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
      
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarDistribuidores(String texto){
        String[] Columnas = {"COD","RUT","NOMBRE EMPRESA","CALLE","NUMERACION","COMUNA","PAIS","TELÉFONO","AÑO INICIO VENTAS"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1313,6 +1529,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param texto
+     * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde 
+     */
     public DefaultTableModel FiltrarAutores(String texto){
         String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
         DefaultTableModel modelo = new DefaultTableModel(Columnas,0);//DECLARACION DEL MODELO
@@ -1354,6 +1576,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
             return modelo;
     }
     
+    /**
+     * 
+     * @param texto
+     * @return  Un DefaultTableModel para ser aplicado al JList del JFrame Listas
+     * Realiza la búsquedad de coincidencias en la tabla que corresponde
+     */
     public DefaultTableModel FiltrarFactura(String texto){
     String[] Columnas = {"COD","FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA",
                         "FECHA COMPRA","HORA COMPRA","COD DISTRIBUIDOR INV","COD METODO DE PAGO"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
@@ -1408,6 +1636,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
     return modelo;
 }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda
+     */
     public void EliminarMetodoPago(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1428,6 +1661,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda
+     */
     public void EliminarDistribuidores(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1448,6 +1686,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarLibros(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1468,6 +1711,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarCompras(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1491,6 +1739,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda
+     */
     public void EliminarIdiomas(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1511,6 +1764,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarCategorias(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1531,6 +1789,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
     }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarEditoriales(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1550,7 +1813,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
         }
-
+    
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarAutores(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1570,7 +1838,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }
         }
-
+    
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda 
+     */
     public void EliminarEstado(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1591,6 +1864,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
         }
     
+    /**
+     * 
+     * @param cod El código del registro a eliminar
+     * Método encargado de eliminar el registro que contiene la tabla que corresponda
+     */
     public void EliminarFacturas(String cod ){
         try{
             if(cod.equals(-1)){
@@ -1611,6 +1889,14 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         }
         }
     
+    /**
+     * 
+     * @param cod
+     * @param nombre_autor
+     * @param apellidop
+     * @param apellidom 
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarAutor(String cod,String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE AUTOR
       try{
                 st.execute("update autores set nombre='"+nombre_autor+"',apellido_paterno='"+apellidop+"',apellido_materno='"+apellidom+"' "
@@ -1624,6 +1910,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param nombre
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarCategoría(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
       try{
                 st.execute("update categorias set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1636,6 +1928,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param nombre
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarIdioma(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
       try{
                 st.execute("update idiomas set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1648,6 +1946,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param nombre
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarEditorial(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
       try{
                 st.execute("update editoriales set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1660,6 +1964,20 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param rut
+     * @param nombre
+     * @param pais
+     * @param ciudad
+     * @param comuna
+     * @param calle
+     * @param numeracion
+     * @param telefono
+     * @param año
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarDistribuidor(String cod,String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
                                     long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE DISTRIBUIDOR
       try{
@@ -1674,6 +1992,12 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param desc
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarEstado(String cod,String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE ESTADO
       try{
                 st.execute("update estados set descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1686,6 +2010,13 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param nombre
+     * @param desc 
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarMetododePago(String cod,String nombre, String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE METODOS DE PAGO
       try{
                 st.execute("update metodos_de_pago set nombre='"+nombre+"' ,descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
@@ -1698,6 +2029,19 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param cod
+     * @param folio
+     * @param precio_neto
+     * @param precio_IVA
+     * @param costo_IVA
+     * @param fecha_compra
+     * @param hora_compra
+     * @param cod_dist
+     * @param cod_met 
+     * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
+     */
     public void ModificarFactura(String cod,String folio,int precio_neto, int precio_IVA, int costo_IVA, String fecha_compra, String hora_compra, int cod_dist, int cod_met){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE FACTURA
       try{
                 st.execute("update facturas set folio='"+folio+"', precio_neto='"+precio_neto+"', precio_iva='"+precio_IVA+"', costo_iva='"+costo_IVA+"', fecha_compra='"+fecha_compra+"'"
@@ -1711,6 +2055,13 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    /**
+     * 
+     * @param dato
+     * @param casilla
+     * @return El mísmo dato ingresado como Long, siempre y cuando sea válido
+     * Método encargado de validar que el dato ingresado sea un válido como tipo Long
+     */
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         Long val=null;
         try{
@@ -1721,6 +2072,11 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return val;
     }
     
+    /**
+     * 
+     * @param dato
+     * @return El mismo dato ingresado como tipo de dato Integer, siempre y cuando sea válido como Integer 
+     */
     public int ValidarInteger(String dato){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
         int val = 0;
         try{
@@ -1731,6 +2087,13 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return val;
     }
     
+    /**
+     * 
+     * @param dato
+     * @return El mismo dato ingresado como Integer, siempre y cuando sea válido como Integer 
+     * Método encargado de validar que el dato ingresado sea válido como un Año comprobando la fecha actual del sistema
+     * con el dato ingresado
+     */
     public short ValidarAño(String dato){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -1749,6 +2112,14 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return val;
     }
     
+    /**
+     * 
+     * @param dia
+     * @param mes
+     * @return Un valor String que contiene el formato de Fecha para ser ingresado correctamente
+     * Método encargado de validar que los datos ingresados como fecha sean válidos, comparando 
+     * mes, y dia por separado del año
+     */
     public String ValidarFecha(String dia,String mes){
         String fecha=null;
         try{
@@ -1768,6 +2139,14 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
         return fecha;
     }
     
+    /**
+     * 
+     * @param hora
+     * @param minutos
+     * @return Un valor String que contiene un formato de Hora válido para ser ingresado
+     * Método encargado de validar que los datos ingresados sean correctos. Validando 
+     * Hora y minutos por separados
+     */
     public String ValidarHora(String hora,String minutos){
         String time = null;
         try{

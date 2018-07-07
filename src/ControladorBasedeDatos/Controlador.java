@@ -11,17 +11,23 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Bastian Vidal
+ * 
  */
 public class Controlador {
     private static Connection conn;//DECLARACION DE DATOS DE SQL PARA UTILIZAR EN LA CONEXIÓN
     private static Statement st;
     
+    /**
+     * 
+     * @return 
+     * Este método devuelve un objeto de la clase Statement para ser utilizado en las transacciónes de la clase Querys
+     */
     public Statement getStatement(){//CREACIÓN DE UN MËTODO PARA CONEXTAR A LA BASE DE DATOS
      
      if(conn==null){   
         try{
         Class.forName("com.mysql.jdbc.Driver");//LLAMADO A LIBRERIA DEL CONTROLADOR 
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","usbw");//SE ESTABLECE UNA CONEXIÖN CON LA BASE DE DATOS
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","root");//SE ESTABLECE UNA CONEXIÖN CON LA BASE DE DATOS
         st= conn.createStatement(); //SE INSTANCIA UNA SENTENCIA CON LA CONEXIÓN ESTABLECIDA
     
         }catch(ClassNotFoundException c){//SE DESPLIEGA UN MENSAJE CON EL ERROR CORRESPONDIENTE
