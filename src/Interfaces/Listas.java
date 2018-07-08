@@ -26,64 +26,90 @@ public class Listas extends javax.swing.JFrame {
     String tabla;
     String[] columnas;
     Querys q = new Querys();
+    
+    /**
+     * Constructor por defecto
+     */
     public Listas() {
         initComponents();
         
     }
     
-        public Listas(String tabla) {
-            initComponents();
-            this.tabla = tabla;
-            setTitle(tabla);
-            setModelo(tabla);
-            setBotones(tabla);
-            
-            
-    }   //METODO ENCARGADO DE DEFINIR EL MODELO DE LA TABLA PARA LA VISUALIZACIÓN
+    /**
+     * Contructor con parametros
+     * @param tabla Que define cuales van a ser los componentes y el contenido que tendra el JTable
+     */
+    public Listas(String tabla) {
+        initComponents();
+        this.tabla = tabla;
+        setTitle(tabla);
+        setModelo(tabla);
+        setBotones(tabla);
+    }  
+        
+        /**
+         *METODO ENCARGADO DE DEFINIR EL MODELO DE LA TABLA PARA LA VISUALIZACIÓN
+         * @param tabla 
+         */
         public void setModelo(String tabla){
+            
             switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.ListarMetodoPago());
                                             break;
+                        
                     case "Compras": lista.setModel(q.ListarCompra());
                                     break;
+                        
                     case "Facturas":lista.setModel(q.ListarFactura());
                                     break;
+                        
                     case "Distribuidores": lista.setModel(q.ListarDistribuidores());
                                            break;
+                        
                     case "Idiomas": lista.setModel(q.ListarIdiomas());
                                     break;
+                        
                     case "Categorias":lista.setModel(q.ListarCategorias());
                                      break;
+                        
                     case "Editorial":lista.setModel(q.ListarEditoriales());
                                      break;
+                        
                     case "Autores":lista.setModel(q.ListarAutores());
                                    break;
+                        
                     case "Libros":lista.setModel(q.ListarLibros());
                                    break;
+                        
                     case "Estado": lista.setModel(q.ListarEstado());
                                    break;
                      
-            }
-        }
+            }//Fin Switch
+        }//Fin método
         
-        //ESTE METODO SE ENCARGA DE HACER VISIBLES O NO LOS BOTONES PARA LISTAR REFERENCIAS
-        // SEGÚN CORRESPONDA
+        
+        /**
+         *ESTE METODO SE ENCARGA DE HACER VISIBLES O NO LOS BOTONES PARA LISTAR REFERENCIAS
+         *SEGÚN CORRESPONDA
+         * @param tabla 
+        **/
         public void setBotones(String tabla){
             
             switch(tabla){
                 case "Libros":  btn_ver_libros_comprados.setVisible(false);
                                 break;
+                    
                 case "Compras":  btn_ver_autores.setVisible(false);
                                  btn_ver_categorias.setVisible(false);
                                  btn_ver_idiomas.setVisible(false);
                                  break;
+                    
                 default:btn_ver_libros_comprados.setVisible(false);
                        btn_ver_autores.setVisible(false);
                          btn_ver_categorias.setVisible(false);
                          btn_ver_idiomas.setVisible(false);
-            }         
-                 
-        }
+            }//Fin Switch              
+        }//Fin método
   
 
     /**
@@ -251,104 +277,84 @@ public class Listas extends javax.swing.JFrame {
         switch(tabla){//SWITCH PARA LA DEFINICION DEL MODELO DE TABLA
                     case "Métodos de pago": lista.setModel(q.FiltrarMetodoPago(txt_busqueda.getText()));
                                             break;
+                        
                     case "Compras": lista.setModel(q.FiltrarCompras(txt_busqueda.getText()));
                                     break;
+                        
                     case "Facturas":lista.setModel(q.FiltrarFactura(txt_busqueda.getText()));
                                     break;
+                        
                     case "Distribuidores":lista.setModel(q.FiltrarDistribuidores(txt_busqueda.getText()));
                                             break;
+                        
                     case "Idiomas": lista.setModel(q.FiltrarIdiomas(txt_busqueda.getText()));
                                             break;
+                        
                     case "Categorias":lista.setModel(q.FiltrarCategorias(txt_busqueda.getText()));
                                             break;
+                        
                     case "Editorial":lista.setModel(q.FiltrarEditoriales(txt_busqueda.getText()));
                                             break;
+                        
                     case "Autores":lista.setModel(q.FiltrarAutores(txt_busqueda.getText()));
                                             break;
+                        
                     case "Libros":lista.setModel(q.FiltrarLibros(txt_busqueda.getText()));
                                   break;
+                        
                     case "Estado": lista.setModel(q.FiltrarEstado(txt_busqueda.getText()));
                                             break;
                      
-            }
+            }//Fin Switch
     }//GEN-LAST:event_btn_filtrarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         //BOTON ENCARGADO DE ELIMINAR EL REGISTRO DE SELECCIONADO EN LA TABLA SEGÚN CORRESPONDA
-         switch(tabla){// SWITCH PARA LA ELIMINACION DE DATOS 
-                    case "Métodos de pago": try{
-                                                q.EliminarMetodoPago(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                                lista.setModel(q.ListarMetodoPago());}
-                                            catch(Exception e){
-                                                JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                            }
-                                                break;
-                    case "Compras":try{
-                                        q.EliminarCompras(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarCompra());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                    break;   
+        try{
+            switch(tabla){// SWITCH PARA LA ELIMINACION DE DATOS 
+                    case "Métodos de pago": q.EliminarMetodoPago(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                            lista.setModel(q.ListarMetodoPago());
+                                            break;
                         
-                    case "Facturas": try{
-                                        q.EliminarFacturas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarFactura());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                    break;       
-                    case "Distribuidores": try{
-                                                q.EliminarDistribuidores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                                lista.setModel(q.ListarDistribuidores());}
-                                            catch(Exception e){
-                                                JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                            }
-                                                break;
-                    case "Idiomas": try{
-                                        q.EliminarIdiomas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarIdiomas());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                    case "Categorias":try{
-                                        q.EliminarCategorias(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarCategorias());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                    case "Editorial":try{
-                                        q.EliminarEditoriales(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarEditoriales());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                    case "Autores":try{
-                                        q.EliminarAutores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarAutores());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                    case "Libros":try{
-                                        q.EliminarLibros(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarLibros());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                    case "Estado": try{
-                                        q.EliminarEstado(lista.getValueAt(lista.getSelectedRow(), 0).toString());
-                                        lista.setModel(q.ListarEstado());}
-                                    catch(Exception e){
-                                        JOptionPane.showMessageDialog(rootPane, "NO SE HA SELECCIONADO UNA FILA");
-                                    }
-                                        break;
-                     
-            }
+                    case "Compras":q.EliminarCompras(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                   lista.setModel(q.ListarCompra());
+                                   break;   
+                        
+                    case "Facturas":q.EliminarFacturas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                    lista.setModel(q.ListarFactura());
+                                    break; 
+                        
+                    case "Distribuidores":q.EliminarDistribuidores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                          lista.setModel(q.ListarDistribuidores());
+                                          break;
+                        
+                    case "Idiomas":q.EliminarIdiomas(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                   lista.setModel(q.ListarIdiomas());
+                                   break;
+                        
+                    case "Categorias":q.EliminarCategorias(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                      lista.setModel(q.ListarCategorias());
+                                      break;
+                        
+                    case "Editorial":q.EliminarEditoriales(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                     lista.setModel(q.ListarEditoriales());
+                                     break;
+                        
+                    case "Autores":q.EliminarAutores(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                   lista.setModel(q.ListarAutores());
+                                   break;
+                        
+                    case "Libros":q.EliminarLibros(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                  lista.setModel(q.ListarLibros());
+                                  break;
+                        
+                    case "Estado":q.EliminarEstado(lista.getValueAt(lista.getSelectedRow(), 0).toString());
+                                  lista.setModel(q.ListarEstado());
+                                  break;
+            }//Fin Switch
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_ver_autoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_autoresActionPerformed
@@ -358,7 +364,7 @@ public class Listas extends javax.swing.JFrame {
             lista_relacional.setVisible(true);
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
-        }
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_ver_autoresActionPerformed
 
     private void btn_ver_idiomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_idiomasActionPerformed
@@ -368,7 +374,7 @@ public class Listas extends javax.swing.JFrame {
             lista_relacional.setVisible(true);
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
-        }
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_ver_idiomasActionPerformed
 
     private void btn_ver_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_categoriasActionPerformed
@@ -378,7 +384,7 @@ public class Listas extends javax.swing.JFrame {
             lista_relacional.setVisible(true);
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
-        }
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_ver_categoriasActionPerformed
 
     private void btn_ver_libros_compradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_libros_compradosActionPerformed
@@ -388,13 +394,17 @@ public class Listas extends javax.swing.JFrame {
             lista_relacional.setVisible(true);
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
-        }
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_ver_libros_compradosActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
-        // ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
+        /* ABRE UNA VENTANA CON LOS DATOS DE LA FILA SELECCIONADA PRECARGADOS PARA MODIFICARLOS E INGRESAR
+        +  SON DECLARADOS TODAS LAS VARIABLES QUE SE RECIBEN DESDE LAS DISTINTAS TABLAS PARA TENER ORDEN AL LLAMAR LOS JFrames
+        */
         String cod,nombre,rut,calle,numeracion,comuna,ciudad,pais,ntelefono,ainicio_ventas,desc,folio,precio_neto,precio_IVA,costo_IVA
         ,fecha_compra,hora_compra,cod_dist,cod_met,nserie,isbn,titulo,npaginas,precioref,apublicacion,cod_editorial,cod_estado,cod_factura;
+        
+        try{
         switch(tabla){// SWITCH PARA LA MODIFICACION DE DATOS 
                     case "Métodos de pago":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                            nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
@@ -420,7 +430,8 @@ public class Listas extends javax.swing.JFrame {
                                    cod_met = lista.getValueAt(lista.getSelectedRow(), 8).toString();
                                    Registrar_Factura reg_factura = new Registrar_Factura(cod, folio, precio_neto, precio_IVA, costo_IVA, fecha_compra, hora_compra, cod_dist, cod_met);
                                    reg_factura.setVisible(true);
-                                   break;    
+                                   break;   
+                        
                     case "Distribuidores": cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                            rut = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                            nombre = lista.getValueAt(lista.getSelectedRow(), 2).toString();
@@ -458,9 +469,10 @@ public class Listas extends javax.swing.JFrame {
                                    nombre = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                    String apellidop = lista.getValueAt(lista.getSelectedRow(), 2).toString();
                                    String apellidom = lista.getValueAt(lista.getSelectedRow(), 3).toString();
-                                    Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
-                                    reg_autor.setVisible(true);
-                                    break;
+                                   Registrar_Autor reg_autor = new Registrar_Autor(cod, nombre,apellidop,apellidom);
+                                   reg_autor.setVisible(true);
+                                   break;
+                        
                     case "Libros":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                   nserie = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                   isbn = lista.getValueAt(lista.getSelectedRow(), 2).toString();
@@ -472,14 +484,18 @@ public class Listas extends javax.swing.JFrame {
                                   cod_estado = lista.getValueAt(lista.getSelectedRow(), 8).toString();        
                                   Registrar_Libro reg_libro = new Registrar_Libro(cod, nserie, isbn, titulo, npaginas, precioref, apublicacion, cod_editorial, cod_estado);
                                   reg_libro.setVisible(true);
-                                   break;
+                                  break;
+                        
                     case "Estado":cod = lista.getValueAt(lista.getSelectedRow(), 0).toString();
                                   desc = lista.getValueAt(lista.getSelectedRow(), 1).toString();
                                   Registrar_Estado reg_estado = new Registrar_Estado(cod, desc);
                                   reg_estado.setVisible(true);
-                                  break;
-                     
-            }
+                                  break;            
+            }//Fin Switch
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }//Fin Try-Catch
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**

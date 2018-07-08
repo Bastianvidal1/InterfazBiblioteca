@@ -13,11 +13,11 @@ import java.util.Calendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
- *
- * @author Bastian Vidal
  * La clase Query contiene los métodos encargados de realizar las transacciones con la base de datos 
  * según se requiera
+ * @author Bastian Vidal
  */
 public class Querys {
     private static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR
@@ -60,44 +60,43 @@ public class Querys {
     }
     
     /**
-     * 
+     * Recibe los datos del formulario Registro_Compra y los ingresa en la base de datos. 
      * @param libros
      * @param distribuidor
      * @param factura 
-     * Recibe los datos del formulario Registro_Compra y los ingresa en la base de datos.
      */
     public void CrearCompra(DefaultListModel libros,int distribuidor,int factura){
         try{
-         sql= "select * from compra where factura='"+factura+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
-         rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
-         
-         if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
-         }
-        st.execute("insert into compra (dist_involucrado,factura) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
-                + "values ('"+distribuidor+"','"+factura+"');");
-        
-        rscod = st.executeQuery("select max(cod) from compra");
-        rscod.next();
-        String codcompra = rscod.getString(1);
-        
-          for (int i = 0; i < libros.getSize(); i++) {
-              st.execute("insert into compra_libro (compra_asoc,libro_asoc) values ('"+codcompra+"','"+libros.getElementAt(i)+"');");
-          }
-                    
-        JOptionPane.showMessageDialog(null, "La compra  ha sido registrada correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
-        
-      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
-        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
-      }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
-        JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
-      } 
-    }
+            sql= "select * from compra where factura='"+factura+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+                if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
+                   throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+                }//Fin IF
+            st.execute("insert into compra (dist_involucrado,factura) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
+                   + "values ('"+distribuidor+"','"+factura+"');");
+
+            rscod = st.executeQuery("select max(cod) from compra");//SE EJECUTA UNA CONSULTA BUSCANDO LA ULTIMA COMPRA INGRESADA
+            rscod.next();
+            String codcompra = rscod.getString(1);//EL CODIGO DE LA ÚLTIMA COMPRA ES INGRESADO EN UNA VARIABLE
+            
+                for (int i = 0; i < libros.getSize(); i++) {//SE INGRESAN LOS LIBROS SELECCIONADOS EN LA TABLA RELACIONAL COMPRA_LIBRO
+                    st.execute("insert into compra_libro (compra_asoc,libro_asoc) values ('"+codcompra+"','"+libros.getElementAt(i)+"');");
+                }//Fin FOR
+
+           JOptionPane.showMessageDialog(null, "La compra  ha sido registrada correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
+            JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        }//Fin Try-Catch 
+    }//Fin método
     
     /**
-     * 
+     * Recibe los datos del formulario Registro_Libro y los ingresa en la base de datos.
      * @param nserie
      * @param isbn
      * @param titulo
@@ -109,46 +108,46 @@ public class Querys {
      * @param editorial
      * @param categorias
      * @param estado 
-     * Recibe los datos del formulario Registro_Libro y los ingresa en la base de datos.
      */
     public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
                             ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
-      try{
-         sql= "select * from libros where num_serie='"+nserie+"' OR isbn ='"+isbn+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
-         rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
-         
-         if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
-            throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
-         }
-        st.execute("insert into libros (num_serie,isbn,titulo,npaginas,precio_ref,ano_publicacion,editorial,estado) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
-                + "values ('"+nserie+"','"+isbn+"','"+titulo+"','"+npaginas+"','"+precioref+"','"+ano_publicacion+"','"+editorial+"','"+estado+"');");
-        
-        rscod = st.executeQuery("select max(cod) from libros");
-        rscod.next();
-        String codlibro = rscod.getString(1);
-        
-          for (int i = 0; i < idiomas.getSize(); i++) {
-              st.execute("insert into libro_idiomas (cod_libro,cod_idioma) values ('"+codlibro+"','"+idiomas.getElementAt(i)+"');");
-          }
-          
-          for (int i = 0; i < categorias.getSize(); i++) {
-              st.execute("insert into libro_categoria(cod_libro,cod_categoria) values ('"+codlibro+"','"+categorias.getElementAt(i)+"');");
-          }
-                    
-          for (int i = 0; i < autores.getSize(); i++) {
-              st.execute("insert into libro_autores (cod_libro,cod_autor) values ('"+codlibro+"','"+autores.getElementAt(i)+"');");
-          }
-          
-        JOptionPane.showMessageDialog(null, "'"+titulo+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
-        
-      }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
-        JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
-      }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
-        JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
-      }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
-        JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
-      }  
-    }
+        try{
+            sql= "select * from libros where num_serie='"+nserie+"' OR isbn ='"+isbn+"';";//SE CONFIRMA QUE EL VALOR INGRESADO NO SE ENCUENTRE REGISTRADO
+            rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
+
+                if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
+                    throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+                }//Fin IF
+                
+            st.execute("insert into libros (num_serie,isbn,titulo,npaginas,precio_ref,ano_publicacion,editorial,estado) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
+                    + "values ('"+nserie+"','"+isbn+"','"+titulo+"','"+npaginas+"','"+precioref+"','"+ano_publicacion+"','"+editorial+"','"+estado+"');");
+
+            rscod = st.executeQuery("select max(cod) from libros"); //SE EJECUTA UNA CONSULTA BUSCANDO EL ULTIMO LIBRO INGRESADO
+            rscod.next();
+            String codlibro = rscod.getString(1);//EL CODIGO DEL ULTIMO LIBRO ES GUARDADO EN UNA VARIABLE
+
+                for (int i = 0; i < idiomas.getSize(); i++) {//SE INGRESAN LOS IDIOMAS ASOCIADOS CON EL LIBRO INGRESADO EN LA TABLA RELACIONAL LIBRO_IDIOMAS
+                    st.execute("insert into libro_idiomas (cod_libro,cod_idioma) values ('"+codlibro+"','"+idiomas.getElementAt(i)+"');");
+                }//Fin FOR
+
+                for (int i = 0; i < categorias.getSize(); i++) {//SE INGRESAN LOS IDIOMAS ASOCIADOS CON EL LIBRO INGRESADO EN LA TABLA RELACIONAL LIBRO_CATEGORIA
+                    st.execute("insert into libro_categoria(cod_libro,cod_categoria) values ('"+codlibro+"','"+categorias.getElementAt(i)+"');");
+                }//Fin FOR
+
+                for (int i = 0; i < autores.getSize(); i++) {//SE INGRESAN LOS IDIOMAS ASOCIADOS CON EL LIBRO INGRESADO EN LA TABLA RELACIONAL LIBRO_AUTORES
+                    st.execute("insert into libro_autores (cod_libro,cod_autor) values ('"+codlibro+"','"+autores.getElementAt(i)+"');");
+                }//Fin FOR
+
+            JOptionPane.showMessageDialog(null, "'"+titulo+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+
+        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+        }catch(ExcepcionPersonalizada a){// CAPTURA DE EXCEPCIÖN EN CASO QUE EL EL VALOR INGRESADO YA SE ENCUENTRA REGISTRADO
+            JOptionPane.showMessageDialog(null, a.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception b){// CAPTURA DE CUALQUIER EXCEPCIÓN GENERADA 
+            JOptionPane.showMessageDialog(null, b.getMessage(),"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        }//Fin Try-Catch
+    }//Fin método
      
     /**
      * 
