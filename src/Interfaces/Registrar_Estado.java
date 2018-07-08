@@ -21,16 +21,28 @@ public class Registrar_Estado extends javax.swing.JFrame {
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
     String cod;
 
+    /**
+     * Constructor por defecto
+     */
     public Registrar_Estado() {
         initComponents();
         setTitle("Registro: Estado" );
+        label_op.setText("Registro: Estado");
+        label_cod.setVisible(false);
+        btn_modificar.setVisible(false);
     }
     
+    /**
+     * Constructor utilizado para modificar registros
+     * @param cod
+     * @param desc 
+     */
        public Registrar_Estado(String cod, String desc) {
         initComponents();
         setTitle("Modificar: Estado" );
+        label_op.setText("Modificar: Estado");
         this.cod = cod;
-        label_cod.setText(label_cod.getText()+" "+cod);
+        label_cod.setText(label_cod.getText()+""+cod);
         txt_descripcion.setText(desc);
         btn_registrar.setVisible(false);
     }
@@ -49,7 +61,7 @@ public class Registrar_Estado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_descripcion = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         btn_modificar = new javax.swing.JButton();
         label_cod = new javax.swing.JLabel();
 
@@ -82,8 +94,8 @@ public class Registrar_Estado extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Registrar estado");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar estado");
 
         btn_modificar.setText("MODIFICAR");
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,15 +119,14 @@ public class Registrar_Estado extends javax.swing.JFrame {
                         .addComponent(btn_modificar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(55, 55, 55)
-                                .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(label_op)
+                        .addGap(86, 86, 86)
+                        .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -123,7 +134,7 @@ public class Registrar_Estado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -208,10 +219,10 @@ public class Registrar_Estado extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel label_cod;
+    private javax.swing.JLabel label_op;
     private javax.swing.JTextField txt_descripcion;
     // End of variables declaration//GEN-END:variables
 }

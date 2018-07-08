@@ -20,16 +20,29 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
     String cod;
 
+    /**
+     * Constructor por defecto
+     */
     public Registrar_MetododePago() {
         initComponents();
         setTitle("Registro: Método de pago" );
+        label_op.setText("Registro: Método de pago");
+        label_cod.setVisible(false);
+        btn_modificar.setVisible(false);
     }
     
+    /**
+     * Contructor utilizado para la modificacion de registros
+     * @param cod
+     * @param nombre
+     * @param desc 
+     */
     public Registrar_MetododePago(String cod, String nombre, String desc) {
         initComponents();
-        setTitle("Registro: Método de pago" );
+        setTitle("Modificar: Método de pago" );
         this.cod = cod;
         label_cod.setText(label_cod.getText()+" "+cod);
+        label_op.setText("Modificar: Método de pago");
         txt_nombre.setText(nombre);
         txt_descripcion.setText(desc);
         btn_registrar.setVisible(false);
@@ -50,7 +63,7 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_descripcion = new javax.swing.JTextArea();
         btn_modificar = new javax.swing.JButton();
@@ -87,8 +100,8 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Registrar método de pago");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar método de pago");
 
         txt_descripcion.setColumns(20);
         txt_descripcion.setRows(5);
@@ -111,7 +124,7 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_op, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -138,7 +151,7 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,12 +234,12 @@ public class Registrar_MetododePago extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel label_cod;
+    private javax.swing.JLabel label_op;
     private javax.swing.JTextArea txt_descripcion;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables

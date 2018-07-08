@@ -34,15 +34,34 @@ public class Registrar_Factura extends javax.swing.JFrame {
     DefaultComboBoxModel modelo_jcombod = new DefaultComboBoxModel();
     DefaultComboBoxModel modelo_jcombom = new DefaultComboBoxModel();
     
+    /**
+     * Constructor por defecto
+     */
     public Registrar_Factura() {
         initComponents();
         setTitle("Registro: Factura" );
         CrearComboBox();  
+        label_cod.setVisible(false);
+        label_op.setText("Registro: Factura");
+        btn_modificar.setVisible(false);
     }
     
+    /**
+     * Constructor utilizado para modificar registros
+     * @param cod
+     * @param folio
+     * @param precio_neto
+     * @param precio_IVA
+     * @param costo_IVA
+     * @param fecha_compra
+     * @param hora_compra
+     * @param cod_dist
+     * @param cod_met 
+     */
      public Registrar_Factura(String cod,String folio,String precio_neto, String precio_IVA, String costo_IVA, String fecha_compra, String hora_compra, String cod_dist, String cod_met) {
         initComponents();
-        setTitle("Registro: Factura" );
+        setTitle("Modificar: Factura" );
+        label_op.setText("Modificar: Factura");
         CrearComboBox();
         btn_registrar.setVisible(false);
         this.cod = cod;
@@ -60,6 +79,9 @@ public class Registrar_Factura extends javax.swing.JFrame {
         jcombo_metodo_pago.setSelectedItem(cod_met);
     }
     
+     /**
+      * Método utilizado para definir los modelos de los JComboBox
+      */
     private void CrearComboBox(){
          try{
             q.ListarDistribuidorCB();
@@ -78,7 +100,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
          jcombo_distribuidor.setModel(modelo_jcombod);
          jcombo_metodo_pago.setModel(modelo_jcombom);
         }catch(SQLException e){
-             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -108,7 +130,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
         txt_dia_compra = new javax.swing.JTextField();
         txt_minutos_compra = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         jcombo_metodo_pago = new javax.swing.JComboBox();
         jcombo_distribuidor = new javax.swing.JComboBox();
         txt_mes_compra = new javax.swing.JTextField();
@@ -195,8 +217,8 @@ public class Registrar_Factura extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Registrar Factura");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar Factura");
 
         jcombo_metodo_pago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -230,7 +252,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel11)
+                        .addComponent(label_op)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82))
@@ -286,7 +308,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -437,7 +459,6 @@ public class Registrar_Factura extends javax.swing.JFrame {
     private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -454,6 +475,7 @@ public class Registrar_Factura extends javax.swing.JFrame {
     private javax.swing.JComboBox jcombo_distribuidor;
     private javax.swing.JComboBox jcombo_metodo_pago;
     private javax.swing.JLabel label_cod;
+    private javax.swing.JLabel label_op;
     private javax.swing.JTextField txt_ano_compra;
     private javax.swing.JTextField txt_costo_iva;
     private javax.swing.JTextField txt_dia_compra;

@@ -20,14 +20,34 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
     String cod;
 
+    /**
+     * Constructor por defecto
+     */
     public Registrar_Distribuidor() {
         initComponents();
         setTitle("Registro: Distribuidor" );
+        label_op.setText("Registro: Distribuidor");
+        btn_modificar.setVisible(false);
+        label_cod.setVisible(false);
     }
     
-        public Registrar_Distribuidor(String cod, String rut, String nombre, String pais, String ciudad, String comuna, String calle, String numeracion, String ntelefono, String ainicio) {
+    /**
+     * Constructor utilizado para modificar registros
+     * @param cod
+     * @param rut
+     * @param nombre
+     * @param pais
+     * @param ciudad
+     * @param comuna
+     * @param calle
+     * @param numeracion
+     * @param ntelefono
+     * @param ainicio 
+     */
+    public Registrar_Distribuidor(String cod, String rut, String nombre, String pais, String ciudad, String comuna, String calle, String numeracion, String ntelefono, String ainicio) {
         initComponents();
         setTitle("Modificar: Distribuidor" );
+        label_op.setText("Modificar: Distribuidor");
         this.cod = cod;
         label_cod.setText(label_cod.getText()+" "+cod);
         txt_rut.setText(rut);
@@ -72,7 +92,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
         txt_numeracion = new javax.swing.JTextField();
         txt_año_inicio_ventas = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         label_cod = new javax.swing.JLabel();
         btn_modificar = new javax.swing.JButton();
 
@@ -169,8 +189,8 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Registrar distribuidor");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar distribuidor");
 
         label_cod.setText("COD:");
 
@@ -214,7 +234,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
                                     .addComponent(txt_año_inicio_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label_op, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -229,7 +249,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -383,7 +403,6 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -395,6 +414,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel label_cod;
+    private javax.swing.JLabel label_op;
     private javax.swing.JTextField txt_año_inicio_ventas;
     private javax.swing.JTextField txt_calle;
     private javax.swing.JTextField txt_ciudad;
