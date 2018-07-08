@@ -45,7 +45,7 @@ public class Registrar_Libro extends javax.swing.JFrame {
     }
 
     public Registrar_Libro(String cod,String nserie,String isbn,String titulo,String npaginas, String precioref, String apublicacion,
-            String cod_editorial, String cod_estado) {
+        String cod_editorial, String cod_estado) {
         initComponents();
         setTitle("Modificar: Libro" );
         CrearComboBox();

@@ -2086,6 +2086,62 @@ return modelo;//SE RETORNA EL MODELO DE LA TABLA
       }
     }
     
+    public void ModificarRelacion(String cod,String nuevo_cod_rel,String relacion){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE COMPRA
+      try{
+            switch(relacion){
+                case  "LIBRO_AUTOR": sql =("update libro_autores set cod_autor='"+nuevo_cod_rel+"' WHERE cod ='"+cod+"';");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO MODIFICADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+                    
+                case "LIBRO_IDIOMAS":sql =("update libro_idiomas set cod_idioma='"+nuevo_cod_rel+"' WHERE cod ='"+cod+"';");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO MODIFICADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+
+                case "LIBRO_CATEGORIAS":sql =("update libro_categoria set cod_categoria='"+nuevo_cod_rel+"' WHERE cod ='"+cod+"';");
+                                        st.execute(sql);
+                                        JOptionPane.showMessageDialog(null,"HA SIDO MODIFICADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                        break;
+
+                case "LIBRO_COMPRAS":sql =("update compra_libro set libro_asoc='"+nuevo_cod_rel+"' WHERE cod ='"+cod+"';");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO MODIFICADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+            }//Fin Switch
+       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }//Fin  Try-Catch
+    }//Fin método
+    
+     public void AgregarRelacion(String cod,String cod_rel,String relacion){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE COMPRA
+      try{
+            switch(relacion){
+                case  "LIBRO_AUTOR": sql =("insert into libro_autores (cod_libro,cod_autor) values ("+cod+","+cod_rel+");");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO INGRESADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+                    
+                case "LIBRO_IDIOMAS":sql =("insert into libro_idiomas (cod_libro,cod_idioma) values ("+cod+","+cod_rel+");");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO INGRESADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+
+                case "LIBRO_CATEGORIAS":sql =("insert into libro_categoria (cod_libro,cod_categoria) values ("+cod+","+cod_rel+");");
+                                        st.execute(sql);
+                                        JOptionPane.showMessageDialog(null,"HA SIDO INGRESADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                        break;
+
+                case "LIBRO_COMPRAS":sql =("insert into compra_libro (compra_asoc,libro_asoc) values ("+cod+","+cod_rel+");");
+                                     st.execute(sql);
+                                     JOptionPane.showMessageDialog(null,"HA SIDO INGRESADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
+                                     break;
+            }//Fin Switch
+       }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+            JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e,"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
+      }//Fin  Try-Catch
+    }//Fin método
+    
     /**
      * 
      * @param dato

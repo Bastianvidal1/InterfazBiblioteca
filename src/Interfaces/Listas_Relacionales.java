@@ -50,6 +50,8 @@ public class Listas_Relacionales extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JTable();
         btn_eliminar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        btn_agregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,18 +75,36 @@ public class Listas_Relacionales extends javax.swing.JFrame {
             }
         });
 
+        btn_modificar.setText("Modificar");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
+        btn_agregar.setText("Agregar");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_agregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_modificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_eliminar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_eliminar)
-                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +112,10 @@ public class Listas_Relacionales extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_eliminar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_eliminar)
+                    .addComponent(btn_modificar)
+                    .addComponent(btn_agregar))
                 .addGap(11, 11, 11))
         );
 
@@ -102,6 +125,26 @@ public class Listas_Relacionales extends javax.swing.JFrame {
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Modificar_Relacion mod_rel = new Modificar_Relacion(lista.getValueAt(lista.getSelectedRow(), 0).toString(), rel);
+            mod_rel.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }//Fin Try-Catch    
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Modificar_Relacion mod_rel = new Modificar_Relacion(Integer.parseInt(cod), rel);
+            mod_rel.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane,e.getMessage()+"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
+        }//Fin Try-Catch    
+    }//GEN-LAST:event_btn_agregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,7 +182,9 @@ public class Listas_Relacionales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_modificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable lista;
     // End of variables declaration//GEN-END:variables
