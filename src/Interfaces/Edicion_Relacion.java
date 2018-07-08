@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Bastian Vidal
  */
-public class Modificar_Relacion extends javax.swing.JFrame {
+public class Edicion_Relacion extends javax.swing.JFrame {
     Querys q = new Querys();
     String cod;
     DefaultComboBoxModel modelo_jcomborel = new DefaultComboBoxModel();
@@ -25,10 +25,10 @@ public class Modificar_Relacion extends javax.swing.JFrame {
     /**
      * Creates new form Modidicar_Relacion
      */
-    public Modificar_Relacion(){
+    public Edicion_Relacion(){
         initComponents();
     }
-    public Modificar_Relacion(int cod_libro,String rel) {
+    public Edicion_Relacion(int cod_libro,String rel) {
         initComponents();
         label_cod.setText("COD LIBRO:"+cod_libro);
         label_modificar.setText("Agregar:"+rel);
@@ -38,7 +38,7 @@ public class Modificar_Relacion extends javax.swing.JFrame {
         btn_modificar.setVisible(false);
     }
     
-    public Modificar_Relacion(String cod, String relacion){
+    public Edicion_Relacion(String cod, String relacion){
         initComponents();
         this.cod = cod;
         this.relacion = relacion;
@@ -214,21 +214,23 @@ public class Modificar_Relacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edicion_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edicion_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edicion_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modificar_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edicion_Relacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Modificar_Relacion().setVisible(true);
+                new Edicion_Relacion().setVisible(true);
             }
         });
     }

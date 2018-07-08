@@ -124,12 +124,13 @@ public class Listas_Relacionales extends javax.swing.JFrame {
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
+        q.EliminarRelacion(lista.getValueAt(lista.getSelectedRow(), 0).toString(), rel);
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
         try{
-            Modificar_Relacion mod_rel = new Modificar_Relacion(lista.getValueAt(lista.getSelectedRow(), 0).toString(), rel);
+            Edicion_Relacion mod_rel = new Edicion_Relacion(lista.getValueAt(lista.getSelectedRow(), 0).toString(), rel);
             mod_rel.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
@@ -139,7 +140,7 @@ public class Listas_Relacionales extends javax.swing.JFrame {
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
         try{
-            Modificar_Relacion mod_rel = new Modificar_Relacion(Integer.parseInt(cod), rel);
+            Edicion_Relacion mod_rel = new Edicion_Relacion(Integer.parseInt(cod), rel);
             mod_rel.setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane,e.getMessage()+"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
