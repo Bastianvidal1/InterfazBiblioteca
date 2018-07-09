@@ -32,15 +32,28 @@ public class Registrar_Compra extends javax.swing.JFrame {
     DefaultComboBoxModel modelo_jcombofactura= new DefaultComboBoxModel();
     DefaultListModel modelo_listalibros = new DefaultListModel();
 
+    /**
+     * Constructor por defecto
+     */
     public Registrar_Compra() {
         initComponents();
         setTitle("Registro: Compra" );
+        label_op.setText("Registro: Compra");
+        label_cod.setVisible(false);
+        btn_modificar.setVisible(false);
         CrearComboBox();
     }
     
+    /**
+     * Constructor utilizado para modificar registros
+     * @param cod
+     * @param cod_dist
+     * @param cod_factura 
+     */
     public Registrar_Compra(String cod, String cod_dist, String cod_factura) {
         initComponents();
-        setTitle("Registro: Compra" );
+        setTitle("Modificar: Compra" );
+        label_op.setText("Modificar: Compra");
         CrearComboBox();
         this.cod = cod;
         label_cod.setText(label_cod.getText()+""+cod);
@@ -52,6 +65,9 @@ public class Registrar_Compra extends javax.swing.JFrame {
         btn_registrar.setVisible(false);
     }
     
+    /**
+     * Método encargado de definir los modelos de los JComboBox con los datos necesarios
+     */
     private void CrearComboBox(){
          try{
             q.ListarLibrosCB();//SE EJECUTA UN METODO DE QUERYS PARA COMPROBAR LOS REGISTROS DE LA TABLA 
@@ -96,7 +112,7 @@ public class Registrar_Compra extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_registrar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         btn_agregar_libro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlist_libros = new javax.swing.JList();
@@ -133,8 +149,8 @@ public class Registrar_Compra extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Registrar Compra");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar Compra");
 
         btn_agregar_libro.setText(">>");
         btn_agregar_libro.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +205,7 @@ public class Registrar_Compra extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label_op, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
                                 .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -204,7 +220,7 @@ public class Registrar_Compra extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label_cod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +313,6 @@ public class Registrar_Compra extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -308,5 +323,6 @@ public class Registrar_Compra extends javax.swing.JFrame {
     private javax.swing.JComboBox jcombo_libros;
     private javax.swing.JList jlist_libros;
     private javax.swing.JLabel label_cod;
+    private javax.swing.JLabel label_op;
     // End of variables declaration//GEN-END:variables
 }

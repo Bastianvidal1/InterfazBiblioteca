@@ -21,18 +21,31 @@ public class Registrar_Autor extends javax.swing.JFrame {
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
     String cod;
 
+    /**
+     * Constructor por defecto
+     */
     public Registrar_Autor() {
         initComponents();
         setTitle("Registro: Autor" );
+        label_op.setText("Registro: Autor");
+        label_cod.setVisible(false);
+        btn_modificar.setVisible(false);
     }
     
+    /**
+     * Constructor utilizado para modificar registros 
+     * @param cod
+     * @param nombre
+     * @param apellido_paterno
+     * @param apellido_materno 
+     */
     public Registrar_Autor(String cod,String nombre,String apellido_paterno,String apellido_materno){
         initComponents();
         setTitle("Modificar: Autor" );
+        label_op.setText("Modificar: Autor");
         this.cod= cod;
         btn_registar.setVisible(false);
-        label_titulo.setText("Modificar: Autor");
-        label_codigo.setText(label_cod.getText()+""+cod);
+        label_cod.setText(label_cod.getText()+""+cod);
         txt_nombre.setText(nombre);
         txt_apellidop.setText(apellido_paterno);
         txt_apellidom.setText(apellido_materno);
@@ -56,10 +69,9 @@ public class Registrar_Autor extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         txt_apellidom = new javax.swing.JTextField();
         btn_registar = new javax.swing.JButton();
-        label_titulo = new javax.swing.JLabel();
+        label_op = new javax.swing.JLabel();
         btn_modificar = new javax.swing.JButton();
         label_cod = new javax.swing.JLabel();
-        label_codigo = new javax.swing.JLabel();
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,8 +118,8 @@ public class Registrar_Autor extends javax.swing.JFrame {
             }
         });
 
-        label_titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        label_titulo.setText("Registrar autor");
+        label_op.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_op.setText("Registrar autor");
 
         btn_modificar.setText("MODIFICAR");
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,49 +128,43 @@ public class Registrar_Autor extends javax.swing.JFrame {
             }
         });
 
-        label_codigo.setText("COD:");
+        label_cod.setText("COD:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_codigo)
-                .addGap(17, 17, 17))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_registar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_modificar))
+                        .addComponent(label_op, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_apellidop, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_apellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_cod)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_apellidom, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btn_registar)
+                        .addGap(51, 51, 51)
+                        .addComponent(btn_modificar)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_cod)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(label_codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -256,8 +262,7 @@ public class Registrar_Autor extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel label_cod;
-    private javax.swing.JLabel label_codigo;
-    private javax.swing.JLabel label_titulo;
+    private javax.swing.JLabel label_op;
     private javax.swing.JLabel txt;
     private javax.swing.JTextField txt_apellidom;
     private javax.swing.JTextField txt_apellidop;
