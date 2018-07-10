@@ -25,9 +25,19 @@ public class Edicion_Relacion extends javax.swing.JFrame {
     /**
      * Creates new form Modidicar_Relacion
      */
+    
+    /**
+     * Constructor por defecto
+     */
     public Edicion_Relacion(){
         initComponents();
     }
+    
+    /**
+     * Constructor utilizado para agregar un registro a la relación
+     * @param cod_libro
+     * @param rel 
+     */
     public Edicion_Relacion(int cod_libro,String rel) {
         initComponents();
         label_cod.setText("COD LIBRO:"+cod_libro);
@@ -38,6 +48,11 @@ public class Edicion_Relacion extends javax.swing.JFrame {
         btn_modificar.setVisible(false);
     }
     
+    /**
+     * Constructor utilizado para modificar un registro de la relación
+     * @param cod
+     * @param relacion 
+     */
     public Edicion_Relacion(String cod, String relacion){
         initComponents();
         this.cod = cod;
@@ -48,6 +63,10 @@ public class Edicion_Relacion extends javax.swing.JFrame {
         btn_agregar.setVisible(false);
     }
 
+    /**
+     * Método encargado de definir los JComboBox con los datos correspondientes a la relación solicitada
+     * @param relacion 
+     */
     private void CrearComboBox(String relacion){
         ResultSet rs;
         
@@ -189,11 +208,13 @@ public class Edicion_Relacion extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
+        //Envía los datos necesarios para modificar registro de la relación 
         q.ModificarRelacion(cod, jcombo_relacion.getSelectedItem().toString(), relacion);
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
+        //Envía los datos necesario para agregar un registro a la relación
         q.AgregarRelacion(cod, jcombo_relacion.getSelectedItem().toString(), relacion);
     }//GEN-LAST:event_btn_agregarActionPerformed
 

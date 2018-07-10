@@ -24,6 +24,9 @@ public class Main extends javax.swing.JFrame {
     static Querys q = new Querys();
     static Statement st = q.getSt();
     
+    /**
+     * Constructor por defecto
+     */
     public Main() {
         initComponents();
         setTitle("Administración de biblioteca");
