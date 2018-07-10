@@ -28,6 +28,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setTitle("Administración de biblioteca");
         setLocationRelativeTo(null);
+        jMenuBar1.setVisible(false);
     }
 
     /**
@@ -162,67 +163,145 @@ public class Main extends javax.swing.JFrame {
         jMenu10.setText("jMenu10");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 153));
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Libros:");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Autor:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Categoría:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Idioma:");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Editorial:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Estado:");
 
         btn_registrar_autor.setText("Registrar");
         btn_registrar_autor.setActionCommand("btn_crear_autor");
+        btn_registrar_autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_autorActionPerformed(evt);
+            }
+        });
 
         btn_registrar_categoria.setText("Registrar");
         btn_registrar_categoria.setActionCommand("btn_crear_categoria");
+        btn_registrar_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_categoriaActionPerformed(evt);
+            }
+        });
 
         btn_registrar_idioma.setText("Registrar");
         btn_registrar_idioma.setActionCommand("btn_crear_idioma");
+        btn_registrar_idioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_idiomaActionPerformed(evt);
+            }
+        });
 
         btn_registrar_editorial.setText("Registrar");
         btn_registrar_editorial.setActionCommand("btn_crear_editorial");
+        btn_registrar_editorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_editorialActionPerformed(evt);
+            }
+        });
 
         btn_registrar_estado.setText("Registrar");
         btn_registrar_estado.setActionCommand("btn_crear_estado");
+        btn_registrar_estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_estadoActionPerformed(evt);
+            }
+        });
 
         btn_listar_autor.setText("Mostrar");
+        btn_listar_autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_autorActionPerformed(evt);
+            }
+        });
 
         btn_listar_categoria.setText("Mostrar");
+        btn_listar_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_categoriaActionPerformed(evt);
+            }
+        });
 
         btn_listar_idioma.setText("Mostrar");
+        btn_listar_idioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_idiomaActionPerformed(evt);
+            }
+        });
 
         btn_listar_editorial.setText("Mostrar");
+        btn_listar_editorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_editorialActionPerformed(evt);
+            }
+        });
 
         btn_listar_estado.setText("Mostrar");
+        btn_listar_estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_estadoActionPerformed(evt);
+            }
+        });
 
         btn_registrar_libro.setText("Registrar");
+        btn_registrar_libro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_libroActionPerformed(evt);
+            }
+        });
 
         btn_listar_libro.setText("Mostrar");
+        btn_listar_libro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_libroActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Compras:");
 
         btn_registrar_compra.setText("Registrar");
+        btn_registrar_compra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_compraActionPerformed(evt);
+            }
+        });
 
         btn_listar_compra.setText("Mostrar");
+        btn_listar_compra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_compraActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -232,25 +311,58 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Detalles");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Distribuidor:");
 
         btn_registrar_distribuidor.setText("Registrar");
+        btn_registrar_distribuidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_distribuidorActionPerformed(evt);
+            }
+        });
 
         btn_listar_distribuidor.setText("Mostrar");
+        btn_listar_distribuidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_distribuidorActionPerformed(evt);
+            }
+        });
 
         btn_registrar_factura.setText("Registrar");
+        btn_registrar_factura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_facturaActionPerformed(evt);
+            }
+        });
 
         btn_listar_factura.setText("Mostrar");
+        btn_listar_factura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_facturaActionPerformed(evt);
+            }
+        });
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Factura:");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Método de pago:");
 
         btn_registrar_metodopago.setText("Registrar");
+        btn_registrar_metodopago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_metodopagoActionPerformed(evt);
+            }
+        });
 
         btn_listar_metodopago.setText("Mostrar");
+        btn_listar_metodopago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listar_metodopagoActionPerformed(evt);
+            }
+        });
 
         jMenu3.setText("Administración Libros");
 
@@ -553,18 +665,19 @@ public class Main extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(btn_listar_distribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_registrar_metodopago)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_listar_metodopago))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_registrar_factura)
-                        .addGap(12, 12, 12)
-                        .addComponent(btn_listar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(btn_registrar_compra)
                         .addGap(12, 12, 12)
-                        .addComponent(btn_listar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btn_listar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(btn_registrar_metodopago)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btn_listar_metodopago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btn_registrar_factura)
+                            .addGap(12, 12, 12)
+                            .addComponent(btn_listar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,133 +774,221 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-            Registrar_Distribuidor reg_distribuidor = new Registrar_Distribuidor();
-            reg_distribuidor.setVisible(true);
+            
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        Registrar_Factura reg_factura = new Registrar_Factura();
-        reg_factura.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
         // TODO add your handling code here:
-        Registrar_MetododePago reg_metodopago = new Registrar_MetododePago();
-        reg_metodopago.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        Registrar_Libro reg_libro = new Registrar_Libro();
-        reg_libro.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        //SE DECLARA UN ARRAY CON LAS QUE DEBE TENER LA TABLA
-       String[] Columnas = {"COD","N°SERIE","ISBN","TITULO","N°PAGINAS","PRECIO REF","IDIOMA","AÑO PUBLICACIÓN","AUTOR","CATEGORÍA","EDITORIAL"};
-       Listas listar = new Listas("Libros");
-       listar.setVisible(true);
-       
-        
+        // TODO add your handling code here:        
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"COD","NOMBRE","APELLIDO PATERNO","APELLIDO MATERNO"};
-        Listas listar = new Listas("Autores");
-       listar.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
     
-       Listas listar = new Listas("Editorial");
-       listar.setVisible(true);
+      
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
-        Listas listar = new Listas("Categorias");
-       listar.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
         // TODO add your handling code here:
        
-        Listas listar = new Listas("Idiomas");
-       listar.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem34ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        Listas listar = new Listas("Distribuidores");
-       listar.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        String[] Columnas = {"FOLIO","PRECIO NETO","PRECIO IVA","COSTO IVA","FECHA DE COMPRA"," HORA DE COMPRA","DISTRIBUIDOR","MÉTODO DE PAGO"};
-        Listas listar = new Listas("Facturas");
-       listar.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
-        String[] Columnas = {"COD","DISTRIBUIDOR","FACTURA"};
-        Listas listar = new Listas("Compras");
-       listar.setVisible(true);
+        // TODO add your handling code here:       
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem37ActionPerformed
         // TODO add your handling code here:
-        Listas listar = new Listas("Métodos de pago");
-        listar.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem37ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-                Registrar_Autor reg_autor = new Registrar_Autor();
-                reg_autor.setVisible(true);
+                
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
-                Registrar_Editorial reg_editorial = new Registrar_Editorial();
-                reg_editorial.setVisible(true);
+                
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
         // TODO add your handling code here:
-                Registrar_Categoria reg_categoria = new Registrar_Categoria();
-                reg_categoria.setVisible(true);
+                
     }//GEN-LAST:event_jMenuItem29ActionPerformed
 
     private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
         // TODO add your handling code here:
-                Registrar_Idioma reg_idioma = new Registrar_Idioma();
-                reg_idioma.setVisible(true);
+                
     }//GEN-LAST:event_jMenuItem33ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        Registrar_Compra reg_compra = new Registrar_Compra();
-        reg_compra.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Registrar_Estado reg_estado = new Registrar_Estado();
-        reg_estado.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void btn_listar_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_estadoActionPerformed
+        // TODO add your handling code here:
         Listas listar = new Listas("Estado");
         listar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_btn_listar_estadoActionPerformed
+
+    private void btn_registrar_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_estadoActionPerformed
+        // TODO add your handling code here:
+        Registrar_Estado reg_estado = new Registrar_Estado();
+        reg_estado.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_estadoActionPerformed
+
+    private void btn_registrar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_compraActionPerformed
+        // TODO add your handling code here:
+        Registrar_Compra reg_compra = new Registrar_Compra();
+        reg_compra.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_compraActionPerformed
+
+    private void btn_registrar_distribuidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_distribuidorActionPerformed
+        // TODO add your handling code here:
+        Registrar_Distribuidor reg_distribuidor = new Registrar_Distribuidor();
+        reg_distribuidor.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_distribuidorActionPerformed
+
+    private void btn_registrar_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_facturaActionPerformed
+        // TODO add your handling code here:
+        Registrar_Factura reg_factura = new Registrar_Factura();
+        reg_factura.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_facturaActionPerformed
+
+    private void btn_registrar_editorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_editorialActionPerformed
+        // TODO add your handling code here:
+        Registrar_Editorial reg_editorial = new Registrar_Editorial();
+        reg_editorial.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_editorialActionPerformed
+
+    private void btn_registrar_idiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_idiomaActionPerformed
+        // TODO add your handling code here:
+        Registrar_Idioma reg_idioma = new Registrar_Idioma();
+        reg_idioma.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_idiomaActionPerformed
+
+    private void btn_listar_idiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_idiomaActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Idiomas");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_idiomaActionPerformed
+
+    private void btn_registrar_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_autorActionPerformed
+        // TODO add your handling code here:
+        Registrar_Autor reg_autor = new Registrar_Autor();
+        reg_autor.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_autorActionPerformed
+
+    private void btn_registrar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_categoriaActionPerformed
+        // TODO add your handling code here:
+        Registrar_Categoria reg_categoria = new Registrar_Categoria();
+        reg_categoria.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_categoriaActionPerformed
+
+    private void btn_registrar_metodopagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_metodopagoActionPerformed
+        // TODO add your handling code here:
+        Registrar_MetododePago reg_metodopago = new Registrar_MetododePago();
+        reg_metodopago.setVisible(true);              
+    }//GEN-LAST:event_btn_registrar_metodopagoActionPerformed
+
+    private void btn_listar_metodopagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_metodopagoActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Métodos de pago");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_metodopagoActionPerformed
+
+    private void btn_listar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_compraActionPerformed
+        // TODO add your handling code here:
+       Listas listar = new Listas("Compras");
+       listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_compraActionPerformed
+
+    private void btn_listar_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_facturaActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Facturas");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_facturaActionPerformed
+
+    private void btn_listar_distribuidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_distribuidorActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Distribuidores");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_distribuidorActionPerformed
+
+    private void btn_listar_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_categoriaActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Categorias");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_categoriaActionPerformed
+
+    private void btn_listar_editorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_editorialActionPerformed
+        // TODO add your handling code here:
+         Listas listar = new Listas("Editorial");
+         listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_editorialActionPerformed
+
+    private void btn_listar_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_autorActionPerformed
+        // TODO add your handling code here:
+        Listas listar = new Listas("Autores");
+        listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_autorActionPerformed
+
+    private void btn_listar_libroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_libroActionPerformed
+        // TODO add your handling code here:
+       Listas listar = new Listas("Libros");
+       listar.setVisible(true);
+    }//GEN-LAST:event_btn_listar_libroActionPerformed
+
+    private void btn_registrar_libroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_libroActionPerformed
+        // TODO add your handling code here:
+        Registrar_Libro reg_libro = new Registrar_Libro();
+        reg_libro.setVisible(true);
+    }//GEN-LAST:event_btn_registrar_libroActionPerformed
 
     /**
      * @param args the command line arguments

@@ -291,7 +291,7 @@ public class Registrar_Distribuidor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_registrar)
                     .addComponent(btn_modificar))
-                .addGap(52, 52, 52))
+                .addGap(23, 23, 23))
         );
 
         pack();

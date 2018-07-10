@@ -1250,13 +1250,13 @@ public class Querys {
             //EN PRIMERA INSTANCIA, SI NO SE PRODUCE UNA EXCEPCIÓN SE AÑADE UNA FILA
             //AL MODELO
             fila[0] = rs.getString("cod");
-            fila[1] = rs.getString("descripción");
+            fila[1] = rs.getString("descripcion");
 
             modelo.addRow(fila);
 
             while(rs.next()){//SE INGRESAN LAS FILAS AL MODELO MEDIANTE UN CICLO 
                 fila[0] = rs.getString("cod");
-                fila[1] = rs.getString("descripción");
+                fila[1] = rs.getString("descripcion");
                 modelo.addRow(fila);  
             }//Fin While
 
@@ -1505,7 +1505,7 @@ public class Querys {
                 JOptionPane.showMessageDialog(null, "EL CAMPO DE BUSQUEDA ESTA VACÍO... RECUPERANDO REGISTROS","RECUPERACIÓN", JOptionPane.INFORMATION_MESSAGE);
                return ListarAutores();// SI EL CAMPO DE BUSQUEDA SE ENCUENTRA VACIÓ SE RECUPERAN LOS REGISTROS
             }//Fin IF
-            sql="select * from autores where cod='"+texto+"' OR nombre='"+texto+"' OR apellido_paterno='"+texto+" OR apellido_materno='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE AUTORES
+            sql="select * from autores where cod='"+texto+"' OR nombre='"+texto+"' OR apellido_paterno='"+texto+"' OR apellido_materno='"+texto+"';";//SE REALIZA BUSQUEDA DE LOS REGISTROS DE AUTORES
             rs = st.executeQuery(sql);//SE EJECUTA LA CONSULTA
 
             if(!(rs.next())){//COMPROBACIÖN DE LOS DATOS 

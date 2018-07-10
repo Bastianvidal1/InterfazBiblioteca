@@ -52,8 +52,10 @@ public class Listas_Relacionales extends javax.swing.JFrame {
         btn_eliminar = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         btn_agregar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         lista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,6 +70,7 @@ public class Listas_Relacionales extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(lista);
 
+        btn_eliminar.setBackground(new java.awt.Color(204, 51, 0));
         btn_eliminar.setText("Eliminar");
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +92,13 @@ public class Listas_Relacionales extends javax.swing.JFrame {
             }
         });
 
+        btn_actualizar.setText("Actualizar / Recuperar");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,11 +108,12 @@ public class Listas_Relacionales extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_agregar)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addComponent(btn_modificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_eliminar)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(btn_actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_eliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -115,7 +126,8 @@ public class Listas_Relacionales extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_eliminar)
                     .addComponent(btn_modificar)
-                    .addComponent(btn_agregar))
+                    .addComponent(btn_agregar)
+                    .addComponent(btn_actualizar))
                 .addGap(11, 11, 11))
         );
 
@@ -124,7 +136,11 @@ public class Listas_Relacionales extends javax.swing.JFrame {
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
+        try{
         q.EliminarRelacion(lista.getValueAt(lista.getSelectedRow(), 0).toString(), rel);
+        }catch(Exception e){
+           JOptionPane.showMessageDialog(rootPane,"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE"); 
+        }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
@@ -146,6 +162,11 @@ public class Listas_Relacionales extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,e.getMessage()+"NO SE HA SELECCIONADO UNA FILA INTENTE NUEVAMENTE");
         }//Fin Try-Catch    
     }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        // TODO add your handling code here:
+        setModelo(cod, rel);
+    }//GEN-LAST:event_btn_actualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +204,7 @@ public class Listas_Relacionales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_modificar;

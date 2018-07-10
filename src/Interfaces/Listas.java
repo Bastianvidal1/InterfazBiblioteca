@@ -132,8 +132,10 @@ public class Listas extends javax.swing.JFrame {
         btn_ver_categorias = new javax.swing.JButton();
         btn_ver_idiomas = new javax.swing.JButton();
         btn_ver_libros_comprados = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         lista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,6 +214,13 @@ public class Listas extends javax.swing.JFrame {
             }
         });
 
+        btn_actualizar.setText("Actualizar / Recuperar");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,10 +234,13 @@ public class Listas extends javax.swing.JFrame {
                         .addComponent(txt_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_filtrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                         .addComponent(btn_modificar)
-                        .addGap(48, 48, 48)
-                        .addComponent(btn_eliminar))
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_eliminar)
+                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +273,8 @@ public class Listas extends javax.swing.JFrame {
                     .addComponent(texto_filtro)
                     .addComponent(btn_filtrar)
                     .addComponent(btn_eliminar)
-                    .addComponent(btn_modificar))
+                    .addComponent(btn_modificar)
+                    .addComponent(btn_actualizar))
                 .addContainerGap())
         );
 
@@ -498,6 +511,11 @@ public class Listas extends javax.swing.JFrame {
         }//Fin Try-Catch
     }//GEN-LAST:event_btn_modificarActionPerformed
 
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        // TODO add your handling code here:
+         setModelo(tabla);
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -534,6 +552,7 @@ public class Listas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_filtrar;
     private javax.swing.JButton btn_modificar;
