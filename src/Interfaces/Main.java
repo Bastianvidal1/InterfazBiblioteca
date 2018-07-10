@@ -193,6 +193,7 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Estado:");
 
+        btn_registrar_autor.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_autor.setText("Registrar");
         btn_registrar_autor.setActionCommand("btn_crear_autor");
         btn_registrar_autor.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +202,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_categoria.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_categoria.setText("Registrar");
         btn_registrar_categoria.setActionCommand("btn_crear_categoria");
         btn_registrar_categoria.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +211,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_idioma.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_idioma.setText("Registrar");
         btn_registrar_idioma.setActionCommand("btn_crear_idioma");
         btn_registrar_idioma.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +220,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_editorial.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_editorial.setText("Registrar");
         btn_registrar_editorial.setActionCommand("btn_crear_editorial");
         btn_registrar_editorial.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +229,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_estado.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_estado.setText("Registrar");
         btn_registrar_estado.setActionCommand("btn_crear_estado");
         btn_registrar_estado.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +238,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_autor.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_autor.setText("Mostrar");
         btn_listar_autor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +246,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_categoria.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_categoria.setText("Mostrar");
         btn_listar_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,6 +254,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_idioma.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_idioma.setText("Mostrar");
         btn_listar_idioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +262,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_editorial.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_editorial.setText("Mostrar");
         btn_listar_editorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +270,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_estado.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_estado.setText("Mostrar");
         btn_listar_estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +278,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_libro.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_libro.setText("Registrar");
         btn_registrar_libro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +286,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_libro.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_libro.setText("Mostrar");
         btn_listar_libro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +301,7 @@ public class Main extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Compras:");
 
+        btn_registrar_compra.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_compra.setText("Registrar");
         btn_registrar_compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +309,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_compra.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_compra.setText("Mostrar");
         btn_listar_compra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,6 +329,7 @@ public class Main extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Distribuidor:");
 
+        btn_registrar_distribuidor.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_distribuidor.setText("Registrar");
         btn_registrar_distribuidor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +337,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_distribuidor.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_distribuidor.setText("Mostrar");
         btn_listar_distribuidor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +345,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_factura.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_factura.setText("Registrar");
         btn_registrar_factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,6 +353,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_factura.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_factura.setText("Mostrar");
         btn_listar_factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +368,7 @@ public class Main extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Método de pago:");
 
+        btn_registrar_metodopago.setBackground(new java.awt.Color(0, 204, 51));
         btn_registrar_metodopago.setText("Registrar");
         btn_registrar_metodopago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,6 +376,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_listar_metodopago.setBackground(new java.awt.Color(0, 153, 255));
         btn_listar_metodopago.setText("Mostrar");
         btn_listar_metodopago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

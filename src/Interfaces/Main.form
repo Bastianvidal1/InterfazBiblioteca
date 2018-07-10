@@ -699,6 +699,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_autor">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="actionCommand" type="java.lang.String" value="btn_crear_autor"/>
       </Properties>
@@ -708,6 +711,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_categoria">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="actionCommand" type="java.lang.String" value="btn_crear_categoria"/>
       </Properties>
@@ -717,6 +723,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_idioma">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="actionCommand" type="java.lang.String" value="btn_crear_idioma"/>
       </Properties>
@@ -726,6 +735,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_editorial">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="actionCommand" type="java.lang.String" value="btn_crear_editorial"/>
       </Properties>
@@ -735,6 +747,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_estado">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="actionCommand" type="java.lang.String" value="btn_crear_estado"/>
       </Properties>
@@ -744,6 +759,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_autor">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -752,6 +770,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_categoria">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -760,6 +781,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_idioma">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -768,6 +792,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_editorial">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -776,6 +803,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_estado">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -784,6 +814,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_libro">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
@@ -792,6 +825,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_libro">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -817,6 +853,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_compra">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
@@ -825,6 +864,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_compra">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -860,6 +902,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_distribuidor">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
@@ -868,6 +913,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_distribuidor">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -876,6 +924,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_factura">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
@@ -884,6 +935,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_factura">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>
@@ -909,6 +963,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_metodopago">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
@@ -917,6 +974,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_listar_metodopago">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
       <Events>

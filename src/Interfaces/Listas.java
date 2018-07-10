@@ -166,6 +166,7 @@ public class Listas extends javax.swing.JFrame {
             }
         });
 
+        btn_eliminar.setBackground(new java.awt.Color(204, 51, 0));
         btn_eliminar.setText("Eliminar");
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
