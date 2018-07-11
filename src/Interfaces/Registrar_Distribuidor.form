@@ -36,51 +36,52 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txt_nombre" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_rut" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_pais" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_ciudad" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_comuna" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_calle" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_numero_telefono" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="txt_numeracion" min="-2" pref="218" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_año_inicio_ventas" min="-2" pref="218" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btn_registrar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btn_modificar" min="-2" pref="110" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_nombre" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_rut" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_pais" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_ciudad" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_comuna" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_calle" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_numero_telefono" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_numeracion" min="-2" pref="218" max="-2" attributes="0"/>
-                                  <Component id="txt_año_inicio_ventas" min="-2" pref="218" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="label_op" min="-2" pref="230" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="label_cod" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="jLabel10" min="-2" pref="59" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="btn_registrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="btn_modificar" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="label_op" min="-2" pref="230" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="label_cod" min="-2" pref="88" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,6 +137,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_año_inicio_ventas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -266,6 +268,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_modificarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="[ AAAA ]"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

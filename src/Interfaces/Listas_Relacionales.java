@@ -30,20 +30,21 @@ public class Listas_Relacionales extends javax.swing.JFrame {
 
     /**
      * Constructor utilizado para listar las relaciones según corresponda
-     * @param cod
-     * @param rel 
+     * @param cod Código del registro a modificar
+     * @param rel Relación a listar 
      */
     public Listas_Relacionales(String cod, String rel) {
         initComponents();
         this.cod = cod;
         this.rel = rel;
         setModelo(cod, rel);   
+        setTitle(rel);
     }
     
     /**
      * Método encargado de definir el el modelo de la tabla según corresponda
-     * @param cod
-     * @param rel 
+     * @param cod Código del registro principal  
+     * @param rel Relación a listar
      */
     public void setModelo(String cod, String rel){
             lista.setModel(q.ListarRelaciones(cod, rel));

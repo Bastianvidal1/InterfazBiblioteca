@@ -35,23 +35,23 @@ public class Edicion_Relacion extends javax.swing.JFrame {
     
     /**
      * Constructor utilizado para agregar un registro a la relación
-     * @param cod_libro
-     * @param rel 
+     * @param cod Código del registro de la tabla Libro o Compra al cual se le agrega un registro en la tabla relacional
+     * @param rel Relación a la que se le agregan registros
      */
-    public Edicion_Relacion(int cod_libro,String rel) {
+    public Edicion_Relacion(int cod,String rel) {
         initComponents();
-        label_cod.setText("COD LIBRO:"+cod_libro);
+        label_cod.setText("COD LIBRO/COMPRA ASOCIADA:"+cod);
         label_modificar.setText("Agregar:"+rel);
         this.relacion = rel;
-        this.cod = ""+cod_libro;
+        this.cod = ""+cod;
         CrearComboBox(relacion);
         btn_modificar.setVisible(false);
     }
     
     /**
      * Constructor utilizado para modificar un registro de la relación
-     * @param cod
-     * @param relacion 
+     * @param cod Código del registro relacional el cual será modificado
+     * @param relacion Relació a la que se le modifican registros
      */
     public Edicion_Relacion(String cod, String relacion){
         initComponents();
@@ -65,7 +65,7 @@ public class Edicion_Relacion extends javax.swing.JFrame {
 
     /**
      * Método encargado de definir los JComboBox con los datos correspondientes a la relación solicitada
-     * @param relacion 
+     * @param relacion Relación a la cual se le van a editar o agregar registros
      */
     private void CrearComboBox(String relacion){
         ResultSet rs;
@@ -163,27 +163,24 @@ public class Edicion_Relacion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(label_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
+                            .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(13, 13, 13)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(label_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(37, 37, 37)
-                                    .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(55, 55, 55)
-                                    .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(13, 13, 13)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcombo_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47))))
+                        .addComponent(label_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jcombo_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -6,9 +6,9 @@
 package Excepciones;
 
 /**
- *La clase "ExcepcionPersonalizada" es creada con el fin de capturar excepciones 
- *provocadas en las validaciónes de datos y mostrar al usuario el error en el cual
- *se incurre
+ * La clase "ExcepcionPersonalizada" es creada con el fin de capturar excepciones 
+ * provocadas en las validaciónes de datos y mostrar al usuario el error en el cual
+ * se incurre
  * @author Bastian Vidal
  */
 
@@ -24,7 +24,7 @@ public class ExcepcionPersonalizada extends Exception {
     /**
      ** Este constructor declara como mensaje de excepcion en la clase Super el 
      * dato ingresado como parámetro
-     * @param msg 
+     * @param msg Mensaje a mostrar 
      */
     public ExcepcionPersonalizada(String msg){
         super(msg);

@@ -33,8 +33,8 @@ public class Registrar_Editorial extends javax.swing.JFrame {
     
     /**
      * Constructor utilizado para modficar registros
-     * @param cod
-     * @param nombre 
+     * @param cod Código del registro a modificar
+     * @param nombre Dato actual
      */
     public Registrar_Editorial(String cod,String nombre) {
         initComponents();

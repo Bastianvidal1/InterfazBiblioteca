@@ -19,7 +19,7 @@ public class Controlador {
     
     /**
      * Este método devuelve un objeto de la clase Statement para ser utilizado en las transacciónes de la clase Querys
-     * @return 
+     * @return Un Statement utilizado para las transacciones con la base de datos
      */
     public Statement getStatement(){//CREACIÓN DE UN MËTODO PARA CONEXTAR A LA BASE DE DATOS
         if(conn==null){   

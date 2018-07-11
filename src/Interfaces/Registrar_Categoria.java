@@ -31,8 +31,8 @@ public class Registrar_Categoria extends javax.swing.JFrame {
     
     /**
      * Constructor utilizado para modificar registros
-     * @param cod
-     * @param nombre 
+     * @param cod Código del registro a modificar 
+     * @param nombre Dato actual
      */
     public Registrar_Categoria(String cod, String nombre) {
         initComponents();

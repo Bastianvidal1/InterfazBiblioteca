@@ -33,8 +33,8 @@ public class Registrar_Idioma extends javax.swing.JFrame {
     
     /**
      * Constructor utilizado para modificar registros
-     * @param cod
-     * @param nombre 
+     * @param cod Código del registro a modificar
+     * @param nombre Dato actual 
      */
     public Registrar_Idioma(String cod,String nombre) {
         initComponents();
@@ -123,10 +123,9 @@ public class Registrar_Idioma extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btn_registrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 58, Short.MAX_VALUE))))
         );

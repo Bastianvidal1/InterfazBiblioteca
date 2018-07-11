@@ -34,8 +34,8 @@ public class Registrar_Estado extends javax.swing.JFrame {
     
     /**
      * Constructor utilizado para modificar registros
-     * @param cod
-     * @param desc 
+     * @param cod Código del registro a modificar 
+     * @param desc Dato actual 
      */
        public Registrar_Estado(String cod, String desc) {
         initComponents();
@@ -113,20 +113,21 @@ public class Registrar_Estado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(btn_registrar)
-                        .addGap(37, 37, 37)
-                        .addComponent(btn_modificar))
+                        .addGap(23, 23, 23)
+                        .addComponent(label_op)
+                        .addGap(86, 86, 86)
+                        .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(label_op)
-                        .addGap(86, 86, 86)
-                        .addComponent(label_cod, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_registrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_modificar))
+                            .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(

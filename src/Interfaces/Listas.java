@@ -49,7 +49,7 @@ public class Listas extends javax.swing.JFrame {
         
         /**
          *METODO ENCARGADO DE DEFINIR EL MODELO DE LA TABLA PARA LA VISUALIZACIÓN
-         * @param tabla 
+         * @param tabla La tabla que será mostrada en el JTable lista
          */
         public void setModelo(String tabla){
             
@@ -91,7 +91,7 @@ public class Listas extends javax.swing.JFrame {
         /**
          *ESTE METODO SE ENCARGA DE HACER VISIBLES O NO LOS BOTONES PARA LISTAR REFERENCIAS
          *SEGÚN CORRESPONDA
-         * @param tabla 
+         * @param tabla Tabla principal a listar
         **/
         public void setBotones(String tabla){
             
