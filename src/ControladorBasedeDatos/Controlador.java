@@ -9,7 +9,7 @@ import java.sql.*;//LIBRERIAS DE SQL SON IMPORTADAS
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase controladora de la base de datos
  * @author Bastian Vidal
  * 
  */
@@ -24,7 +24,8 @@ public class Controlador {
     public Statement getStatement(){//CREACIÓN DE UN MËTODO PARA CONEXTAR A LA BASE DE DATOS
         if(conn==null){   
             try{
-                Class.forName("com.mysql.jdbc.Driver");//LLAMADO A LIBRERIA DEL CONTROLADOR 
+                Class.forName("com.mysql.jdbc.Driver");//LLAMADO A LIBRERIA DEL CONTROLADOR
+                //EL ÚLTIMO PARÁMETRO CORRESPONDE A LA CONTRASEÑA DE LA BASE DE DATOS, DEBE SER MODIFICADA SEGÚN CORRESPONDA
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","root");//SE ESTABLECE UNA CONEXIÖN CON LA BASE DE DATOS
                 st= conn.createStatement(); //SE INSTANCIA UNA SENTENCIA CON LA CONEXIÓN ESTABLECIDA
             }catch(ClassNotFoundException c){//SE DESPLIEGA UN MENSAJE CON EL ERROR CORRESPONDIENTE
