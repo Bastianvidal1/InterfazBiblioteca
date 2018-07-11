@@ -21,6 +21,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
     static Querys q = new Querys();
     static Statement st = q.getSt();
     
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
         setTitle("Administración de biblioteca");
         setLocationRelativeTo(null);
         jMenuBar1.setVisible(false);
+
     }
 
     /**
