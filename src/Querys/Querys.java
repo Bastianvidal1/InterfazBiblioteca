@@ -67,9 +67,9 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Compra y los ingresa en la base de datos. 
-     * @param libros
-     * @param distribuidor
-     * @param factura 
+     * @param libros DefaultListModel con los codigos correspondientes
+     * @param distribuidor Dato a ingresar
+     * @param factura Dato a ingresar
      */
     public void CrearCompra(DefaultListModel libros,int distribuidor,int factura){//MÉTODO INCLUTE CONSULTA PARA INSERTAR REGISTROS EN LA TABLA COMPRA Y SUS RELACONES
         try{
@@ -103,17 +103,17 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Libro y los ingresa en la base de datos.
-     * @param nserie
-     * @param isbn
-     * @param titulo
-     * @param npaginas
-     * @param precioref
-     * @param idiomas
-     * @param ano_publicacion
-     * @param autores
-     * @param editorial
-     * @param categorias
-     * @param estado 
+     * @param nserie Dato correspondiente
+     * @param isbn Dato correspondiente
+     * @param titulo Dato correspondiente
+     * @param npaginas Dato correspondiente
+     * @param precioref Dato correspondiente
+     * @param idiomas DefaultListModel con los codigos correspondientes
+     * @param ano_publicacion Dato correspondiente
+     * @param autores DefaultListModel con los codigos correspondientes
+     * @param editorial Dato correspondiente
+     * @param categorias DefaultListModel con los codigos correspondientes
+     * @param estado Código correspondiente
      */
     public void CrearLibro(String nserie, String isbn, String titulo, int npaginas, int precioref, DefaultListModel idiomas
                             ,short ano_publicacion,DefaultListModel autores, int editorial, DefaultListModel categorias,int estado){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE LIBRO
@@ -125,6 +125,10 @@ public class Querys {
                     throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
                 }//Fin IF
                 
+                //SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR El ERROR
+                if(nserie.trim().isEmpty() || isbn.trim().isEmpty() || titulo.trim().isEmpty() || npaginas==0 || precioref==0 || ano_publicacion ==0 || editorial==0 || estado==0){
+                    throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+                }//Fin IF
             st.execute("insert into libros (num_serie,isbn,titulo,npaginas,precio_ref,ano_publicacion,editorial,estado) " // SE INGRESA EL REGISTRO A LA BASE DE DATOS
                     + "values ('"+nserie+"','"+isbn+"','"+titulo+"','"+npaginas+"','"+precioref+"','"+ano_publicacion+"','"+editorial+"','"+estado+"');");
 
@@ -157,7 +161,7 @@ public class Querys {
      
     /**
      * Recibe los datos del formulario Registro_Categoria y los ingresa en la base de datos. 
-     * @param nombre_categoria   
+     * @param nombre_categoria Dato correspondiente  
      */
     public void CrearCategoria(String nombre_categoria){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE CATEGORIA
         try{
@@ -166,6 +170,10 @@ public class Querys {
 
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+            }//Fin IF
+            
+            if (nombre_categoria.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
             }//Fin IF
 
             st.execute("insert into categorias (nombre) values ('"+nombre_categoria+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -180,9 +188,9 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Autor y los ingresa en la base de datos.
-     * @param nombre_autor
-     * @param apellidop
-     * @param apellidom    
+     * @param nombre_autor Dato correspondiente
+     * @param apellidop Dato correspondiente
+     * @param apellidom Dato correspondiente   
      */
     public void CrearAutor(String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE AUTOR
         try{
@@ -194,6 +202,10 @@ public class Querys {
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
             }
+            
+            if(nombre_autor.trim().isEmpty() || apellidop.trim().isEmpty() || apellidom.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
 
             st.execute("insert into autores (nombre,apellido_paterno,apellido_materno) values "
                   + "('"+nombre_autor+"','"+apellidop+"','"+apellidom+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS
@@ -210,7 +222,7 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Editorial y los ingresa en la base de datos. 
-     * @param nombre 
+     * @param nombre Dato correspondiente 
      */
     public void CrearEditorial(String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE EDITORIAL
         try{
@@ -219,6 +231,10 @@ public class Querys {
 
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+            }//Fin IF
+            
+            if(nombre.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
             }//Fin IF
 
             st.execute("insert into editoriales (nombre) values ('"+nombre+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -233,7 +249,7 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Idioma y los ingresa en la base de datos. 
-     * @param nombre    
+     * @param nombre Dato correspondiente     
      */
     public void CrearIdioma(String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE IDIOMA
         try{
@@ -243,7 +259,11 @@ public class Querys {
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
             }//Fin IF
-
+            
+             if(nombre.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("insert into idiomas (nombre) values ('"+nombre+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
 
@@ -256,7 +276,7 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Estado y los ingresa en la base de datos.
-     * @param descripcion 
+     * @param descripcion Dato correspondiente  
       */
     public void CrearEstado(String descripcion){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE ESTADO
         try{
@@ -265,6 +285,10 @@ public class Querys {
 
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+            }//Fin IF
+            
+             if(descripcion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
             }//Fin IF
 
             st.execute("insert into estados (descripcion) values ('"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -279,8 +303,8 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_MetododePago y los ingresa en la base de datos. 
-     * @param nombre
-     * @param descripcion    
+     * @param nombre Dato correspondiente 
+     * @param descripcion Dato correspondiente     
      */
     public void CrearMetododePago(String nombre,String descripcion){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE METODO DE PAGO
         try{
@@ -289,6 +313,10 @@ public class Querys {
 
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÖN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
+            }//Fin IF
+            
+             if(nombre.trim().isEmpty() || descripcion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
             }//Fin IF
 
             st.execute("insert into metodos_de_pago (nombre,descripcion) values ('"+nombre+"','"+descripcion+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -303,14 +331,14 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Factura y los ingresa en la base de datos. 
-     * @param folio
-     * @param precio_neto
-     * @param precio_iva
-     * @param costo_iva
-     * @param fecha_compra
-     * @param hora_compra
-     * @param dist_involucrado
-     * @param metodo_pago    
+     * @param folio Dato correspondiente 
+     * @param precio_neto Dato correspondiente 
+     * @param precio_iva Dato correspondiente 
+     * @param costo_iva Dato correspondiente 
+     * @param fecha_compra Dato correspondiente 
+     * @param hora_compra Dato correspondiente 
+     * @param dist_involucrado Código correspondiente 
+     * @param metodo_pago Código correspondiente     
      */
     public void CrearFactura(String folio,int precio_neto,int precio_iva,int costo_iva,String fecha_compra,String hora_compra,int dist_involucrado,int metodo_pago){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE FACTURA
         try{
@@ -321,6 +349,10 @@ public class Querys {
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
             }//Fin IF
 
+             if(folio.trim().isEmpty() || fecha_compra.trim().isEmpty() || hora_compra.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("insert into facturas (folio,precio_neto,precio_iva,costo_iva,fecha_compra,hora_compra,dist_involucrado,metodo_pago) "
                   + "values ('"+folio+"','"+precio_neto+"','"+precio_iva+"','"+costo_iva+"','"+fecha_compra+"','"
                   +hora_compra+"','"+dist_involucrado+"','"+metodo_pago+"');");// SE INGRESA EL REGISTRO A LA BASE DE DATOS 
@@ -335,15 +367,15 @@ public class Querys {
     
     /**
      * Recibe los datos del formulario Registro_Distribuidor y los ingresa en la base de datos. 
-     * @param rut
-     * @param nombre
-     * @param pais
-     * @param ciudad
-     * @param comuna
-     * @param calle
-     * @param numeracion
-     * @param telefono
-     * @param año   
+     * @param rut Dato correspondiente 
+     * @param nombre Dato correspondiente 
+     * @param pais Dato correspondiente 
+     * @param ciudad Dato correspondiente 
+     * @param comuna Dato correspondiente 
+     * @param calle Dato correspondiente 
+     * @param numeracion Dato correspondiente 
+     * @param telefono Dato correspondiente 
+     * @param año Dato correspondiente  
      */
     public void CrearDistribuidor(String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
                                     long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA INSERTAR RESGITRO DE DISTRIBUIDOR
@@ -354,9 +386,15 @@ public class Querys {
             if (rs.next()){  //SI SE ENCUENTRA REGISTRADO EL VALOR SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
                 throw new ExcepcionPersonalizada("ESTE REGISTRO YA EXISTE");
             }//Fin IF
+            
+             if(rut.trim().isEmpty() || nombre.trim().isEmpty() || pais.trim().isEmpty() || ciudad.trim().isEmpty()
+                     || comuna.trim().isEmpty() || calle.trim().isEmpty() || numeracion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             // SE INGRESAN LOS DATOS A LA TABLA DISTRIBUIDORES
             st.execute("insert into distribuidores (rut,nombre_empresa,calle,numeracion,comuna,pais,telefono,ano_inicio_ventas,ciudad) "
-                  + "values ('"+rut+"','"+nombre+"','"+calle+"','"+numeracion+"','"+comuna+"','"+pais+"','"+telefono+"','"+año+"','"+ciudad+");");
+                  + "values ('"+rut+"','"+nombre+"','"+calle+"','"+numeracion+"','"+comuna+"','"+pais+"','"+telefono+"','"+año+"','"+ciudad+"');");
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  ha sido registrado correctamente","REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
 
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
@@ -921,8 +959,8 @@ public class Querys {
      * Recibe los parametros necesarios para buscar las los registros en las Tablas relacionales
      * según la relación que se ingrese como parámetros. A su vez evalúa cual es la relación ingresada
      * y realiza la búsqueda 
-     * @param cod
-     * @param rel
+     * @param cod Código del registro de la tbla principal
+     * @param rel Nombre de la relación a listar
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas_Relacionales 
      */
     public DefaultTableModel ListarRelaciones(String cod,String rel){
@@ -1129,7 +1167,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde
-     * @param texto
+     * @param texto Texto a filtar en la lista 
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas   
      */
     public DefaultTableModel FiltrarLibros(String texto){
@@ -1186,7 +1224,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde 
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
      */
     public DefaultTableModel FiltrarMetodoPago(String texto){
@@ -1229,7 +1267,7 @@ public class Querys {
      
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde 
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas  
      */
     public DefaultTableModel FiltrarEstado(String texto){
@@ -1270,7 +1308,7 @@ public class Querys {
      
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde 
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
      */
     public DefaultTableModel FiltrarIdiomas(String texto){
@@ -1311,7 +1349,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas   
      */
     public DefaultTableModel FiltrarCategorias(String texto){
@@ -1353,9 +1391,8 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde* 
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
-    
      */
     public DefaultTableModel FiltrarCompras(String texto){
         String[] Columnas = {"COD","DISTRIBUIDOR INVOLUCRADO","FACTURA"};//VECTOR CORRESPONDIENTE AL LAS COLUMNAS
@@ -1397,7 +1434,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas    
      */
     public DefaultTableModel FiltrarEditoriales(String texto){
@@ -1438,7 +1475,7 @@ public class Querys {
      
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas
      */
     public DefaultTableModel FiltrarDistribuidores(String texto){
@@ -1493,7 +1530,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde 
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return Un DefaultTableModel para ser aplicado al JList del JFrame Listas  
      */
     public DefaultTableModel FiltrarAutores(String texto){
@@ -1538,7 +1575,7 @@ public class Querys {
     
     /**
      * Realiza la búsquedad de coincidencias en la tabla que corresponde
-     * @param texto
+     * @param texto Texto a filtar en la lista
      * @return  Un DefaultTableModel para ser aplicado al JList del JFrame Listas  
      */
     public DefaultTableModel FiltrarFactura(String texto){
@@ -1831,36 +1868,51 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
-     * @param cod
-     * @param nombre_autor
-     * @param apellidop
-     * @param apellidom     
+     * @param cod Código del registro a modificar
+     * @param nombre_autor Dato nuevo
+     * @param apellidop Dato nuevo
+     * @param apellidom Dato nuevo     
      */
     public void ModificarAutor(String cod,String nombre_autor, String apellidop,String apellidom){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE AUTOR
         try{
+            
+             if(cod.trim().isEmpty() || nombre_autor.trim().isEmpty() || apellidop.trim().isEmpty() || apellidom.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("update autores set nombre='"+nombre_autor+"',apellido_paterno='"+apellidop+"',apellido_materno='"+apellidom+"' "
                         + "WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+nombre_autor+" "+apellidop+" "+apellidom+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACION EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
-        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
     }//Fin método
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde 
-     * @param cod
-     * @param nombre
+     * @param cod Código del registro a modificar
+     * @param nombre Dato nuevo
      */
     public void ModificarCategoría(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE CATEGORIA
         try{
+            
+            if(cod.trim().isEmpty() || nombre.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             st.execute("update categorias set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1868,16 +1920,23 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde 
-     * @param cod
-     * @param nombre
+     * @param cod Código del registro a modificar
+     * @param nombre Dato nuevo
      */
     public void ModificarIdioma(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE IDIOMA
         try{
+            
+            if(cod.trim().isEmpty() || nombre.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             st.execute("update idiomas set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1885,16 +1944,23 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde 
-     * @param cod
-     * @param nombre
+     * @param cod Código del registro a modificar
+     * @param nombre Dato nuevo
      */
     public void ModificarEditorial(String cod,String nombre){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE EDITORIAL
         try{
+            
+            if(cod.trim().isEmpty() || nombre.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("update editoriales set nombre='"+nombre+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1902,26 +1968,34 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
-     * @param cod
-     * @param rut
-     * @param nombre
-     * @param pais
-     * @param ciudad
-     * @param comuna
-     * @param calle
-     * @param numeracion
-     * @param telefono
-     * @param año  
+     * @param cod Código del registro a modificar
+     * @param rut Dato nuevo
+     * @param nombre Dato nuevo
+     * @param pais Dato nuevo
+     * @param ciudad Dato nuevo
+     * @param comuna Dato nuevo
+     * @param calle Dato nuevo
+     * @param numeracion Dato nuevo
+     * @param telefono Dato nuevo
+     * @param año Dato nuevo  
      */
     public void ModificarDistribuidor(String cod,String rut,String nombre,String pais,String ciudad,String comuna,String calle,String numeracion,
                                     long telefono, short año){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE DISTRIBUIDOR
         try{
+            
+            if(cod.trim().isEmpty() || rut.trim().isEmpty() || nombre.trim().isEmpty() || pais.trim().isEmpty() || ciudad.trim().isEmpty() || comuna.trim().isEmpty() 
+                    || calle.trim().isEmpty() || numeracion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
              st.execute("update distribuidores set rut='"+rut+"', nombre_empresa='"+nombre+"', calle='"+calle+"', numeracion='"+numeracion+"', comuna='"+comuna+"'"
                   + ",ciudad='"+ciudad+"', pais='"+pais+"', telefono='"+telefono+"', ano_inicio_ventas='"+año+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
              JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1929,16 +2003,23 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
-     * @param cod
-     * @param desc
+     * @param cod Código del registro a modificar
+     * @param desc Dato nuevo
      */
     public void ModificarEstado(String cod,String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE ESTADO
         try{
+            
+             if(cod.trim().isEmpty() || desc.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("update estados set descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+desc+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1946,17 +2027,24 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde
-     * @param cod
-     * @param nombre
-     * @param desc 
+     * @param cod Código del registro a modificar
+     * @param nombre Dato nuevo
+     * @param desc Dato nuevo 
      */
     public void ModificarMetododePago(String cod,String nombre, String desc){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE METODOS DE PAGO
         try{
+            
+            if(cod.trim().isEmpty() || nombre.trim().isEmpty() || desc.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             st.execute("update metodos_de_pago set nombre='"+nombre+"' ,descripcion='"+desc+"' WHERE cod="+cod+";");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+nombre+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1964,24 +2052,31 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro que corresponde al código ingresado según la tabla que corresponde 
-     * @param cod
-     * @param folio
-     * @param precio_neto
-     * @param precio_IVA
-     * @param costo_IVA
-     * @param fecha_compra
-     * @param hora_compra
-     * @param cod_dist
-     * @param cod_met  
+     * @param cod Código del registro a modificar
+     * @param folio Dato nuevo
+     * @param precio_neto Dato nuevo
+     * @param precio_IVA Dato nuevo
+     * @param costo_IVA Dato nuevo
+     * @param fecha_compra Dato nuevo
+     * @param hora_compra Dato nuevo
+     * @param cod_dist Dato nuevo
+     * @param cod_met Dato nuevo  
      */
     public void ModificarFactura(String cod,String folio,int precio_neto, int precio_IVA, int costo_IVA, String fecha_compra, String hora_compra, int cod_dist, int cod_met){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE FACTURA
         try{
+            
+            if(cod.trim().isEmpty() || folio.trim().isEmpty() || fecha_compra.trim().isEmpty() || hora_compra.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             st.execute("update facturas set folio='"+folio+"', precio_neto='"+precio_neto+"', precio_iva='"+precio_IVA+"', costo_iva='"+costo_IVA+"', fecha_compra='"+fecha_compra+"'"
                         + ",hora_compra='"+hora_compra+"', dist_involucrado='"+cod_dist+"', metodo_pago='"+cod_met+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+folio+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -1989,17 +2084,24 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro de compra
-     * @param cod
-     * @param cod_dist
-     * @param cod_factura 
+     * @param cod Código del registro a modificar
+     * @param cod_dist Dato nuevo
+     * @param cod_factura Dato nuevo 
      */
     public void ModificarCompra(String cod,String cod_dist,String cod_factura){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE COMPRA
          try{
+             
+             if(cod.trim().isEmpty() || cod_dist.trim().isEmpty() || cod_factura.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             st.execute("update compra set dist_involucrado='"+cod_dist+"', factura='"+cod_factura+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+cod+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+         }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
          }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
          }//Fin Try-Catch
@@ -2007,25 +2109,32 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro libro
-     * @param cod
-     * @param nserie
-     * @param isbn
-     * @param titulo
-     * @param npaginas
-     * @param precioref
-     * @param ano_publicacion
-     * @param editorial
-     * @param estado 
+     * @param cod Código del registro a modificar
+     * @param nserie Dato nuevo
+     * @param isbn Dato nuevo
+     * @param titulo Dato nuevo
+     * @param npaginas Dato nuevo
+     * @param precioref Dato nuevo
+     * @param ano_publicacion Dato nuevo
+     * @param editorial Dato nuevo
+     * @param estado Dato nuevo 
      */
     public void ModificarLibro(String cod,String nserie, String isbn, String titulo, int npaginas, int precioref
                             ,short ano_publicacion, int editorial,int estado) {//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTRO DE LIBRO
         try{
+            
+            if(cod.trim().isEmpty() || nserie.trim().isEmpty() || isbn.trim().isEmpty() || titulo.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             st.execute("update libros set num_serie='"+nserie+"', isbn='"+isbn+"', titulo='"+titulo+"', npaginas='"+npaginas+"', precio_ref='"+precioref+"',"
                      + "ano_publicacion='"+ano_publicacion+"', editorial='"+editorial+"', estado='"+estado+"' WHERE cod='"+cod+"';");// SE MODIFICA EL CAMPO EN BASE DE DATOS
         
             JOptionPane.showMessageDialog(null, "'"+titulo+"'  HA SIDO MODIFICADO CORRECTAMENTE",
                 "MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
         
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin Try-Catch
@@ -2033,12 +2142,17 @@ public class Querys {
     
     /**
      * Método encargado de modificar el registro de relaciones según corresponda
-     * @param cod
-     * @param nuevo_cod_rel
-     * @param relacion 
+     * @param cod Código del registro a modificar
+     * @param nuevo_cod_rel Código del registro de la nueva asociación
+     * @param relacion Relación a modificar
      */
     public void ModificarRelacion(String cod,String nuevo_cod_rel,String relacion){//MÉTODO QUE INCLUYE CONSULTA PARA MODIFICAR REGISTROS RELACIONALES
         try{
+            
+            if(cod.trim().isEmpty() || nuevo_cod_rel.trim().isEmpty() || relacion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             switch(relacion){//Dependiendo de la relación se realizan las consultas que corresponden para modificar registros
                 case  "LIBRO_AUTOR": sql =("update libro_autores set cod_autor='"+nuevo_cod_rel+"' WHERE cod ='"+cod+"';");
                                      st.execute(sql);
@@ -2060,6 +2174,8 @@ public class Querys {
                                      JOptionPane.showMessageDialog(null,"HA SIDO MODIFICADO CORRECTAMENTE","MODIFICACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
                                      break;
             }//Fin Switch
+         }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
          }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin  Try-Catch
@@ -2067,12 +2183,16 @@ public class Querys {
     
     /**
      * Método encargado de agregar registros a tablas relacionales según corresponda
-     * @param cod
-     * @param cod_rel
-     * @param relacion 
+     * @param cod Código del registro de la tabla principal al cual se asocia la relación
+     * @param cod_rel Código del registro de la relación a agregar
+     * @param relacion Relación al cual se agregan registros
      */
     public void AgregarRelacion(String cod,String cod_rel,String relacion){//MÉTODO QUE INCLUYE CONSULTA PARA AGREGAR REGISTROS RELACIONALES
         try{
+             if(cod.trim().isEmpty() || cod_rel.trim().isEmpty() || relacion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+             
             switch(relacion){//Dependiendo de la relación se realizan las consultas que corresponden para Agregar registros
                 case  "LIBRO_AUTOR": sql =("insert into libro_autores (cod_libro,cod_autor) values ("+cod+","+cod_rel+");");
                                      st.execute(sql);
@@ -2094,18 +2214,25 @@ public class Querys {
                                      JOptionPane.showMessageDialog(null,"HA SIDO INGRESADO CORRECTAMENTE","INGRESO EXITOSO", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
                                      break;
             }//Fin Switch
-        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin  Try-Catch
     }//Fin método
     
     /**
      * Método encargado de eliminar registros de tablas relacionales según corresponda
-     * @param cod
-     * @param relacion 
+     * @param cod Código del registro de la relación a eliminar
+     * @param relacion Relación al cual se le eliminan registros
      */
     public void EliminarRelacion(String cod,String relacion){//MÉTODO QUE INCLUYE CONSULTA PARA ELIMINAR REGISTROS RELACIONALES
         try{
+            
+            if(cod.trim().isEmpty() || relacion.trim().isEmpty()){//SI HAY CAMPOS VACIOS SE FUERZA UNA EXCEPCIÓN PARA CONTROLAR EL ERROR
+                 throw new ExcepcionPersonalizada("HAY CAMPOS VACIOS");
+            }//Fin IF
+            
             switch(relacion){//Dependiendo de la relación se realizan las consultas que corresponden para eliminar registros
                 case  "LIBRO_AUTOR": sql =("delete from libro_autores WHERE cod='"+cod+"';");
                                      st.execute(sql);
@@ -2127,15 +2254,17 @@ public class Querys {
                                      JOptionPane.showMessageDialog(null,"HA SIDO ELIMINADO CORRECTAMENTE","ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE); //SE INFORMA AL USUARIO
                                      break;
             }//Fin Switch
-        }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
+        }catch(ExcepcionPersonalizada a){
+            JOptionPane.showMessageDialog(null,  a.getMessage() ,"ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+         }catch(SQLException e){// CAPTURA DE EXCEPCION DE CONEXIÓN A LA BASE DE DATOS
             JOptionPane.showMessageDialog(null, "ERROR DE MySQL: "+ e.getMessage(),"ERROR DE CONEXIÓN", JOptionPane.ERROR_MESSAGE); 
         }//Fin  Try-Catch
     }//Fin método
     
     /**
      * Método encargado de validar que el dato ingresado sea un válido como tipo Long Ej:Numero Telefónico
-     * @param dato
-     * @param casilla
+     * @param dato Dato a validar
+     * @param casilla nombre del JLabel asociado JTextField el cual contiene el dato
      * @return El mísmo dato ingresado como Long, siempre y cuando sea válido 
      */
     public Long ValidarLong(String dato, String casilla){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
@@ -2150,7 +2279,7 @@ public class Querys {
     
     /**
      * Método que valida datos numéricos
-     * @param dato
+     * @param dato Dato a validar
      * @return El mismo dato ingresado como tipo de dato Integer, siempre y cuando sea válido como Integer 
      */
     public int ValidarInteger(String dato){ //MËTODO UTILIZADO PARA VALIDAR DATOS DEL TIPO LONG PARA NUMEROS TELEFÓNICOS
@@ -2166,7 +2295,7 @@ public class Querys {
     /**
      * Método encargado de validar que el dato ingresado sea válido como un Año comprobando la fecha actual del sistema
      * con el dato ingresado 
-     * @param dato
+     * @param dato Dato a validar
      * @return El mismo dato ingresado como Integer, siempre y cuando sea válido como Integer 
      */
     public short ValidarAño(String dato){//MÉTODO UTILIZADO PARA VALIDAR LOS DATOS DEL TIPO SHORT PARA AÑOS
@@ -2189,8 +2318,8 @@ public class Querys {
     /**
      * Método encargado de validar que los datos ingresados como fecha sean válidos, comparando 
      * mes, y dia por separado del año 
-     * @param dia
-     * @param mes
+     * @param dia Día ingresado en JTextField
+     * @param mes Mes ingresado en JTextField
      * @return Un valor String que contiene el formato de Fecha para ser ingresado correctamente 
      */
     public String ValidarFecha(String dia,String mes){
@@ -2214,8 +2343,8 @@ public class Querys {
     /**
      * Método encargado de validar que los datos ingresados sean correctos. Validando 
      * Hora y minutos por separados
-     * @param hora
-     * @param minutos
+     * @param hora Hora ingresada en JTextField
+     * @param minutos Minutos ingresados en JTextField
      * @return Un valor String que contiene un formato de Hora válido para ser ingresado
      */
     public String ValidarHora(String hora,String minutos){
