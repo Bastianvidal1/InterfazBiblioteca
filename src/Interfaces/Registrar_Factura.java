@@ -9,23 +9,19 @@ import Querys.Querys;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.List;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bastian Vidal
+ * @version 1.0 29/06/2018
  */
 public class Registrar_Factura extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrar_Libro
      */
-    String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     static Querys q = new Querys();
     static Statement st = q.getSt();
     int i=0;

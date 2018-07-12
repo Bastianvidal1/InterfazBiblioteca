@@ -9,6 +9,7 @@ import Querys.Querys;//IMPORT A CLASE DE QUERYS
 /**
  *
  * @author Bastian Vidal
+ * @version 1.0 29/06/2018
  */
 public class Registrar_Categoria extends javax.swing.JFrame {
 

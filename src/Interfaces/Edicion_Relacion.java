@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Bastian Vidal
+ * @version 09/07/2018
  */
 public class Edicion_Relacion extends javax.swing.JFrame {
     Querys q = new Querys();

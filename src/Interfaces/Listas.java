@@ -6,17 +6,12 @@
 package Interfaces;
 
 import Querys.Querys;
-import javax.swing.ComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Bastian Vidal
+ * @version 05/07/2018
  */
 public class Listas extends javax.swing.JFrame {
 

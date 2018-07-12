@@ -10,6 +10,7 @@ package Excepciones;
  * provocadas en las validaciónes de datos y mostrar al usuario el error en el cual
  * se incurre
  * @author Bastian Vidal
+ * @version 02/07/2018
  */
 
 

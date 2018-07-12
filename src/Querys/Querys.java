@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * La clase Query contiene los métodos encargados de realizar las transacciones con la base de datos 
  * según se requiera
  * @author Bastian Vidal
+ * @version 1.0 02/07/2018
  */
 public class Querys {
     private static Controlador con = new Controlador();//SE LLAMA A LA CLASE CONTROLADOR

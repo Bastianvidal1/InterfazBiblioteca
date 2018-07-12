@@ -6,18 +6,17 @@
 package Interfaces;
 
 import Querys.Querys;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bastian Vidal
+ * @version 1.0 29/06/2018
  */
 public class Registrar_Autor extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrar_Libro
      */
-    String [] botones = {"Añadir Autor","Añadir Idioma","Añadir Categoría","Cancelar"};
     Querys q = new Querys();//INSTANCIACIÓN DE CLASE DE QUERYS
     String cod;
 

@@ -6,22 +6,19 @@
 package Interfaces;
 
 import Querys.Querys;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author Bastian Vidal
+ * @version 1.0 29/06/2018
  */
 public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
-     */
-    
+     */ 
     static Querys q = new Querys();
     static Statement st = q.getSt();
     

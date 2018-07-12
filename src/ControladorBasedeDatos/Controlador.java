@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Clase controladora de la base de datos
+ * @version 1.1 2/07/2018
  * @author Bastian Vidal
  * 
  */
